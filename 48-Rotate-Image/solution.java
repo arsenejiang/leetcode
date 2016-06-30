@@ -7,11 +7,11 @@ public class Solution {
         int n = matrix.length;
         for(int i = 0; i < n / 2; i++) {
             for(int j = i; j < n - i - 1; j++) {
-                int temp = nums[i][j];
-                nums[i][j] = nums[n - j - 1][i];
-                nums[n - j - 1][i] = nums[n - i - 1][n - j - 1];
-                nums[n - i - 1][n - j - 1] = nums[j][n - i - 1];
-                nums[j][n - i - 1] = temp;
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - j - 1][i];
+                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+                matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+                matrix[j][n - i - 1] = temp;
             }
         }
     }
