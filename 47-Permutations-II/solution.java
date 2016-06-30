@@ -31,7 +31,7 @@ public class Solution {
             cur.add(nums[i]);
             helper(nums, used, cur, res);
             cur.remove(cur.size() - 1);
-            used[index] = false;
+            used[i] = false;
         }
     }
 }
