@@ -8,18 +8,12 @@ public class Solution {
         boolean foundWord = false;
         int lastWordLength = 0;
         for(int i = len - 1; i >= 0; i--) {
-            if (foundWord) {
-                if (s.charAt(i) == ' ') {
-                    return lastWordLength;
-                }
-                else {
-                    lastWordLength++;
-                }
+            if (s.charAt(i) != ' ') {
+                lastWordLength++;
             }
             else {
-                if (s.charAt(i) != ' ') {
-                    foundWord = true;
-                    lastWordLength++;
+                if (lastWordLength > 0) {
+                    return lastWordLength;
                 }
             }
         }
