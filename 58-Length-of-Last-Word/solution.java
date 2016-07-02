@@ -7,7 +7,7 @@ public class Solution {
         int len = s.length();
         boolean foundWord = false;
         int lastWordLength = 0;
-        for(int i = len - 1; i >= 0; i++) {
+        for(int i = len - 1; i >= 0; i--) {
             if (foundWord) {
                 if (s.charAt(i) == ' ') {
                     return lastWordLength;
