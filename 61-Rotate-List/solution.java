@@ -19,6 +19,10 @@ public class Solution {
         }
         
         k = k % size;
+        if (k == 0) {
+            return head;
+        }
+        
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         
