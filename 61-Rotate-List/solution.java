@@ -13,9 +13,10 @@ public class Solution {
         }
         
         ListNode p = head;
-        int size = 0;
-        while(p != null) {
+        int size = 1;
+        while(p.next != null) {
             size++;
+            p = p.next;
         }
         
         k = k % size;
@@ -38,6 +39,7 @@ public class Solution {
         
         tail.next = dummy.next;
         dummy.next = prev.next;
+        prev.next = null;
         
         return dummy.next;
     }
