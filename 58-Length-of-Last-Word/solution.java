@@ -5,7 +5,6 @@ public class Solution {
         }
         
         int len = s.length();
-        boolean foundWord = false;
         int lastWordLength = 0;
         for(int i = len - 1; i >= 0; i--) {
             if (s.charAt(i) != ' ') {
