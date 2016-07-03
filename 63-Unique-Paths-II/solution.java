@@ -10,6 +10,7 @@ public class Solution {
         for(int i = 0; i < m; i++) {
             if(obstacleGrid[i][0] == 1) {
                 dp[i][0] = 0;
+                break;
             }
             else {
                 dp[i][0] = 1;
@@ -18,10 +19,11 @@ public class Solution {
         
         for(int j = 0; j < n; j++) {
             if (obstacleGrid[0][j] == 1) {
-                dp[i][0] = 0;
+                dp[0][j] = 0;
+                break;
             }
             else {
-                dp[i][0] = 1;
+                dp[0][j] = 1;
             }
         }
         
