@@ -17,7 +17,7 @@ public class Solution {
         
         int[] result = new int[size];
         int carry = 1;
-        for(int i = size - 1; i >= 0; i++) {
+        for(int i = size - 1; i >= 0; i--) {
             int sum = digits[i] + carry;
             carry = sum / 10;
             result[i] = sum % 10;
