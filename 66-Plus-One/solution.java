@@ -1,15 +1,15 @@
 public class Solution {
     public int[] plusOne(int[] digits) {
         int size = digits.length;
-        int i = 0;
-        while(i < size) {
-            if (digits[i] != 9) {
+        int index = 0;
+        while(index < size) {
+            if (digits[index] != 9) {
                 break;
             }
-            i++;
+            index++;
         }
         
-        if (i == size) {
+        if (index == size) {
             int[] result = new int[size+1];
             result[0] = 1;
             return result;
