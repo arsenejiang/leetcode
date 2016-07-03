@@ -12,6 +12,8 @@ public class Solution {
             int sum = aVal + bVal + carry;
             sb.insert(0, sum % 2);
             carry = sum / 2;
+            i--;
+            j--;
         }
         
         if (carry > 0) {
