@@ -45,7 +45,7 @@ public class Solution {
             if (cur.equals(".")) {
             }
             else if (cur.equals("..")) {
-                if (stack.isEmpty()) {
+                if (!stack.isEmpty()) {
                     stack.pop();
                 }
             }
