@@ -13,10 +13,10 @@ public class Solution {
                 return true;
             }
             else if (matrix[i][j] > target) {
-                i--;
+                j--;
             }
             else {
-                j++;
+                i++;
             }
         }
         
