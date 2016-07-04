@@ -13,7 +13,8 @@ public class Solution {
         Stack<String> stack = new Stack<String>();
         int start = 0;
         boolean found = false;
-        for(int i = 0; i < length; i++) {
+        int i = 0;
+        for(; i < length; i++) {
             char c = s.charAt(i);
             if (c == '/') {
                 if (found) {
@@ -21,10 +22,9 @@ public class Solution {
                     if (cur.equals(".")) {
                     }
                     else if (cur.equals("..")) {
-                        if (stack.isEmpty()) {
-                            return "/";
+                        if (!stack.isEmpty()) {
+                            stack.pop();
                         }
-                        stack.pop();
                     }
                     else {
                         stack.push(cur);
@@ -46,9 +46,8 @@ public class Solution {
             }
             else if (cur.equals("..")) {
                 if (stack.isEmpty()) {
-                    return "/";
+                    stack.pop();
                 }
-                stack.pop();
             }
             else {
                 stack.push(cur);
