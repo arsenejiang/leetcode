@@ -8,7 +8,7 @@ public class Solution {
         int w = 0;
         for(int i = 0; i < words.length; i = w) {
             int sum = -1;
-            for(int w = i; w < words.length && sum + 1 + words[w].length() <= maxWidth; w++) {
+            for(w = i; w < words.length && sum + 1 + words[w].length() <= maxWidth; w++) {
                 sum += 1 + words[w].length;
             }
             
