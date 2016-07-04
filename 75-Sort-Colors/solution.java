@@ -10,7 +10,6 @@ public class Solution {
             if (nums[i] == 0) {
                 swap(nums, i, index0);
                 index0++;
-                i++;
             }
             else if (nums[i] == 2) {
                 swap(nums, i, index2);
