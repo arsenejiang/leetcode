@@ -5,48 +5,37 @@ public class Solution {
             return res;
         }
         
-        int len = words.length;
-        int i = 0;
-        while(i < len) {
-            int sum = 0;
-            int j = i;
-            for(; j < len && sum <= maxWidth; j++) {
-                if (j != i) {
-                    sum += 1;
-                }
-                sum += words[j].length();
+        int w = 0;
+        for(int i = 0; i < words.length; i = w) {
+            int sum = -1;
+            for(int w = i; w < words.length && sum + 1 + words[w].length() <= maxWidth; w++) {
+                sum += 1 + words[w].length;
+            }
+            
+            int space = 0, extra = 0;
+            if (w != i + 1 && w < words.length) {
+                space = (maxWidth - sum) / (w - i + 1) + 1;
+                extra = (maxWidth - sum) % (w - i + 1);
             }
             
             StringBuilder sb = new StringBuilder(words[i]);
-            
-            if (sum > maxWidth) {
-                j--;
-                sum = sum - 1 - words[j].length();
-            }
-            
-            int spaces = maxWidth - sum;
-            int spaceLen = spaces / (j - i);
-            int index = spaces % (j - i);
-            for(int k = i+1; k <= j; k++) {
-                for(int l = 0; l < spaceLen; l++) {
+            for(int k = i+1; k < w; k++) {
+                for(int l = 0; l < space; l++) {
                     sb.append(' ');
                 }
-                if (index-- > 0) {
+                if (extra-- > 0) {
                     sb.append(' ');
                 }
                 sb.append(words[k]);
             }
             
-            int strLen = maxWidth - sum;
+            int strLen = maxWidth - sb.length();
             while(strLen-- > 0) {
                 sb.append(' ');
             }
             
             res.add(sb.toString());
-            i = j + 1;
-            
         }
-        
         return res;
     }
 }
