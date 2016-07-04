@@ -39,7 +39,7 @@ public class Solution {
             
             int strLen = maxWidth - sum;
             while(strLen-- > 0) {
-                str.append(' ');
+                sb.append(' ');
             }
             
             res.add(sb.toString());
