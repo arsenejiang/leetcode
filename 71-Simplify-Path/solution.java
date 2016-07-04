@@ -21,19 +21,37 @@ public class Solution {
                     if (cur.equals(".")) {
                     }
                     else if (cur.equals("..")) {
+                        if (stack.isEmpty()) {
+                            return "/";
+                        }
                         stack.pop();
                     }
                     else {
                         stack.push(cur);
                     }
+                    found = false;
                 }
-                found = false;
             }
             else {
                 if (!found) {
                     found = true;
                     start = i;
                 }
+            }
+        }
+        
+        if (found) {
+            String cur = s.substring(start, i);
+            if (cur.equals(".")) {
+            }
+            else if (cur.equals("..")) {
+                if (stack.isEmpty()) {
+                    return "/";
+                }
+                stack.pop();
+            }
+            else {
+                stack.push(cur);
             }
         }
         
