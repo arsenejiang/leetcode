@@ -20,27 +20,26 @@ public class Solution {
             StringBuilder sb = new StringBuilder(words[i]);
             
             if (sum > maxWidth) {
+                j--;
                 sum = sum - 1 - words[j].length();
-                j--;
-                int spaces = maxWidth - sum;
-                int spaceLen = spaces / (j - i);
-                int index = spaces % (j - i);
-                for(int k = i+1; k <= j; k++) {
-                    for(int l = 0; l < spaceLen; l++) {
-                        sb.append(' ');
-                    }
-                    if (index-- > 0) {
-                        sb.append(' ');
-                    }
-                    sb.append(words[k]);
-                }
             }
-            else {
-                j--;
-                for(int k = i+1; k <= j; k++) {
+            
+            int spaces = maxWidth - sum;
+            int spaceLen = spaces / (j - i);
+            int index = spaces % (j - i);
+            for(int k = i+1; k <= j; k++) {
+                for(int l = 0; l < spaceLen; l++) {
                     sb.append(' ');
-                    sb.append(words[k]);
                 }
+                if (index-- > 0) {
+                    sb.append(' ');
+                }
+                sb.append(words[k]);
+            }
+            
+            int strLen = maxWidth - sum;
+            while(strLen-- > 0) {
+                str.append(' ');
             }
             
             res.add(sb.toString());
