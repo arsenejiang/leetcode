@@ -9,13 +9,13 @@ public class Solution {
         for(int i = 0; i < words.length; i = w) {
             int sum = -1;
             for(w = i; w < words.length && sum + 1 + words[w].length() <= maxWidth; w++) {
-                sum += 1 + words[w].length;
+                sum += 1 + words[w].length();
             }
             
-            int space = 0, extra = 0;
+            int space = 1, extra = 0;
             if (w != i + 1 && w < words.length) {
-                space = (maxWidth - sum) / (w - i + 1) + 1;
-                extra = (maxWidth - sum) % (w - i + 1);
+                space = (maxWidth - sum) / (w - i - 1) + 1;
+                extra = (maxWidth - sum) % (w - i - 1);
             }
             
             StringBuilder sb = new StringBuilder(words[i]);
