@@ -25,7 +25,7 @@ public class Solution {
                 }
             }
             if (col0) {
-                matrix[j][0] = 0;
+                matrix[i][0] = 0;
             }
         }
     }
