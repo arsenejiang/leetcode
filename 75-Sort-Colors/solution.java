@@ -6,25 +6,25 @@ public class Solution {
         
         int index0 = 0;
         int index2 = nums.length - 1;
-        for(int i = 0; i < nums.length && i <= index2; i++) {
+        for(int i = index0; i <= index2;) {
             if (nums[i] == 0) {
-                if (i > index0) {
-                    swap(nums, i, index0);
-                    index0++;
-                    i--;
-                }
+                swap(nums, i, index0);
+                index0++;
             }
             else if (nums[i] == 2) {
-                if (i < index2) {
-                    swap(nums, i, index2);
-                    index2--;
-                    i--;
-                }
+                swap(nums, i, index2);
+                index2--;
+            }
+            else {
+                i++;
             }
         }
     }
     
     private void swap(int[] nums, int i, int j) {
+        if (i == j || nums[i] == nums[j]) {
+            return;
+        }
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
