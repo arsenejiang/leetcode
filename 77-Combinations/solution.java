@@ -1,25 +1,25 @@
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
-        if (n == 0 || k == 0) {
+        if (k <= 0 || n < k) {
             return res;
         }
+
+        helper(res, new ArrayList<Integer>(), 1, n, k);
         
-        if (k == 1) {
-            for(int i = 0; i < n; i++) {
-                List<Integer> list = new ArrayList();
-                list.add(i+1);
-                res.add(list);
-            }
-            
-            return res;
-        }
-        
-        res.addAll(combine(n-1, k-1));
-        for(List<Integer> list : res) {
-            list.add(n);
-        }
-        res.addAll(combine(n-1, k));
         return res;
+    }
+    
+    private helper(List<List<Integer>> res, List<Integer> cur, int start, int n, int k) {
+        if (k == 0) {
+            res.add(new ArrayList(cur));
+            return;
+        }
+        
+        for(int i = start; i <= n; i++) {
+            cur.add(i);
+            helper(res, cur, i + 1, n, k-1);
+            cur.remove(cur.size() - 1);
+        }
     }
 }
