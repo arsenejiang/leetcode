@@ -44,7 +44,7 @@ public class Solution {
                     }
                     
                     char remove = s.charAt(start);
-                    if(!map.containsKey(remove) {
+                    if(!map.containsKey(remove)) {
                         start++;
                     }
                     else {
