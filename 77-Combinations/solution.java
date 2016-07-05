@@ -12,7 +12,7 @@ public class Solution {
         for(List<Integer> list : result) {
             list.add(n);
         }
-        res.addAll(combine(n-1, k));
-        return res;
+        result.addAll(combine(n-1, k));
+        return result;
     }
 }
