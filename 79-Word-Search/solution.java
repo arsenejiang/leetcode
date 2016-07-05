@@ -28,7 +28,7 @@ public class Solution {
         }
         
         if (map.containsKey(word.charAt(0))) {
-            for(int[] pos : map.get(word.charAt(0)) {
+            for(int[] pos : map.get(word.charAt(0))) {
                 char c = board[pos[0]][pos[1]];
                 board[pos[0]][pos[1]] = '.';
                 if (exist(board, m, n, pos[0], pos[1], 1, word)) {
