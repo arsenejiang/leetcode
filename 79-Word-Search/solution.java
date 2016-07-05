@@ -30,7 +30,7 @@ public class Solution {
             return false;
         }
         
-        board[row][col] = '.'
+        board[row][col] = '.';
         boolean result = exist(board, word, row - 1, col, index + 1) || 
                          exist(board, word, row + 1, col, index + 1) ||
                          exist(board, word, row, col - 1, index + 1) ||
