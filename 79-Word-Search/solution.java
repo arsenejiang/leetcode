@@ -82,7 +82,7 @@ public class Solution {
             }
         }
         
-        if (col + 1 >= 0) {
+        if (col + 1 < n) {
             if (board[row][col + 1] == word.charAt(index)) {
                 char c = board[row][col + 1];
                 board[row][col + 1] = '.';
