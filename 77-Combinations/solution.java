@@ -1,11 +1,17 @@
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
-        if (k == n || k == 0) {
-            List<Integer> row = new LinkedList<>();
-            for (int i = 1; i <= k; ++i) {
-                row.add(i);
+        if (n < k || k == 0) {
+            return new ArrayList<List<Integer>>();
+        }
+        
+        if (k == n) {
+            List<Integer> list = new ArrayList();
+            for(int i = 1; i <= n; i++) {
+                list.add(i);
             }
-            return new LinkedList<>(Arrays.asList(row));
+            List<List<Integer>> res = new ArrayLit();
+            res.add(list);
+            return res;
         }
         
         List<List<Integer>> result = combine(n - 1, k - 1);
