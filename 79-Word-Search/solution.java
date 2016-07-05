@@ -45,7 +45,7 @@ public class Solution {
     }
     
     private boolean exist(char[][] board, int m, int n, int row, int col, int index, String word) {
-        if (index = word.length()) {
+        if (index == word.length()) {
             return true;
         }
         
