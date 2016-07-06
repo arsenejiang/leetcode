@@ -4,32 +4,20 @@ public class Solution {
             return nums.length;
         }
         
-        int count = 1, index = 1, prev = nums[0];
+        int count = 1, index = 1;
         for(int i = 1; i < nums.length; i++) {
-            if (nums[i] == prev) {
+            if (nums[i] == nums[i-1]) {
                 count++;
             }
             else {
                 count = 1;
-                prev = nums[i];
             }
             
             if (count <= 2) {
-                swap(nums, i, index);
-                index++;
+                nums[index++] = nums[i];
             }
         }
         
         return index;
-    }
-    
-    private void swap(int[] nums, int i, int index) {
-        if (i == index || nums[i] == nums[index]) {
-            return;
-        }
-        
-        int temp = nums[i];
-        nums[i] = nums[index];
-        nums[index] = temp;
     }
 }
