@@ -10,9 +10,23 @@ public class Solution {
             return true;
         }
         
-        if (len1 == 2) {
-            if (s1.charAt(0) == s2.charAt(1) && s1.charAt(1) == s2.charAt(0)) {
-                return true;
+        HashMap<Character, Integer> map = new HashMap();
+        for(char c : s1.toCharArray()) {
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            }
+            else {
+                map.put(c, 1);
+            }
+        }
+        
+        for(char c : s2.toCharArray()) {
+            if (map.containsKey(c)) {
+                int count = map.get(c) - 1;
+                if (count < 0) {
+                    return false;
+                }
+                map.put(c, count);
             }
             else {
                 return false;
