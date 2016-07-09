@@ -36,7 +36,7 @@ public class Solution {
             else {
                 while(!s.isEmpty() && heights[i] < heights[s.peek()]) {
                     int index = s.pop();
-                    int width = i - 1 - s.peek();
+                    int width = s.isEmpty() ? i : i - 1 - s.peek();
                     result = Math.max(result, heights[index]*width);
                 }
                 s.push(i);
