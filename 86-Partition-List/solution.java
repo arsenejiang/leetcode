@@ -17,7 +17,7 @@ public class Solution {
         ListNode cur = head;
         ListNode less = dummy;
         while(cur != null) {
-            if (cur.val < x) {
+            if (cur.val < x && cur != less.next) {
                 ListNode temp = less.next;
                 less.next = cur;
                 cur.next = temp;
