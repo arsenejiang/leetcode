@@ -12,20 +12,23 @@ public class Solution {
             return head;
         }
         
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode cur = head;
-        ListNode less = dummy;
+        ListNode d1 = new ListNode(0);
+        ListNode d2 = new ListNode(0);
+        ListNode cur = head, cur1 = d1, cur2 = d2;
         while(cur != null) {
-            if (cur.val < x && cur != less.next) {
-                ListNode temp = less.next;
-                less.next = cur;
-                cur.next = temp;
+            if (cur.val < x) {
+                cur1.next = cur;
+                cur1 = cur1.next;
+            }
+            else {
+                cur2.next = cur;
+                cur2 = cur2.next;
             }
             
             cur = cur.next;
         }
         
-        return dummy.next;
+        cur1.next = d2.next;
+        return d1.next;
     }
 }
