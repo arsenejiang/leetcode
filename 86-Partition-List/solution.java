@@ -29,6 +29,7 @@ public class Solution {
         }
         
         cur1.next = d2.next;
+        cur2.next = null;
         return d1.next;
     }
 }
