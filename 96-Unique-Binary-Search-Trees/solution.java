@@ -20,8 +20,8 @@ public class Solution {
         
         int result = 0;
         for(int i = left; i <= right; i++) {
-            int numLeftTrees = helper(left, i - 1);
-            int numRightTrees = helper(i + 1, right);
+            int numLeftTrees = helper(left, i - 1, map);
+            int numRightTrees = helper(i + 1, right, map);
             result += numLeftTrees * numRightTrees;
         }
         
