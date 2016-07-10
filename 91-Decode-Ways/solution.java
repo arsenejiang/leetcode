@@ -14,7 +14,7 @@ public class Solution {
             dp[1] = 0;
         }
         
-        for(int i = 2; i <= n; i++) {
+        for(int i = 2; i <= len; i++) {
             if(isValid(s.substring(i-1, i))) {
                 dp[i] += dp[i-1];
             }
@@ -24,7 +24,7 @@ public class Solution {
             }
         }
         
-        return dp[n];
+        return dp[len];
     }
     
     private boolean isValid(String s) {
