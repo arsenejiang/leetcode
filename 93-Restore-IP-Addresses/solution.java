@@ -22,17 +22,21 @@ public class Solution {
         
         int len = s.length();
         
-        if (part == 1) {
+        if (part == 1 && len <= 3) {
+            if (s.charAt(0) == '0' && len > 1) {
+                return res;
+            }
+            
             int val = Integer.parseInt(s);
             if (val >= 0 && val <= 255) {
                 res.add(new StringBuilder(s));
             }
         }
         else {
-            for(int i = 1; i <= 3 && i <= len; i++) {
+            for(int i = 1; i <= 3 && i <= len && (s.charAt(0) != '0' || i <= 1); i++) {
                 String sub = s.substring(0, i);
                 int val = Integer.parseInt(sub);
-                if (val < 0 && val > 255) {
+                if (val < 0 || val > 255) {
                     continue;
                 }
                 
