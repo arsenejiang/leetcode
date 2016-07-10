@@ -5,6 +5,11 @@ public class Solution {
             return result;
         }
         
+        int len = s.length();
+        if (len > 12) {
+            return result;
+        }
+        
         List<StringBuilder> sbList = new ArrayList();
         sbList = helper(s, 4);
         for(StringBuilder sb : sbList) {
