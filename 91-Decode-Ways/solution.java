@@ -1,6 +1,6 @@
 public class Solution {
     public int numDecodings(String s) {
-        if (s == null || s.length() == 0 || s[0] == '0') {
+        if (s == null || s.length() == 0 || s.charAt(0) == '0') {
             return 0;
         }
         
@@ -28,7 +28,7 @@ public class Solution {
     }
     
     private boolean isValid(String s) {
-        if (s[0] == '0') {
+        if (s.charAt(0) == '0') {
             return false;
         }
         
