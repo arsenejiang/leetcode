@@ -13,29 +13,10 @@ public class Solution {
             return;
         }
         
-        List<TreeNode> res = inorderTraversal(root);
         TreeNode n1 = null, n2 = null;
-        for(int i = 0; i < res.size() - 1; i++) {
-            if (res.get(i).val > res.get(i+1).val) {
-                if (n1 == null) {
-                    n1 = res.get(i);
-                    n2 = res.get(i+1);
-                }
-                else {
-                    n2 = res.get(i+1);
-                }
-            }
-        }
-        
-        int temp = n1.val;
-        n1.val = n2.val;
-        n2.val = temp;
-    }
-    
-    private List<TreeNode> inorderTraversal(TreeNode root) {
-        List<TreeNode> res = new ArrayList();
         Stack<TreeNode> stack = new Stack();
         TreeNode cur = root;
+        TreeNode prev = null;
         
         while(cur != null || !stack.isEmpty()) {
             while(cur != null) {
@@ -44,10 +25,23 @@ public class Solution {
             }
             
             cur = stack.pop();
-            res.add(cur);
+            if (prev == null) {
+                prev = cur;
+            }
+            else {
+                if (n1 == null && prev.val > cur.val) {
+                    n1 = prev;
+                    n2 = cur;
+                }
+                else {
+                    n2 = cur;
+                }
+            }
             cur = cur.right;
         }
         
-        return res;
+        int temp = n1.val;
+        n1.val = n2.val;
+        n2.val = temp;
     }
 }
