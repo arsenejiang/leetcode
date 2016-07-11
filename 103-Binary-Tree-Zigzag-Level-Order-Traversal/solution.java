@@ -30,11 +30,11 @@ public class Solution {
                 }
                 
                 if (n.left != null) {
-                    q.poll(n.left);
+                    q.offer(n.left);
                 }
                 
                 if (n.right != null) {
-                    q.poll(n.right);
+                    q.offer(n.right);
                 }
             }
             res.add(list);
