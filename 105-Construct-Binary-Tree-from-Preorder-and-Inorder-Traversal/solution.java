@@ -15,10 +15,14 @@ public class Solution {
         
         int plen = preorder.length;
         int ilen = inorder.length;
-        return helper(preorder, 0, plen - 1, inorder, 0, ilen - 1);
+        HashMap<Integer, Integer> map = new HashMap();
+        for(int i = 0; i < ilen; i++) {
+            map.put(inorder[i], i);
+        }
+        return helper(preorder, 0, plen - 1, inorder, 0, ilen - 1, map);
     }
     
-    private TreeNode helper(int[] preorder, int pstart, int pend, int[] inorder, int istart, int iend) {
+    private TreeNode helper(int[] preorder, int pstart, int pend, int[] inorder, int istart, int iend, HashMap<Integer, Integer>) {
         if (pstart > pend) {
             return null;
         }
@@ -27,15 +31,10 @@ public class Solution {
         }
         
         TreeNode root = new TreeNode(preorder[pstart]);
-        int i = istart;
-        for(; i <= iend; i++) {
-            if (inorder[i] == preorder[pstart]) {
-                break;
-            }
-        }
+        int index = map.get(preorder[pstart]);
         
-        root.left = helper(preorder, pstart + 1, pstart + i - istart, inorder, istart, i - 1);
-        root.right = helper(preorder, pstart + i - istart + 1, pend, inorder, i + 1, iend);
+        root.left = helper(preorder, pstart + 1, pstart + index - istart, inorder, istart, index - 1, map);
+        root.right = helper(preorder, pstart + index - istart + 1, pend, inorder, index + 1, iend, map);
         return root;
     }
 }
