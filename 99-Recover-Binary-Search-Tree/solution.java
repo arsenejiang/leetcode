@@ -29,13 +29,17 @@ public class Solution {
                 prev = cur;
             }
             else {
-                if (n1 == null && prev.val > cur.val) {
-                    n1 = prev;
-                    n2 = cur;
+                if (prev.val > cur.val) {
+                    if (n1 == null) {
+                        n1 = prev;
+                        n2 = cur;
+                    }
+                    else {
+                        n2 = cur;
+                    }
                 }
-                else {
-                    n2 = cur;
-                }
+
+                prev = cur;
             }
             cur = cur.right;
         }
