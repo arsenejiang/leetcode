@@ -17,10 +17,10 @@ public class Solution {
             return true;
         }
         
-        if (min >= max || root.val <= min || root.val >= max) {
+        if (root.val <= min || root.val >= max) {
             return false;
         }
         
-        return isValidBST(root.left, min, Math.min(max, root.val)) && isValidBST(root.right, Math.max(min, root.val), max);
+        return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 }
