@@ -22,7 +22,7 @@ public class Solution {
         return helper(preorder, 0, plen - 1, inorder, 0, ilen - 1, map);
     }
     
-    private TreeNode helper(int[] preorder, int pstart, int pend, int[] inorder, int istart, int iend, HashMap<Integer, Integer>) {
+    private TreeNode helper(int[] preorder, int pstart, int pend, int[] inorder, int istart, int iend, HashMap<Integer, Integer> map) {
         if (pstart > pend) {
             return null;
         }
