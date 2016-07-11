@@ -13,11 +13,17 @@ public class Solution {
             if (dp[i-1][0] == true) {
                 dp[i][0] = (s1.charAt(i-1) == s3.charAt(i-1));
             }
+            else {
+                break;
+            }
         }
         
         for(int j = 1; j <= l2; j++) {
             if (dp[0][j - 1] == true) {
                 dp[0][j] = (s2.charAt(j-1) == s3.charAt(j-1));
+            }
+            else {
+                break;
             }
         }
         
