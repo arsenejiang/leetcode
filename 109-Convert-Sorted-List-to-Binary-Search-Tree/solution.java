@@ -17,10 +17,6 @@
  */
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        return helper(head);
-    }
-    
-    private TreeNode helper(ListNode head) {
         if (head == null) {
             return null;
         }
