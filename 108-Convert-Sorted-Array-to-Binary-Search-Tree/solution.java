@@ -25,5 +25,6 @@ public class Solution {
         TreeNode root = new TreeNode(nums[mid]);
         root.left = helper(nums, left, mid - 1);
         root.right = helper(nums, mid + 1, right);
+        return root;
     }
 }
