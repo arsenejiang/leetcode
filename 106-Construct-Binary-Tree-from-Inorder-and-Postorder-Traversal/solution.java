@@ -37,9 +37,9 @@ public class Solution {
         }
         
         int index = map.get(postorder[pend]);
-        TreeNode root == new TreeNode(postorder[pend]);
+        TreeNode root = new TreeNode(postorder[pend]);
         root.left = buildTreeHelper(inorder, istart, index - 1, postorder, pstart, pstart + index - 1 - istart, map);
-        root.right = buildTreeHelper(inorder, index + 1, iend, postorder, pstart + index - 1 - istart, pend - 1, map);
+        root.right = buildTreeHelper(inorder, index + 1, iend, postorder, pstart + index - istart, pend - 1, map);
         
         return root;
     }
