@@ -17,18 +17,10 @@
  */
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        
-        ListNode mid = findMid(head);
-        TreeNode root = new TreeNode(mid.val);
-        root.left = sortedListToBST(head);
-        root.right = sortedListToBST(mid.next);
-        return root;
+        return helper(head);
     }
     
-    private ListNode findMid(ListNode head) {
+    private TreeNode helper(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -45,6 +37,11 @@ public class Solution {
         }
         
         prev.next = null;
-        return slow;
+        
+        TreeNode root = new TreeNode(slow.val);
+        root.left = helper(dummy.next);
+        root.right = helper(slow.next);
+        
+        return root;
     }
 }
