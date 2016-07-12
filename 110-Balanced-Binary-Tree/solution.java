@@ -23,7 +23,7 @@ public class Solution {
         }
         
         int rightHeight = height(root.right);
-        if (rightHeight = -1) {
+        if (rightHeight == -1) {
             return -1;
         }
         
