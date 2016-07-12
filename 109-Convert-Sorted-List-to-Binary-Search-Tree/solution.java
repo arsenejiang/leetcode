@@ -35,8 +35,8 @@ public class Solution {
         prev.next = null;
         
         TreeNode root = new TreeNode(slow.val);
-        root.left = helper(dummy.next);
-        root.right = helper(slow.next);
+        root.left = sortedListToBST(dummy.next);
+        root.right = sortedListToBST(slow.next);
         
         return root;
     }
