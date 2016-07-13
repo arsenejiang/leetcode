@@ -34,7 +34,7 @@ public class Solution {
             helper(root.right, sum - root.val, res, cur);
             cur.remove(cur.size() - 1);
         }
-        else (root.right == null) {
+        else if (root.right == null) {
             cur.add(root.val);
             helper(root.left, sum - root.val, res, cur);
             cur.remove(cur.size() - 1);
