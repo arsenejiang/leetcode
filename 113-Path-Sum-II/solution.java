@@ -27,6 +27,9 @@ public class Solution {
                 cur.remove(cur.size() - 1);
                 return;
             }
+            else {
+                return;
+            }
         }
         
         if (root.left == null) {
