@@ -12,19 +12,18 @@ public class Solution {
             return;
         }
         
-        Queue<TreeLinkNode> q = new LinkedList();
-        root.next = null;
-        q.offer(root);
-        while(!q.isEmpty()) {
-            TreeLinkNode n = q.poll();
-            if (n.left != null) {
-                n.left.next = n.right;
-                q.offer(n.left);
+        TreeLinkNode row, cur;
+        row = root;
+        while(row.left != null) {
+            cur = row;
+            while(cur != null) {
+                cur.left.next = cur.right;
+                if (cur.next != null) {
+                    cur.right.next = cur.next.left;
+                }
+                cur = cur.next;
             }
-            if (n.right != null) {
-                n.right.next = (n.next == null) ? null : n.next.left;
-                q.offer(n.right);
-            }
+            row = row.left;
         }
     }
 }
