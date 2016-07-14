@@ -19,7 +19,7 @@ public class Solution {
             dp[i][0] = 1;
         }
         for(int i = 1; i <= slen; i++) {
-            for(int j = 1; j <= i; j++) {
+            for(int j = 1; j <= i && j <= tlen; j++) {
                 dp[i][j] = (s.charAt(i-1) == t.charAt(j-1)) ? dp[i-1][j-1] + dp[i-1][j] : dp[i-1][j];
             }
         }
