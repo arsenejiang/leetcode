@@ -12,11 +12,11 @@ public class Solution {
             return;
         }
         
-        Queue<TreeNode> q = new LinkedList();
+        Queue<TreeLinkNode> q = new LinkedList();
         root.next = null;
         q.offer(root);
         while(!q.isEmpty()) {
-            TreeNode n = q.poll();
+            TreeLinkNode n = q.poll();
             if (n.left != null) {
                 n.left.next = n.right;
                 q.offer(n.left);
