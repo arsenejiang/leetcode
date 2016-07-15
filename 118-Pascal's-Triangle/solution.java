@@ -1,7 +1,7 @@
 public class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> res = new ArrayList();
-        if (numRow <= 0) {
+        if (numRows <= 0) {
             return res;
         }
         
