@@ -13,11 +13,11 @@ public class Solution {
         }
         
         root.next = null;
-        TreeNode row = root;
-        TreeNode cur = row;
+        TreeLinkNode row = root;
+        TreeLinkNode cur = row;
         while(row != null) {
-            TreeNode prev = null;
-            TreeNode nextRow = null;
+            TreeLinkNode prev = null;
+            TreeLinkNode nextRow = null;
             while(cur != null) {
                 if (cur.left != null && cur.right != null) {
                     if (prev != null) {
@@ -49,6 +49,7 @@ public class Solution {
                 }
                 cur = cur.next;
             }
+            prev.next = null;
             row = nextRow;
         }
     }
