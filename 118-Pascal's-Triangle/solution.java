@@ -6,14 +6,16 @@ public class Solution {
         }
         
         for(int i = 0; i < numRows; i++) {
-            int[] row = new int[i+1];
-            for(int j = 0; j < row.length; j++) {
-                if (j == 0 || j == row.length - 1) {
-                    row[j] = 1;
+            List<Integer> row = new ArrayList();
+            int j = 0;
+            while(j < i + 1) {
+                if (j == 0 || j == i) {
+                    row.add(1);
                 }
                 else {
-                    row[j] = res.get(i-1)[j-1] + res.get(i-1)[j];
+                    row.add(res.get(i-1).get(j-1) + res.get(i-1).get(j));
                 }
+                j++;
             }
             res.add(row);
         }
