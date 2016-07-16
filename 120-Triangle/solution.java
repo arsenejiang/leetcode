@@ -16,7 +16,7 @@ public class Solution {
                 if (j == 0) {
                     sum[j] = sum[j] + triangle.get(i).get(j);
                 }
-                else (j == i) {
+                else if (j == i) {
                     sum[j] = sum[j - 1] + triangle.get(i).get(j);
                 }
                 else {
