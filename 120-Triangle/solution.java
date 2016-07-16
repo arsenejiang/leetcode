@@ -13,7 +13,7 @@ public class Solution {
         int result = Integer.MAX_VALUE;
         for(int i = 0; i < row; i++) {
             for(int j = i; j >= 0; j--) {
-                sum[j] = Math.min(j == 0 ? 0 : sum[j-1], sum[j]) + triangle.get(i).get(j);
+                sum[j] = Math.min((j == 0 ? 0 : sum[j-1]), sum[j]) + triangle.get(i).get(j);
                 
                 if (i == row - 1) 
                 {
