@@ -5,13 +5,13 @@ public class Solution {
             return res;
         }
         
-        int min = prices[0];
-        for(int i = 1; i < prices.length; i++) {
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < prices.length; i++) {
             if (prices[i] < min) {
                 min = prices[i];
             }
-            else {
-                res = Math.max(res, prices[i] - min);
+            else if (prices[i] - min > res) {
+                res = prices[i] - min;
             }
         }
         
