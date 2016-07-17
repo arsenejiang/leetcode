@@ -5,7 +5,7 @@ public class Solution {
         beginSet.add(beginWord);
         endSet.add(endWord);
         int len = 1;
-        HashSet<String> visisted = new HashSet();
+        HashSet<String> visited = new HashSet();
         while(!beginSet.isEmpty() && !endSet.isEmpty()) {
             if (beginSet.size() > endSet.size()) {
                 Set<String> set = beginSet;
