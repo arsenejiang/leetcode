@@ -7,10 +7,10 @@ public class Solution {
         int len = s.length();
         int left = 0, right = len - 1;
         while(left < right) {
-            if (!Character.isLetterOrDigit(s.charAt(left)) {
+            if (!Character.isLetterOrDigit(s.charAt(left))) {
                 left++;
             }
-            else if (Character.isLetterOrDigit(s.charAt(right)) {
+            else if (!Character.isLetterOrDigit(s.charAt(right))) {
                 right--;
             }
             else {
