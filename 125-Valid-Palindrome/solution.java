@@ -7,27 +7,20 @@ public class Solution {
         int len = s.length();
         int left = 0, right = len - 1;
         while(left < right) {
-            while(s.charAt(left) == ' ') {
+            if (!Character.isLetterOrDigit(s.charAt(left)) {
                 left++;
             }
-            
-            while(s.charAt(right) == ' ') {
-                right++;
+            else if (Character.isLetterOrDigit(s.charAt(right)) {
+                right--;
             }
-            
-            if (left < right) {
-                if (s.charAt(left) == s.charAt(right) || 
-                (Math.abs(s.charAt(left) - s.charAt(right)) == 'a' - 'A') && ((s.charAt(left) <= 'Z' && s.charAt(left) >= 'A') || (s.charAt(left) <= 'z' && s.charAt(left) >= 'a'))) {
+            else {
+                if(Character.toLowerCase(s.charAt(left)) == Character.toLowerCase(s.charAt(right))) {
                     left++;
-                    right++;
-                    continue;
+                    right--;
                 }
                 else {
                     return false;
                 }
-            }
-            else {
-                return true;
             }
         }
         
