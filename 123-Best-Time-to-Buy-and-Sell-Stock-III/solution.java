@@ -1,14 +1,29 @@
 public class Solution {
     public int maxProfit(int[] prices) {
-        int hold1 = Integer.MIN_VALUE, hold2 = Integer.MIN_VALUE;
-        int release1 = 0, release2 = 0;
-        for(int i : prices) {
-            release2 = Math.max(release2, hold2 + i); // the max if we've sold 2nd stock so far.
-            hold2 = Math.max(hold2, release1 - i); // the max if we've bought 2nd stock so far.
-            release1 = Math.max(release1, hold1 + i); // the max if we've sold 1st stock so far.
-            hold1 = Math.max(hold1, -i); // the max if we've bought 1st stock so far.
+        if (prices == null || prices.length <= 1) {
+            return 0;
         }
         
-        return release2;
+        int len = prices.length;
+        int[] arrayA = new int[len];
+        int min = prices[0];
+        for(int i = 1; i < len; i++) {
+            min = Math.min(min, prices[i]);
+            arrayA[i] = Math.max(arrayA[i-1], prices[i] - min);
+        }
+        
+        int[] arrayB = new int[len];
+        int max = prices[len - 1];
+        for(int i = len - 2; i >= 0; i++) {
+            max = Math.max(max, prices[i]);
+            arrayB[i] = Math.max(arrayB[i+1], max - prices[i]);
+        }
+        
+        int maxProfit = 0;
+        for(int i = 0; i < len; i++) {
+            maxProfit = Math.max(maxProfit, arrayA[i] + arrayB[i]);
+        }
+        
+        return maxProfit;
     }
 }
