@@ -8,7 +8,7 @@ public class Solution {
         HashSet<String> visisted = new HashSet();
         while(!beginSet.isEmpty() && !endSet.isEmpty()) {
             if (beginSet.size() > endSet.size()) {
-                HashSet<String> set = beginSet;
+                Set<String> set = beginSet;
                 beginSet = endSet;
                 endSet = set;
             }
