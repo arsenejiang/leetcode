@@ -21,7 +21,7 @@ public class Solution {
                     for(char c = 'a'; c <= 'z'; c++) {
                         arr[i] = c;
                         String target = String.valueOf(arr);
-                        if (endList.contains(target)) {
+                        if (endSet.contains(target)) {
                             return len + 1;
                         }
                         
