@@ -14,7 +14,7 @@ public class Solution {
         
         int[] arrayB = new int[len];
         int max = prices[len - 1];
-        for(int i = len - 2; i >= 0; i++) {
+        for(int i = len - 2; i >= 0; i--) {
             max = Math.max(max, prices[i]);
             arrayB[i] = Math.max(arrayB[i+1], max - prices[i]);
         }
