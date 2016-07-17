@@ -1,14 +1,14 @@
 public class Solution {
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
-        HashSet<String> beginSet = new HashSet();
-        HashSet<String> endSet = new HashSet();
+        Set<String> beginSet = new HashSet();
+        Set<String> endSet = new HashSet();
         beginSet.add(beginWord);
         endSet.add(endWord);
         int len = 1;
         HashSet<String> visisted = new HashSet();
         while(!beginSet.isEmpty() && !endSet.isEmpty()) {
             if (beginSet.size() > endSet.size()) {
-                Set<String> set = beginSet;
+                HashSet<String> set = beginSet;
                 beginSet = endSet;
                 endSet = set;
             }
