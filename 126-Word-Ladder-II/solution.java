@@ -35,9 +35,8 @@ public class Solution {
         
         Set<String> next = new HashSet();
         for(String s : set1) {
-            char[] arr = s.toCharArray();
-            for(int i = 0; i < arr.length; i++) {
-                char old = arr[i];
+            for(int i = 0; i < s.length(); i++) {
+                char[] arr = s.toCharArray();
                 for(char c = 'a'; c <= 'z'; c++) {
                     arr[i] = c;
                     String word = new String(arr);
@@ -58,7 +57,6 @@ public class Solution {
                         map.put(key, list);
                     }
                 }
-                arr[i] = old;
             }
         }
         
