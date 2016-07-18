@@ -24,6 +24,9 @@ public class Solution {
             return;
         }
         
+        dict.removeAll(set1);
+        dict.removeAll(set2);
+        
         Set<String> next = new HashSet();
         for(String s : set1) {
             char[] arr = s.toCharArray();
