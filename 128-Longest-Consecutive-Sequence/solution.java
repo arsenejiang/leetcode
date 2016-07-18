@@ -19,14 +19,14 @@ public class Solution {
             set.remove(nums[i]);
             
             int j = 1;
-            while(set.contains(nums[i] + j) {
+            while(set.contains(nums[i] + j)) {
                 curLen++;
                 set.remove(nums[i] + j);
                 j++;
             }
             
             j = 1;
-            while(set.contains(nums[i] - j) {
+            while(set.contains(nums[i] - j)) {
                 curLen++;
                 set.remove(nums[i] - j);
                 j++;
