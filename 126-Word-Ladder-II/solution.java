@@ -6,7 +6,7 @@ public class Solution {
         set2.add(endWord);
         
         Map<String, List<String>> map = new HashMap();
-        buildMap(dict, set1, set2, map, false);
+        buildMap(wordList, set1, set2, map, false);
         
         List<String> cur = new ArrayList();
         List<List<String>> res = new ArrayList();
