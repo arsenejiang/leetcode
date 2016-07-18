@@ -54,9 +54,5 @@ public class Solution {
             this.x = x;
             this.y = y;
         }
-        
-        boolean equals(Node t) {
-            return this.x == t.x && this.y == t.y;
-        }
     }
 }
