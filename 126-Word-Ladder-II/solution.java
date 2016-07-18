@@ -62,7 +62,7 @@ public class Solution {
         
         for(String word : map.get(start)) {
             cur.add(word);
-            generatedList(word, end, map, cur, res);
+            generateList(word, end, map, cur, res);
             cur.remove(cur.size() - 1);
         }
     }
