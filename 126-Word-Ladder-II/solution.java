@@ -20,7 +20,8 @@ public class Solution {
         }
         
         if (set1.size() > set2.size()) {
-            return buildMap(dict, set2, set1, map, !flip);
+            buildMap(dict, set2, set1, map, !flip);
+            return;
         }
         
         Set<String> next = new HashSet();
