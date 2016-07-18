@@ -9,35 +9,18 @@
  */
 public class Solution {
     public int sumNumbers(TreeNode root) {
+        return helper(root, 0);
+    }
+    
+    private int helper(TreeNode root, int num) {
         if (root == null) {
             return 0;
         }
         
-        int result = 0;
-        List<StringBuilder> list = helper(root);
-        for(StringBuilder sb : list) {
-            result += Integer.parseInt(sb.toString());
+        if (root.left == null && root.right == null) {
+            return num * 10 + root.val;
         }
         
-        return result;
-    }
-    
-    private List<StringBuilder> helper(TreeNode root) {
-        List<StringBuilder> res = new ArrayList();
-        if (root == null) {
-            return res;
-        }
-        
-        res.addAll(helper(root.left));
-        res.addAll(helper(root.right));
-        for(StringBuilder sb : res) {
-            sb.insert(0, root.val);
-        }
-        
-        if (res.size() == 0) {
-            res.add(new StringBuilder().append(root.val));
-        }
-        
-        return res;
+        return helper(root.left, num * 10 + root.val) + helper(root.right, num * 10 + root.val);
     }
 }
