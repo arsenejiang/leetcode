@@ -35,7 +35,7 @@ public class Solution {
         }
         
         if (res.size() == 0) {
-            res.add(new StringBuilder(root.val));
+            res.add(new StringBuilder().append(root.val));
         }
         
         return res;
