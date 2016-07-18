@@ -11,7 +11,7 @@ public class Solution {
         
         int res = 0;
         for(int i = 0; i < nums.length && !set.isEmpty(); i++) {
-            if (!set.contains(nums[i]) {
+            if (!set.contains(nums[i])) {
                 continue;
             }
             
