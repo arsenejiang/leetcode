@@ -44,7 +44,7 @@ public class Solution {
                     else if (dict.contains(word)) {
                         next.add(word);
                         list.add(value);
-                        map.put(key, value);
+                        map.put(key, list);
                     }
                 }
                 arr[i] = old;
