@@ -9,6 +9,7 @@ public class Solution {
         buildMap(wordList, set1, set2, map, false);
         
         List<String> cur = new ArrayList();
+        cur.add(beginWord);
         List<List<String>> res = new ArrayList();
         generateList(beginWord, endWord, map, cur, res);
         return res;
@@ -24,8 +25,13 @@ public class Solution {
             return;
         }
         
+        // remove words on current both ends from the dict
         dict.removeAll(set1);
         dict.removeAll(set2);
+    
+        // as we only need the shortest paths
+        // we use a boolean value help early termination
+        boolean done = false;
         
         Set<String> next = new HashSet();
         for(String s : set1) {
@@ -43,8 +49,10 @@ public class Solution {
                     if (set2.contains(word)) {
                         list.add(value);
                         map.put(key, list);
+                        done = true;
                     }
-                    else if (dict.contains(word)) {
+                    
+                    if (!done && dict.contains(word)) {
                         next.add(word);
                         list.add(value);
                         map.put(key, list);
@@ -54,12 +62,18 @@ public class Solution {
             }
         }
         
-        buildMap(dict, next, set2, map, flip);
+        if (!done) {
+            buildMap(dict, next, set2, map, flip);
+        }
     }
     
     private void generateList(String start, String end, Map<String, List<String>> map, List<String> cur, List<List<String>> res) {
         if (start.equals(end)) {
             res.add(new ArrayList(cur));
+            return;
+        }
+        
+        if (!map.containsKey(start)) {
             return;
         }
         
@@ -69,6 +83,4 @@ public class Solution {
             cur.remove(cur.size() - 1);
         }
     }
-    
-    
 }
