@@ -20,10 +20,9 @@ public class Solution {
         map.put(node, res);
         while(!q.isEmpty()) {
             UndirectedGraphNode cur = q.poll();
-            visited.add(cur);
-            UndirectedGraphNode newCur = map.get(cur);
-            for(UndirectedGraphNode n : cur) {
-                if (!visited.contains(n)) {
+            if(!visited.contains(cur)) {
+                UndirectedGraphNode newCur = map.get(cur);
+                for(UndirectedGraphNode n : cur.neighbors) {
                     if(map.containsKey(n)) {
                         newCur.neighbors.add(map.get(n));
                     }
@@ -34,6 +33,7 @@ public class Solution {
                     }
                     q.offer(n);
                 }
+                visited.add(cur);
             }
         }
         
