@@ -12,7 +12,9 @@ public class Solution {
                 int index = (i + j) % len;
                 curGas += gas[index] - cost[index];
                 if (curGas < 0) {
-                    i = index;
+                    if ( i < index) {
+                        i = index;
+                    }
                     break;
                 }
             }
