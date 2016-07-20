@@ -5,20 +5,21 @@ public class Solution {
         } 
         
         int len = gas.length;
-        for(int i = 0; i < len;) {
+        for(int i = 0; i < len; i++) {
             int curGas = gas[i] - cost[i];
             int j = (i + 1) % len;
             while(curGas >= 0) {
                 curGas += gas[j] - cost[j];
                 j = (j + 1) % len;
                 
-                if (j == i) {
+                if (j == i && curGas >= 0) {
                     return i;
                 }
              }
              
              if (i < j) {
                 i = j;
+                i--;
              }
         }
         
