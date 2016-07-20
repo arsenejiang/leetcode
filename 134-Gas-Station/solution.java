@@ -8,7 +8,7 @@ public class Solution {
         for(int i = 0; i < len; i++) {
             int curGas = 0;
             int j = 0;
-            for(int j = 0; j < len; j++) {
+            for(j = 0; j < len; j++) {
                 int index = (i + j) % len;
                 curGas += gas[index] - cost[index];
                 if (curGas < 0) {
@@ -17,7 +17,9 @@ public class Solution {
                 }
             }
             
-            return i;
+            if (j == len) {
+                return i;
+            }
         }
         
         return -1;
