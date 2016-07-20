@@ -5,7 +5,7 @@ public class Solution {
         } 
         
         int len = gas.length;
-        for(int i = 0; i < len; i++) {
+        for(int i = 0; i < len;) {
             int curGas = gas[i] - cost[i];
             int j = (i + 1) % len;
             while(curGas >= 0) {
@@ -17,7 +17,9 @@ public class Solution {
                 }
              }
              
-             i = j - 1;
+             if (i < j) {
+                i = j;
+             }
         }
         
         return -1;
