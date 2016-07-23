@@ -17,21 +17,21 @@ public class Solution {
         ListNode cur = head.next;
         ListNode prev = head;
         while(cur != null) {
+            if (prev.val <= cur.val) {
+                prev = cur;
+                cur = cur.next;
+                continue;
+            }
+            
             ListNode pos = dummy;
-            while(pos != prev && pos.next.val <= cur.val) {
+            while(pos.next.val <= cur.val) {
                 pos = pos.next;
             }
             
-            if (pos == prev) {
-                prev = cur;
-                cur = cur.next;
-            }
-            else {
-                prev.next = cur.next;
-                cur.next = pos.next;
-                pos.next = cur;
-                cur = prev.next;
-            }
+            prev.next = cur.next;
+            cur.next = pos.next;
+            pos.next = cur;
+            cur = prev.next;
         }
         
         return dummy.next;
