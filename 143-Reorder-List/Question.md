@@ -20,4 +20,4 @@ Given `{1,2,3,4}`, reorder it to `{1,4,2,3}`.
 
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton">[Linked List](/tag/linked-list/)</span></div>
+<span class="hidebutton" style="display: none;">[Linked List](/tag/linked-list/)</span></div>
