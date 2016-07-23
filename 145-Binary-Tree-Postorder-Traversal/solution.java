@@ -16,22 +16,16 @@ public class Solution {
         
         Stack<TreeNode> stack = new Stack();
         stack.push(root);
-        Set<TreeNode> visited = new HashSet();
+        // Set<TreeNode> visited = new HashSet();
         while(!stack.isEmpty()) {
             TreeNode n = stack.pop();
-            if (visited.contains(n)) {
-                res.add(n.val);
+            res.add(0, n.val);
+            if (n.left != null) {
+                stack.push(n.left);
             }
-            else {
-                visited.add(n);
-                stack.push(n);
-                if (n.right != null) {
-                    stack.push(n.right);
-                }
-                
-                if (n.left != null) {
-                    stack.push(n.left);
-                }
+            
+            if (n.right != null) {
+                stack.push(n.right);
             }
         }
         
