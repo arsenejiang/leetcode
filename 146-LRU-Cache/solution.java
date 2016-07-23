@@ -56,7 +56,6 @@ public class LRUCache {
     }
     
     private void addToEnd(Node n) {
-        n.next = dummyTail;
         dummyTail.prev.next = n;
         n.prev = dummyTail.prev;
         n.next = dummyTail;
