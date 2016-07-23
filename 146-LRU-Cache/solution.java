@@ -18,6 +18,7 @@ public class LRUCache {
             Node n = map.get(key);
             remove(n);
             addToEnd(n);
+            return n.value;
         }
         else {
             return -1;
