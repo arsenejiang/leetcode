@@ -28,7 +28,7 @@ public class Solution {
         }
         
         ListNode first = head, second = slow.next;
-        while(second != null && first.next != second) {
+        while(first != slow) {
             slow.next = second.next;
             second.next = first.next;
             first.next = second;
