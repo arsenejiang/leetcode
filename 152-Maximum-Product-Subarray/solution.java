@@ -5,13 +5,13 @@ public class Solution {
         }
         
         int len = nums.length;
-        long[] dp = new long[len + 1];
-        dp[1] = nums[0];
+        long[] dp = new long[len];
+        dp[0] = nums[0];
         
         for(int i = 1; i < len; i++) {
             long localMax = nums[i];
             long product = nums[i];
-            for(int j = i - 1; j >= 0; j++) {
+            for(int j = i - 1; j >= 0; j--) {
                 product = product * nums[j];
                 localMax = Math.max(localMax, product);
             }
@@ -19,6 +19,6 @@ public class Solution {
             dp[i] = Math.max(dp[i-1], localMax);
         }
         
-        return (int)dp[len];
+        return (int)dp[len - 1];
     }
 }
