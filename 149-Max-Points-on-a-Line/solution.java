@@ -27,7 +27,7 @@ public class Solution {
                     continue;
                 }
                 
-                if (points[j].x == points[i].x && points[j].y == points[j].y) {
+                if (points[j].x == points[i].x && points[j].y == points[i].y) {
                     same++;
                     continue;
                 }
@@ -42,7 +42,7 @@ public class Solution {
                 }
             }
             
-            for(Integer value : map.values) {
+            for(Integer value : map.values()) {
                 localMax = Math.max(localMax, value);
             }
             
