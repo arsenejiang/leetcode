@@ -9,9 +9,9 @@ public class Solution {
         int res = nums[0];
         int curMax, curMin;
         
-        for(int i = 0; i < nums.length; i++) {
+        for(int i = 1; i < nums.length; i++) {
             curMax = Math.max(Math.max(max*nums[i], min*nums[i]), nums[i]);
-            curMin = Math.min(Math.min(max*nums[i], min*nums[i]), nums[i];
+            curMin = Math.min(Math.min(max*nums[i], min*nums[i]), nums[i]);
             res = Math.max(curMax, res);
             max = curMax;
             min = curMin;
