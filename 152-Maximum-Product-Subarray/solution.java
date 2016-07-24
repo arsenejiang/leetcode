@@ -4,21 +4,19 @@ public class Solution {
             return 0;
         }
         
-        int len = nums.length;
-        long[] dp = new long[len];
-        dp[0] = nums[0];
+        int max = nums[0];
+        int min = nums[0];
+        int res = nums[0];
+        int curMax, curMin;
         
-        for(int i = 1; i < len; i++) {
-            long localMax = nums[i];
-            long product = nums[i];
-            for(int j = i - 1; j >= 0; j--) {
-                product = product * nums[j];
-                localMax = Math.max(localMax, product);
-            }
-            
-            dp[i] = Math.max(dp[i-1], localMax);
+        for(int i = 0; i < nums.length; i++) {
+            curMax = Math.max(Math.max(max*nums[i], min*nums[i]), nums[i]);
+            curMin = Math.min(Math.min(max*nums[i], min*nums[i]), nums[i];
+            res = Math.max(curMax, res);
+            max = curMax;
+            min = curMin;
         }
         
-        return (int)dp[len - 1];
+        return res;
     }
 }
