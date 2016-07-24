@@ -29,7 +29,7 @@ public class Solution {
             }
             
             if (p2 != null) {
-                if (visisted.contains(p2)) {
+                if (visited.contains(p2)) {
                     return p2;
                 }
                 else {
