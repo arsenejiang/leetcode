@@ -5,7 +5,7 @@ public class Solution {
         }
         
         int len = nums.length;
-        int min = nums[0], max = nums[1];
+        int min = nums[0], max = nums[0];
         for(int i = 1; i < len; i++) {
             min = Math.min(min, nums[i]);
             max = Math.max(max, nums[i]);
@@ -14,8 +14,8 @@ public class Solution {
         int bucketLen = (int)Math.ceil((double)(max - min) / (len - 1));
         int[] bucketMin = new int[len - 1];
         int[] bucketMax = new int[len - 1];
-        Arrays.fill(bucketMin, Integer.MIN_VALUE);
-        Arrays.fill(bucketMax, Integer.MAX_VALUE);
+        Arrays.fill(bucketMin, Integer.MAX_VALUE);
+        Arrays.fill(bucketMax, Integer.MIN_VALUE);
         for(int i = 0; i < len; i++) {
             if (nums[i] == min || nums[i] == max) {
                 continue;
@@ -29,7 +29,7 @@ public class Solution {
         int maxGap = 0;
         int previous = min;
         for(int i = 0; i < len - 1; i++) {
-            if (bucketMin[i] == Integer.MIN_VALUE && bucketMax[i] == Integer.MAX_VALUE) {
+            if (bucketMin[i] == Integer.MAX_VALUE && bucketMax[i] == Integer.MIN_VALUE) {
                 continue;
             }
             
