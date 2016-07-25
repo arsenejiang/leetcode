@@ -13,10 +13,10 @@ public class Solution {
         map.put('T', 3);
         Set<Integer> words = new HashSet();
         Set<Integer> doubleWords = new HashSet();
-        int max = 0xFFFF;
+        int max = 0xFFFFF;
         int hash = 0;
         for(int i = 0; i < len; i++) {
-            if (hash < 9) {
+            if (i < 9) {
                 hash = (hash << 2) + map.get(s.charAt(i));
             }
             else {
