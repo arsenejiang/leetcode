@@ -20,7 +20,7 @@ public class Solution {
             int tmpMax = -prices[0];
             for(int j = 1; j < len; j++) {
                 dp[i][j] = Math.max(dp[i][j - 1], prices[j] + tmpMax);
-                tmpMax = Math.max(tmpMax, dp[i-1][j-1] - prices[j]);
+                tmpMax = Math.max(tmpMax, dp[i-1][j] - prices[j]);
             }
         }
         
