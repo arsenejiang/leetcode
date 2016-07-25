@@ -5,6 +5,16 @@ public class Solution {
         }
         
         int len = prices.length;
+        int maxProfit = 0;
+        if (k >= len / 2) {
+            for(int i = 1; i < len; i++) {
+                if (prices[i] > prices[i-1]) {
+                    maxProfit += prices[i] - prices[i-1];
+                }
+            }
+            return maxProfit;
+        }
+        
         int[][] dp = new int[k+1][len];
         for(int i = 0; i < len; i++) {
             dp[0][i] = 0;
