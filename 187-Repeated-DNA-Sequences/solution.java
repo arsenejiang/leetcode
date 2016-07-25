@@ -6,18 +6,25 @@ public class Solution {
         }
         
         int len = s.length();
-        Map<String, Integer> map = new HashMap();
-        for(int i = 0; i <= len - 10; i++) {
-            String sub = s.substring(i, i + 10);
-            if (map.containsKey(sub)) {
-                int count = map.get(sub) + 1;
-                map.put(sub, count);
-                if (count == 2) {
-                    res.add(sub);
-                }
+        Map<Character, Integer> map = new HashMap();
+        map.put('A', 0);
+        map.put('C', 1);
+        map.put('G', 2);
+        map.put('T', 3);
+        Set<Integer> words = new HashSet();
+        Set<Integer> doubleWords = new HashSet();
+        int max = 0xFFFF;
+        int hash = 0;
+        for(int i = 0; i < len; i++) {
+            if (hash < 9) {
+                hash = (hash << 2) + map.get(s.charAt(i));
             }
             else {
-                map.put(sub, 1);
+                hash = (hash << 2) + map.get(s.charAt(i);
+                hash = hash & max;
+                if (!words.add(hash) && doubleWords.add(hash)) {
+                    res.add(s.substring(i - 9, i + 1));
+                }
             }
         }
         
