@@ -20,7 +20,7 @@ public class Solution {
                 hash = (hash << 2) + map.get(s.charAt(i));
             }
             else {
-                hash = (hash << 2) + map.get(s.charAt(i);
+                hash = (hash << 2) + map.get(s.charAt(i));
                 hash = hash & max;
                 if (!words.add(hash) && doubleWords.add(hash)) {
                     res.add(s.substring(i - 9, i + 1));
