@@ -23,7 +23,7 @@ public class BSTIterator {
     /** @return the next smallest number */
     public int next() {
         TreeNode n = s.pop();
-        pushAll(n);
+        pushAll(n.right);
         return n.val;
     }
     
