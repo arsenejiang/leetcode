@@ -9,34 +9,29 @@
  */
 
 public class BSTIterator {
-    List<Integer> inorderList;
-    int index = 0;
+    Stack<TreeNode> s = new Stack();
 
     public BSTIterator(TreeNode root) {
-        inorderList = new ArrayList<Integer>();
-        inorder(root);
+        pushAll(root);
     }
 
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return index != inorderList.size();
+        return !s.isEmpty();
     }
 
     /** @return the next smallest number */
     public int next() {
-        int result = inorderList.get(index);
-        index++;
-        return result;
+        TreeNode n = s.pop();
+        pushAll(n);
+        return n.val;
     }
     
-    private void inorder(TreeNode root) {
-        if (root == null) {
-            return;
+    private void pushAll(TreeNode node) {
+        while(node != null) {
+            s.push(node);
+            node = node.left;
         }
-        
-        inorder(root.left);
-        inorderList.add(root.val);
-        inorder(root.right);
     }
 }
 
