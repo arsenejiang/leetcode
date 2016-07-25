@@ -16,21 +16,11 @@ public class Solution {
         }
         
         int[][] dp = new int[k+1][len];
-        for(int i = 0; i < len; i++) {
-            dp[0][i] = 0;
-        }
-        
-        for(int i = 0; i < k + 1; i++) {
-            dp[i][0] = 0;
-        }
-        
         for(int i = 1; i < k + 1; i++) {
+            int tmpMax = -prices[0];
             for(int j = 1; j < len; j++) {
-                int localMax = dp[i-1][j-1] + prices[j] - prices[j-1];
-                for(int l = 0; l < j - 1; l++) {
-                    localMax = Math.max(localMax, dp[i-1][l] + prices[j] - prices[l]);
-                }
-                dp[i][j] = Math.max(dp[i][j-1], localMax);
+                dp[i][j] = Math.max(dp[i][j - 1], prices[j] + tmpMax);
+                tmpMax = Math.max(tmpMax, dp[i-1][j-1] - prices[j]);
             }
         }
         
