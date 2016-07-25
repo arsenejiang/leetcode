@@ -9,7 +9,7 @@ public class Solution {
         Map<String, Integer> map = new HashMap();
         for(int i = 0; i <= len - 10; i++) {
             String sub = s.substring(i, i + 10);
-            if (map.containsKey(sub) {
+            if (map.containsKey(sub)) {
                 int count = map.get(sub) + 1;
                 map.put(sub, count);
                 if (count == 2) {
