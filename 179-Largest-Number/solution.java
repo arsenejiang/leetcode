@@ -4,8 +4,9 @@ public class Solution {
             return "";
         }
         
-        String[] s = new String[nums.length];
-        for(int i = 0; i < nums.length; i++) {
+        int len = nums.length;
+        String[] s = new String[len];
+        for(int i = 0; i < len; i++) {
             s[i] = Integer.toString(nums[i]);
         }
         
@@ -19,8 +20,12 @@ public class Solution {
         };
         
         Arrays.sort(s, comp);
+        if (s[len - 1].charAt(0) == '0') {
+            return "0";
+        }
+        
         StringBuilder sb = new StringBuilder();
-        for(int i = s.length - 1; i >= 0; i++) {
+        for(int i = len - 1; i >= 0; i--) {
             sb.append(s[i]);
         }
         
