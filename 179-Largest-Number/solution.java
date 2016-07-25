@@ -6,7 +6,7 @@ public class Solution {
         
         String[] s = new String[nums.length];
         for(int i = 0; i < nums.length; i++) {
-            s[i] = nums[i];
+            s[i] = Integer.toString(nums[i]);
         }
         
         Comparator<String> comp = new Comparator<String>() {
