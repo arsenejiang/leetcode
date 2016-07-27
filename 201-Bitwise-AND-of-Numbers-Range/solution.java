@@ -4,10 +4,13 @@ public class Solution {
             return m;
         }
         
-        while(n > m) {
-            n = n & (n - 1);
+        int step = 0;
+        while (m != n) {
+            m = m >> 1;
+            n = n >> 1;
+            step++;
         }
         
-        return m & n;
+        return m << step;
     }
 }
