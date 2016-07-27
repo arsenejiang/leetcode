@@ -14,23 +14,19 @@ public class Solution {
             return res;
         }
         
-        Queue<TreeNode> cur = new LinkedList();
-        Queue<TreeNode> next = new LinkedList();
-        next.offer(root);
-        while(!cur.isEmpty() || !next.isEmpty()) {
-            if (cur.isEmpty()) {
-                res.add(next.peek().val);
-                cur = next;
-                next = new LinkedList();
-            }
-            else {
-                TreeNode n = cur.poll();
+        Queue<TreeNode> q = new LinkedList();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            res.add(q.peek().val);
+            for(int i = 0; i < size; i++) {
+                TreeNode n = q.poll();
                 if (n.right != null) {
-                    next.offer(n.right);
+                    q.offer(n.right);
                 }
                 
                 if (n.left != null) {
-                    next.offer(n.left);
+                    q.offer(n.left);
                 }
             }
         }
