@@ -11,35 +11,7 @@ public class Solution {
             for(int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
                     count++;
-                    Queue<Node> q = new LinkedList();
-                    q.offer(new Node(i, j));
-                    while(!q.isEmpty()) {
-                        Node p = q.poll();
-                        grid[p.x][p.y] = '.';
-                        if (p.x < m - 1) {
-                            if (grid[p.x+1][p.y] == '1') {
-                                q.offer(new Node(p.x + 1, p.y));
-                            }
-                        }
-                        
-                        if (p.x > 0) {
-                            if (grid[p.x-1][p.y] == '1') {
-                                q.offer(new Node(p.x - 1, p.y));
-                            }
-                        }
-                        
-                        if (p.y < n - 1) {
-                            if (grid[p.x][p.y + 1] == '1') {
-                                q.offer(new Node(p.x, p.y + 1));
-                            }
-                        }
-                        
-                        if (p.y > 0) {
-                            if (grid[p.x][p.y - 1] == '1') {
-                                q.offer(new Node(p.x, p.y - 1));
-                            }
-                        }
-                    }
+                    dfsMarking(grid, m, n, i, j);
                 }
             }
         }
@@ -55,12 +27,15 @@ public class Solution {
         return count;
     }
     
-    public class Node {
-        int x;
-        int y;
-        public Node(int x, int y) {
-            this.x = x;
-            this.y = y;
+    private void dfsMarking(char[][] grid, int m, int n, int row, int col) {
+        if (row < 0 || row >= m || col < 0 || col >= n || grid[row][col] != '1') {
+            return;
         }
+        
+        grid[row][col] = '.';
+        dfsMarking(grid, m, n, row + 1, col);
+        dfsMarking(grid, m, n, row - 1, col);
+        dfsMarking(grid, m, n, row, col + 1);
+        dfsMarking(grid, m, n, row, col - 1);
     }
 }
