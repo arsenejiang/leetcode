@@ -5,7 +5,7 @@ public class Solution {
             if (visited.contains(n)) {
                 return false;
             }
-            
+            res.add(n);
             n = getNext(n);
         }
         
