@@ -10,13 +10,16 @@ public class Solution {
         for(int i = 0; i < sLen; i++) {
             char schar = s.charAt(i);
             char tchar = t.charAt(i);
-            if (map.containsKey(schar) || map.containsValue(tchar)) {
+            if (map.containsKey(schar)) {
                 if (map.get(schar) == tchar) {
                     continue;
                 }
                 else {
                     return false;
                 }
+            }
+            else if (map.containsValue(tchar)) {
+                return false;
             }
             else {
                 map.put(schar, tchar);
