@@ -46,7 +46,7 @@ public class Trie {
     public boolean startsWith(String prefix) {
         TrieNode r = root;
         for(int i = 0; i < prefix.length(); i++) {
-            char c = word.charAt(i);
+            char c = prefix.charAt(i);
             if (r.children[c - 'a'] == null) {
                 return false;
             }
