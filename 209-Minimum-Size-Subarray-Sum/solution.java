@@ -26,6 +26,6 @@ public class Solution {
             }
         }
         
-        result result == Integer.MAX_VALUE ? 0 : result;
+        return result == Integer.MAX_VALUE ? 0 : result;
     }
 }
