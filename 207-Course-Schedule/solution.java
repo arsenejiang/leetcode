@@ -12,7 +12,7 @@ public class Solution {
         }
         
         for(int i = 0; i < pre.length; i++) {
-            indegress[pre[i][0]]++;
+            indegree[pre[i][0]]++;
             adjs.get(pre[i][1]).add(pre[i][0]);
         }
     }
