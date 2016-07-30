@@ -21,7 +21,7 @@ public class Solution {
         Queue<Integer> q = new LinkedList();
         for(int i = 0; i < indegree.length; i++) {
             if (indegree[i] == 0) {
-                q.offer(indegree[i]);
+                q.offer(i);
             }
         }
         
@@ -29,7 +29,7 @@ public class Solution {
         while(!q.isEmpty()) {
             int cur = q.poll();
             visited++;
-            for(int j : adjs[cur]) {
+            for(int j : adjs.get(cur)) {
                 indegree[j]--;
                 if (indegree[j] == 0) {
                     q.offer(j);
