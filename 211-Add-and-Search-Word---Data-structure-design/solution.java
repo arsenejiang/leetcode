@@ -44,9 +44,9 @@ public class WordDictionary {
     }
 }
 
-public class TrieNode {
-    public boolean isWord;
-    public TrieNode[] children = new TrieNode[26];
+class TrieNode {
+    boolean isWord;
+    TrieNode[] children = new TrieNode[26];
 }
 
 // Your WordDictionary object will be instantiated and called as such:
