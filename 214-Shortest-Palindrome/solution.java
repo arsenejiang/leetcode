@@ -27,14 +27,4 @@ public class Solution {
         
         return true;
     }
-    
-    private boolean isPalindrome(char[] array, int i, int j) {
-        while (i < j) {
-            if (array[i++] != array[j--]) {
-                return false;
-            }
-        } 
-        
-        return true;
-    }
 }
