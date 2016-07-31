@@ -10,6 +10,8 @@ public class WordDictionary {
             }
             r = r.children[c - 'a'];
         }
+        
+        r.isWord = true;
     }
 
     // Returns if the word is in the data structure. A word could
@@ -35,7 +37,7 @@ public class WordDictionary {
         }
         else {
             if (parent.children[str[index] - 'a'] != null) {
-                return search(str, index + 1, parent.child[str[index] - 'a']);
+                return search(str, index + 1, parent.children[str[index] - 'a']);
             }
             else {
                 return false;
