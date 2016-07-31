@@ -39,7 +39,7 @@ public class Solution {
         final Random random = new Random();
         for(int ind = 1; ind < a.length; ind++) {
             final int r = random.nextInt(ind + 1);
-            exch(a, ind, r);
+            swap(a, ind, r);
         }
     }
     
