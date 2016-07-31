@@ -34,8 +34,8 @@ public class WordDictionary {
             return false;
         }
         else {
-            if (parent.children[c - str[index]] != null) {
-                return search(str, index + 1, parent.child[c - str[index]]);
+            if (parent.children[str[index] - 'a'] != null) {
+                return search(str, index + 1, parent.child[str[index] - 'a']);
             }
             else {
                 return false;
