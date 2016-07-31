@@ -3,7 +3,7 @@ public class WordDictionary {
     // Adds a word into the data structure.
     public void addWord(String word) {
         TrieNode r = root;
-        for(int i = 0; i < word.length; i++) {
+        for(int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
             if (r.children[c - 'a'] == null) {
                 r.children[c - 'a'] = new TrieNode();
