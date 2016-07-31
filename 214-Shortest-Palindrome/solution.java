@@ -1,29 +1,36 @@
 public class Solution {
     public String shortestPalindrome(String s) {
-        char[] arr = s.toCharArray();
-        int end = arr.length - 1;
-        while(end > 0) {
-            if (isPalindrome(arr, end)) {
+        char[] array = s.toCharArray();
+        int len = array.length;
+        int endIndex = 0;
+        for(int j = len - 1; j >= 0; j--) {
+            if (isPalindrome(array, 0, j)) {
+                endIndex = j;
                 break;
             }
-            end--;
         }
         
-        StringBuilder sb = new StringBuilder(s);
-        for(int i = end + 1; i < arr.length; i++) {
-            sb.insert(0, arr[i]);
+        StringBuilder sb = new StringBuilder();
+        for(int j = len - 1; j > endIndex; j--) {
+            sb.append(array[j]);
         }
+        sb.append(s);
         
         return sb.toString();
     }
     
-    private boolean isPalindrome(char[] arr, int end) {
-        int start = 0;
-        while(start < end) {
-            if (arr[start++] != arr[end--]) {
+    private boolean isPalindrome(char[] array, int i, int j) {
+        if (i == j) {
+            return true;
+        }
+        
+        while (i < j) {
+            if (array[i] != array[j]) {
                 return false;
             }
-        }
+            i++;
+            j--;
+        } 
         
         return true;
     }
