@@ -22,14 +22,14 @@ public class Solution {
         int i = lo;
         int j = hi + 1;
         while(true) {
-            while(i < hi && less(a[++i], a[lo]));
-            while(j > lo && less(a[lo], a[--j]));
+            while(i < hi && a[++i] < a[lo]);
+            while(j > lo && a[lo] < a[--j]);
             if(i >= j) {
                 break;
             }
-            exch(a, i, j);
+            swap(a, i, j);
         }
-        exch(a, lo, j);
+        swap(a, lo, j);
         return j;
     }
 
@@ -40,5 +40,11 @@ public class Solution {
             final int r = random.nextInt(ind + 1);
             exch(a, ind, r);
         }
+    }
+    
+    private void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 }
