@@ -7,13 +7,10 @@ public class Solution {
     }
     
     private void helper(List<List<Integer>> res, List<Integer> cur, int start, int k, int sum) {
-        if (sum <= 0 || cur.size() == k) {
+        if (sum < start || cur.size() == k) {
             if (sum == 0 && cur.size() == k) {
                 res.add(new ArrayList(cur));
             }
-        }
-        
-        if (sum < start) {
             return;
         }
         
