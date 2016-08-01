@@ -18,14 +18,17 @@ public class Solution {
                     return a.x - b.x;
                 }
                 
+                // when both are left, higher height go first to prevent unnecessary peek change
                 if (a.isLeft && b.isLeft) {
                     return b.height - a.height;
                 }
                 
+                // when both are not left, lower height go first to prevent unnecessary peek change
                 if (!a.isLeft && !b.isLeft) {
                     return a.height - b.height;
                 }
                 
+                // left goes first to avoid peek goes to 0
                 return a.isLeft ? -1 : 1;
             }
         };
@@ -43,6 +46,8 @@ public class Solution {
             }
             
             int cur = pq.peek();
+            
+            // compare cur peek with prev skyline, and add into result if they are different
             if (cur != prev) {
                 res.add(new int[]{e.x, cur});
                 prev = cur;
