@@ -1,5 +1,4 @@
 public class Solution {
-    public int getMoneyAmount(int n) {
         public int getMoneyAmount(int n) {
             int[][] table = new int[n+1][n+1];
             return DP(table, 1, n);
@@ -16,5 +15,4 @@ public class Solution {
             t[s][e] = res;
             return res;
         }
-    }
 }
