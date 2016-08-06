@@ -13,6 +13,20 @@ public class Solution {
             return 0;
         }
         
-        return 1 + countNodes(root.left) + countNodes(root.right);
+        Queue<TreeNode> q = new LinkedList();
+        q.offer(root);
+        int result = 0;
+        while(!q.isEmpty()) {
+            TreeNode n = q.poll();
+            result++;
+            if (n.left != null) {
+                q.offer(n.left);
+            }
+            if (n.right != null) {
+                q.offer(n.right);
+            }
+        }
+        
+        return result;
     }
 }
