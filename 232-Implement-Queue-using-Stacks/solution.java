@@ -1,8 +1,14 @@
 class MyQueue {
     Stack<Integer> is = new Stack();
     Stack<Integer> os = new Stack();
+    int front = 0;
+    
     // Push element x to the back of queue.
     public void push(int x) {
+        if (is.isEmpty()) {
+            front = x;
+        }
+        
         is.push(x);
     }
 
@@ -25,13 +31,8 @@ class MyQueue {
         if (!os.isEmpty()) {
             return os.peek();
         }
-        else {
-            while(!is.isEmpty()) {
-                os.push(is.pop());
-            }
-            
-            return os.peek();
-        }
+        
+        return front;
     }
 
     // Return whether the queue is empty.
