@@ -25,7 +25,7 @@ class MyQueue {
         }
         else {
             while(!is.isEmpty()) {
-                os.push(is.pop();
+                os.push(is.pop());
             }
             
             return os.top();
