@@ -15,20 +15,22 @@ class MyQueue {
             while(!is.isEmpty()) {
                 os.push(is.pop());
             }
+            
+            os.pop();
         }
     }
 
     // Get the front element.
     public int peek() {
         if (!os.isEmpty()) {
-            return os.top();
+            return os.peek();
         }
         else {
             while(!is.isEmpty()) {
                 os.push(is.pop());
             }
             
-            return os.top();
+            return os.peek();
         }
     }
 
