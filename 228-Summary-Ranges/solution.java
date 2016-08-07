@@ -12,24 +12,23 @@ public class Solution {
                 end = nums[i];
             }
             else {
-                StringBuilder sb = new StringBuilder(start);
-                if (start != end) {
-                    sb.append("->");
-                    sb.append(end);
-                }
-                res.add(sb.toString());
+                addStringToRes(res, start, end);
                 start = nums[i];
                 end = nums[i];
             }
         }
         
-        StringBuilder sb = new StringBuilder(start);
+        addStringToRes(res, start, end);
+        return res;
+    }
+    
+    private void addStringToRes(List<String> res, int start, int end) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(start);
         if (start != end) {
             sb.append("->");
             sb.append(end);
         }
         res.add(sb.toString());
-        
-        return res;
     }
 }
