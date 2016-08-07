@@ -4,10 +4,11 @@ public class Solution {
             return 0;
         }
         
+        int len = s.length();
         int num = 0;
         char sign = '+';
         Stack<Integer> stack = new Stack();
-        for(int i = 0; i < s.length(); i++) {
+        for(int i = 0; i < len; i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
                 num = num * 10 + c - '0';
