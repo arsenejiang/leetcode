@@ -16,7 +16,7 @@ public class Solution {
         
         if (root.left == null && root.right == null) {
             res.add(root.val + "");
-            return;
+            return res;
         }
         
         if (root.left != null) {
