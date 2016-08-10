@@ -13,7 +13,7 @@ public class Solution {
         
         int[] res = new int[2];
         for(int i : nums) {
-            if (i && lastOne == 0) {
+            if ((i && lastOne) == 0) {
                 res[0] ^= i;
             }
             else {
