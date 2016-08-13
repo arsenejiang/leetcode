@@ -1,4 +1,5 @@
 public class Solution {
+    /* sort array
     public int hIndex(int[] citations) {
         if (citations == null || citations.length == 0) {
             return 0;
@@ -15,4 +16,32 @@ public class Solution {
         
         return result;
     }
+    */
+    
+    public int hIndex(int[] citations) {
+        if (citations == null || citations.length == 0) {
+            return 0;
+        }
+        
+        int len = citations.length;
+        int[] h = new int[len + 1];
+        for(int i = 0; i < len; i++) {
+            if (citations[i] >= len) {
+                h[len]++;
+            }
+            else {
+                h[citations[i]]++;
+            }
+        }
+        
+        int result = 0;
+        for(int i = len; i >= 0; i++) {
+            result += h[i];
+            if (result >= i) {
+                return result;
+            }
+        }
+        
+        return 0;
+    } 
 }
