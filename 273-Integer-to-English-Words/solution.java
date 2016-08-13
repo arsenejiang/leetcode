@@ -20,7 +20,7 @@ public class Solution {
     }
     
     private String helper(int num) {
-        if (num == "") {
+        if (num == 0) {
             return "";
         }
         else if (num < 20) {
