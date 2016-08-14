@@ -1,25 +1,26 @@
 public class Solution {
     public int numSquares(int n) {
         int[] dp = new int[n+1];
-        for(int i = 1; i * i <= n; i++) {
-            dp[i*i] = 1;
-        }
         
-        if (dp[n] != 0) {
-            return dp[n];
-        }
+        dp[1] = 1;
         
-        return helper(n, dp);
-    }
-    
-    private int helper(int n, int[] dp) {
-        if (dp[n] != 0) {
-            return dp[n];
-        }
-        
-        dp[n] = Integer.MAX_VALUE;
-        for(int i = 1; i * i <= n; i++) {
-            dp[n] = Math.min(dp[n], helper(n - i * i, dp) + 1);
+        for(int i = 1; i <= n; i++) {
+            int square = i * i;
+            if (square < n) {
+                dp[square] = 1;
+            }
+            else if (square == n) {
+                return 1;
+            }
+            
+            if (dp[i] != 0) {
+                continue;
+            }
+            
+            dp[i] = Integer.MAX_VALUE;
+            for(int j = 1; j * j <= i; j++) {
+                dp[i] = Math.min(dp[i], 1 + dp[i - j*j]);
+            }
         }
         
         return dp[n];
