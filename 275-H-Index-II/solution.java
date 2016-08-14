@@ -1,11 +1,25 @@
 public class Solution {
     public int hIndex(int[] citations) {
-        int result = 0;
-        for(int i = citations.length - 1; i >= 0; i--) {
-            int curH = Math.min(citations[i], citations.length - i);
-            result = Math.max(curH, result);
+        if (citations == null || citations.length == 0) {
+            return 0;
         }
         
-        return result;
+        int left = 0;
+        int len = citations.length;
+        int right = len - 1;
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            if (citations[mid] == len - mid) {
+                return len - mid;
+            }
+            if (citations[mid] < len - mid) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+        
+        return len - left;
     }
 }
