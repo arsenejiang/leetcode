@@ -7,7 +7,7 @@ public class Solution {
             return res;
         }
         
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Long> map = new HashMap<String, Long>();
         Set<String> set = helper(num, 0, num.length() - 1, map);
         
         for(String s : set) {
@@ -19,7 +19,7 @@ public class Solution {
         return res;
     }
     
-    private Set<String> helper(String num, int start, int end, Map<String, Integer> map) {
+    private Set<String> helper(String num, int start, int end, Map<String, Long> map) {
         Set<String> res = new HashSet();
         if (start > end) {
             return res;
@@ -27,7 +27,7 @@ public class Solution {
         
         String s = num.substring(start, end + 1);
         if (!map.containsKey(s)) {
-            map.put(s, Integer.parseInt(s));
+            map.put(s, Long.parseLong(s));
         }
         res.add(s);
         
