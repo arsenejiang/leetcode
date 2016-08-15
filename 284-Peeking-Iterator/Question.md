@@ -36,12 +36,6 @@ Special thanks to [@porker2008](https://leetcode.com/discuss/user/porker2008) fo
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Apple](/company/apple/) [Google](/company/google/) [Yahoo](/company/yahoo/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Design](/tag/design/)</span></div>
