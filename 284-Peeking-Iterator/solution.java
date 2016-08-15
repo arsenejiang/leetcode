@@ -22,7 +22,10 @@ class PeekingIterator implements Iterator<Integer> {
 	public Integer next() {
 	    Integer next = peek;
 	    if (it.hasNext()) {
-	        peek = it.next;
+	        peek = it.next();
+	    }
+	    else {
+	        peek = null;
 	    }
 	    
 	    return next;
