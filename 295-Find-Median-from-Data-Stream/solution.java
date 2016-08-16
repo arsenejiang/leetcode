@@ -6,11 +6,11 @@ public class MedianFinder {
     public void addNum(int num) {
         if (maxHeap.size() <= minHeap.size()) {
             minHeap.offer(num);
-            maxHeap.poll(minHeap.poll());
+            maxHeap.offer(minHeap.poll());
         }
         else {
             maxHeap.offer(num);
-            minHeap.poll(maxHeap.poll());
+            minHeap.offer(maxHeap.poll());
         }
     }
 
