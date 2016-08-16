@@ -17,7 +17,7 @@ public class MedianFinder {
     // Returns the median of current data stream
     public double findMedian() {
         if (maxHeap.size() == minHeap.size()) {
-            return (maxHeap.peek() + minheap()) / 2.0;
+            return (maxHeap.peek() + minHeap()) / 2.0;
         }
         else if (maxHeap.size() > minHeap.size()) {
             return maxHeap.peek();
