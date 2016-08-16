@@ -4,7 +4,9 @@ public class MedianFinder {
     
     // Adds a number into the data structure.
     public void addNum(int num) {
-        if (maxHeap.size() <= minHeap.size()) {
+        int maxSize = maxHeap.size();
+        int minSize = minHeap.size();
+        if (maxSize == minSize) {
             minHeap.offer(num);
             maxHeap.offer(minHeap.poll());
         }
@@ -16,14 +18,13 @@ public class MedianFinder {
 
     // Returns the median of current data stream
     public double findMedian() {
-        if (maxHeap.size() == minHeap.size()) {
+        int maxSize = maxHeap.size();
+        int minSize = minHeap.size();
+        if (maxSize == minSize) {
             return (maxHeap.peek() + minHeap.peek()) / 2.0;
         }
-        else if (maxHeap.size() > minHeap.size()) {
-            return maxHeap.peek();
-        }
         else {
-            return minHeap.peek();
+            return maxHeap.peek();
         }
     }
 };
