@@ -2,7 +2,7 @@ public class NumMatrix {
     private int[][] dp;
     public NumMatrix(int[][] matrix) {
         int m = matrix.length;
-        int n = m > 0 : matrix[0].length : 0;
+        int n = m > 0 ? matrix[0].length : 0;
         dp = new int[m+1][n+1];
         for(int i = 1; i < m + 1; i++) {
             for(int j = 1; j < n + 1; i++) {
