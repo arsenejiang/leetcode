@@ -1,4 +1,5 @@
 public class Solution {
+    // (50ms) maintain a sorted list, and find pos on the sorted index, pos is the res
     public List<Integer> countSmaller(int[] nums) {
         List<Integer> res = new ArrayList();
         if (nums == null || nums.length == 0) {
@@ -15,7 +16,7 @@ public class Solution {
             res.add(index);
         }
         
-        Collections.reverse(res);
+        Collections.reverse(res); //add then reverse is faster than add to first.
         return res;
     }
     
