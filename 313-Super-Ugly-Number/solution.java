@@ -11,7 +11,7 @@ public class Solution {
             }
             
             for(int j = 0; j < primes.length; j++) {
-                if (primes[j] * ugly[idx[j]] <= ugly[i]) {
+                while (primes[j] * ugly[idx[j]] <= ugly[i]) {
                     idx[j]++;
                 }
             }
