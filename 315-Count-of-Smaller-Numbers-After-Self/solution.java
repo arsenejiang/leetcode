@@ -38,7 +38,7 @@ public class Solution {
     }
     */
     
-    // Build BST
+    // Build BST (10ms)
     public List<Integer> countSmaller(int[] nums) {
         List<Integer> res = new ArrayList();
         if (nums == null || nums.length == 0) {
@@ -87,7 +87,7 @@ public class Solution {
     
     private class TreeNode{
         private int val;
-        private int count;
+        private int count; // number of nodes <= cur val.
         private TreeNode left, right;
         TreeNode(int val) {
             this.val = val;
