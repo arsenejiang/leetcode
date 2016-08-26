@@ -1,5 +1,6 @@
 public class Solution {
     // (50ms) maintain a sorted list, and find pos on the sorted index, pos is the res
+    /*
     public List<Integer> countSmaller(int[] nums) {
         List<Integer> res = new ArrayList();
         if (nums == null || nums.length == 0) {
@@ -34,5 +35,63 @@ public class Solution {
         }
         
         return left;
+    }
+    */
+    
+    // Build BST
+    public List<Integer> countSmaller(int[] nums) {
+        List<Integer> res = new ArrayList();
+        if (nums == null || nums.length == 0) {
+            return res;
+        }
+        
+        int len = nums.length;
+        TreeNode root = new TreeNode(nums[len - 1]);
+        res.add(0);
+        for(int i = len - 2; i >= 0; i--) {
+            int count = addNode(root, nums[i]);
+            res.add(count);
+        }
+        
+        Collections.reverse(res);
+        return res;
+    }
+    
+    private int addNode(TreeNode root, int val) {
+        int curCount = 0;
+        while(true) {
+            if (val <= root.val) {
+                root.count++;
+                if (root.left == null) {
+                    root.left = new TreeNode(val);
+                    break;
+                }
+                else {
+                    root = root.left;
+                }
+            }
+            else {
+                curCount += root.count;
+                if (root.right == null) {
+                    root.right = new TreeNode(val);
+                    break;
+                }
+                else {
+                    root = root.right;
+                }
+            }
+        }
+        
+        return curCount;
+    }
+    
+    private class TreeNode{
+        private int val;
+        private int count;
+        private TreeNode left, right;
+        TreeNode(int val) {
+            this.val = val;
+            this.count = 1;
+        }
     }
 }
