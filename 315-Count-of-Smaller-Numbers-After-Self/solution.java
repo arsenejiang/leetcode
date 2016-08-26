@@ -12,9 +12,10 @@ public class Solution {
         for(int i = len - 2; i >= 0; i--) {
             int index = findIndex(sorted, nums[i]);
             sorted.add(index, nums[i]);
-            res.add(0, index);
+            res.add(index);
         }
         
+        Collections.reverse(res);
         return res;
     }
     
