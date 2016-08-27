@@ -28,7 +28,7 @@ public class Solution {
         }
         
         for(int i = index; i >= 0; i--) {
-            if (amount >= coins[i]) {
+            if (amount >= coins[i] && count + 1 < res[0]) {
                 helper(coins, i, count + 1, amount - coins[i], res);
             }
         }
