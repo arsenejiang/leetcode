@@ -24,7 +24,7 @@ public class Solution {
         if (j == nums2.length) {
             return true;
         }
-        else if (i == nums2.length) {
+        else if (i == nums1.length) {
             return false;
         }
         else if (nums1[i] > nums2[j]) {
