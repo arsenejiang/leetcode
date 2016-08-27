@@ -1,4 +1,7 @@
 public class Solution {
+    // use list and set to save current result
+    // if there are more available, remove larger character from current result
+    /*
     public String removeDuplicateLetters(String s) {
         if (s == null || s.length() <= 1) {
             return s;
@@ -41,6 +44,42 @@ public class Solution {
         
         StringBuilder sb = new StringBuilder();
         for(Character c : list) {
+            sb.append(c);
+        }
+        
+        return sb.toString();
+    }
+    */
+    
+    // use stack
+    public String removeDuplicateLetters(String s) {
+        if (s == null || s.length() <= 1) {
+            return s;
+        }
+        
+        int[] count = new int[26];
+        for(int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+        }
+        
+        Stack<Character> stack = new Stack();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            count[c - 'a']--;
+            if (stack.search(c) >= 1) {
+                continue;
+            }
+            
+            while(!stack.isEmpty() && stack.peek() > c && count[stack.peek() - 'a'] > 0) {
+                stack.pop();
+            }
+            
+            stack.push(c);
+        }
+        
+        
+        StringBuilder sb = new StringBuilder();
+        for(Character c : stack) {
             sb.append(c);
         }
         
