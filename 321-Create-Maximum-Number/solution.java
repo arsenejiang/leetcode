@@ -6,7 +6,7 @@ public class Solution {
         for(int i = 0; i <= k; i++) {
             if (i <= n1 && k - i <= n2) {
                 int[] tmp = merge(maxArray(nums1, i), maxArray(nums2, k - i));
-                if (greater(tmp, res)) {
+                if (greater(tmp, 0, res, 0)) {
                     res = tmp;
                 }
             }
