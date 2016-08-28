@@ -15,23 +15,23 @@ public class Solution {
         int low = 0;
         int high = arr.length - 1;
         while(low < high) {
-            while(!set.contains(nums[low])) {
+            while(!set.contains(arr[low])) {
                 low++;
                 if (low == high) {
                     return;
                 }
             }
             
-            while(!set.contains(nums[high])) {
+            while(!set.contains(arr[high])) {
                 high--;
                 if (low == high) {
                     return;
                 }
             }
             
-            char c = nums[low];
-            nums[low] = nums[high];
-            nums[high] = c;
+            char c = arr[low];
+            arr[low] = arr[high];
+            arr[high] = c;
             low++;
             high--;
         }
