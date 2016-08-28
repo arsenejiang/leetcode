@@ -1,10 +1,20 @@
 public class Solution {
     public String reverseString(String s) {
-        StringBuilder sb = new StringBuilder();
-        for(int i = s.length() - 1; i >= 0; i--) {
-            sb.append(s.charAt(i));
+        if (s == null || s.length() <= 1) {
+            return s;
         }
         
-        return sb.toString();
+        char[] arr = s.toCharArray();
+        int low = 0;
+        int high = arr.length - 1;
+        while(low < high) {
+            char temp = arr[low];
+            arr[low] = arr[high];
+            arr[high] = temp;
+            low++;
+            high--;
+        }
+        
+        return new String(arr);
     }
 }
