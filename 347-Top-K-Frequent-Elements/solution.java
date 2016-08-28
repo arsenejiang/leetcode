@@ -15,7 +15,7 @@ public class Solution {
             }
         }
         
-        List<Integer>[] buckets = new List[nums.length];
+        List<Integer>[] buckets = new List[nums.length + 1];
         for(int num : map.keySet()) {
             int count = map.get(num);
             if (buckets[count] == null) {
