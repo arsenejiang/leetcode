@@ -26,7 +26,9 @@ public class Solution {
         
         for(int i = buckets.length - 1; i >= 0 && res.size() < k; i--) {
             if (buckets[i] != null) {
-                res.addAll(buckets[i]);
+                for(int j = 0; j < buckets[i].size() && res.size() < k; j++) {
+                    res.add(buckets[i].get(j));
+                }
             }
         }
         
