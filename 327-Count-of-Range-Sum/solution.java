@@ -73,6 +73,8 @@ public class Solution {
             root.rightSize++;
             root.right = insert(root.right, val);
         }
+        
+        return root;
     }
     
     private class TreeNode{
