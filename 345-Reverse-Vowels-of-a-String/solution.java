@@ -20,25 +20,23 @@ public class Solution {
         int low = 0;
         int high = arr.length - 1;
         while(low < high) {
-            while(!set.contains(arr[low])) {
+            while(low < high && !set.contains(arr[low])) {
                 low++;
-                if (low == high) {
-                    return new String(arr);
-                }
             }
             
-            while(!set.contains(arr[high])) {
+            while(low < high && !set.contains(arr[high])) {
                 high--;
-                if (low == high) {
-                    return new String(arr);
-                }
             }
             
-            char c = arr[low];
-            arr[low] = arr[high];
-            arr[high] = c;
-            low++;
-            high--;
+            if (low < high) {
+                if (arr[low] != arr[high]) {
+                    char c = arr[low];
+                    arr[low] = arr[high];
+                    arr[high] = c;
+                }
+                low++;
+                high--;
+            }
         }
         
         return new String(arr);
