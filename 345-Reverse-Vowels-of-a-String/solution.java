@@ -10,6 +10,11 @@ public class Solution {
         set.add('i');
         set.add('o');
         set.add('u');
+        set.add('A');
+        set.add('E');
+        set.add('I');
+        set.add('O');
+        set.add('U');
         
         char[] arr = s.toCharArray();
         int low = 0;
@@ -18,14 +23,14 @@ public class Solution {
             while(!set.contains(arr[low])) {
                 low++;
                 if (low == high) {
-                    return;
+                    return new String(arr);
                 }
             }
             
             while(!set.contains(arr[high])) {
                 high--;
                 if (low == high) {
-                    return;
+                    return new String(arr);
                 }
             }
             
