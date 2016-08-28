@@ -5,17 +5,10 @@ public class Solution {
             return new int[0];
         }
         
-        Set<Integer> set1 = new HashSet<Integer>();
+        Set<Integer> set = new HashSet<Integer>();
         for(int num : nums1) {
-            if (!set1.contains(num)) {
-                set1.add(num);
-            }
-        }
-        
-        Set<Integer> set2 = new HashSet<Integer>();
-        for(int num : nums2) {
-            if (!set2.contains(num)) {
-                set2.add(num);
+            if (!set.contains(num)) {
+                set.add(num);
             }
         }
         
