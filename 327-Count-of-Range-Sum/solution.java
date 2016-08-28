@@ -21,7 +21,7 @@ public class Solution {
         return result;
     }
     
-    private int rangeSize(TreeNode root, int lower, int upper) {
+    private int rangeSize(TreeNode root, long lower, long upper) {
         int total = root.leftSize + root.count + root.rightSize;
         int smaller = countSmaller(root, lower);
         int larger = countLarger(root, upper);
@@ -58,7 +58,7 @@ public class Solution {
         }
     }
     
-    private void insert(TreeNode root, long val) {
+    private TreeNode insert(TreeNode root, long val) {
         if (root == null) {
             root = new TreeNode(val);
         }
@@ -67,11 +67,11 @@ public class Solution {
         } 
         else if (root.val > val) {
             root.leftSize++;
-            insert(root.left, val);
+            root.left = insert(root.left, val);
         }
         else {
             root.rightSize++;
-            insert(root.right, val);
+            root.right = insert(root.right, val);
         }
     }
     
