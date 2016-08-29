@@ -76,10 +76,8 @@ public class Twitter {
                 pq.offer(user.tweets.get(i));
             }
             else if (user.tweets.get(i).time > pq.peek().time) {
+                pq.poll();
                 pq.offer(user.tweets.get(i));
-                if (pq.size() > 10) {
-                    pq.poll();
-                }
             }
             else {
                 break;
