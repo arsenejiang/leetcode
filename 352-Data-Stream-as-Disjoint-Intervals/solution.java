@@ -26,18 +26,15 @@ public class SummaryRanges {
             map.get(f).end = map.get(c).end;
             map.remove(c);
         }
-        else if (c != null && val + 1 == c) {
-            Interval i = map.get(c);
-            i.start = val;
-            map.remove(c);
-            map.put(val, i);
-        }
         else if (f != null && map.get(f).end + 1 >= val) {
             map.get(f).end = Math.max(map.get(f).end, val);
         }
+        else if (c != null && val + 1 == c) {
+            map.put(val, new Interval(val, map.get(c).end));
+            map.remove(c);
+        }
         else {
-            Interval i = new Interval(val, val);
-            map.put(val, i);
+            map.put(val, new Interval(val, val));
         }
     }
     
