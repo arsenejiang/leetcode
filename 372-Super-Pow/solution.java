@@ -5,7 +5,7 @@ public class Solution {
             res = pow(a, 10) * pow(a, b[i]) % 1337;
         }
         
-        return res;
+        return (int)res;
     }
     
     private int pow(int x, int n) {
