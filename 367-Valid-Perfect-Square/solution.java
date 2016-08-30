@@ -8,9 +8,9 @@ public class Solution {
             return true;
         }
         
-        int left = 1, right = num;
+        long left = 1, right = num;
         while(left <= right) {
-            int mid = left + (right - left) / 2;
+            long mid = left + (right - left) / 2;
             long t = mid * mid;
             if (t == num) {
                 return true;
