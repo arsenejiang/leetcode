@@ -8,10 +8,10 @@ public class Solution {
             return true;
         }
         
-        int left = 2, right = num;
+        int left = 1, right = num;
         while(left <= right) {
             int mid = left + (right - left) / 2;
-            long temp = mid * mid;
+            long t = mid * mid;
             if (temp == num) {
                 return true;
             }
