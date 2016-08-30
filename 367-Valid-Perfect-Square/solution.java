@@ -8,7 +8,7 @@ public class Solution {
             return true;
         }
         
-        long left = 1, right = num;
+        long left = 2, right = num / 2;
         while(left <= right) {
             long mid = left + (right - left) / 2;
             long t = mid * mid;
