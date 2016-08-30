@@ -25,7 +25,7 @@ public class Solution {
         }
         
         for(int i = maxIndex, index = maxIndex; i >= 0; i--) {
-            if (nums[index] % nums[i] == 0 && dp[index] = dp[i] + 1) {
+            if (nums[index] % nums[i] == 0 && dp[index] <= dp[i] + 1) {
                 res.add(nums[i]);
                 index = i;
             }
