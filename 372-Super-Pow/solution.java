@@ -2,7 +2,7 @@ public class Solution {
     public int superPow(int a, int[] b) {
         long res = 1;
         for(int i = 0; i < b.length; i++) {
-            res = pow(a, 10) * pow(a, b[i]) % 1337;
+            res = pow(res, 10) * pow(a, b[i]) % 1337;
         }
         
         return (int)res;
