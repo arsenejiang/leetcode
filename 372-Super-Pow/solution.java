@@ -17,7 +17,7 @@ public class Solution {
             return 1;
         }
         
-        int x = x % 1337;
+        x = x % 1337;
         return pow(x, n / 2) * pow(x, n - n / 2) % 1337;
     }
 }
