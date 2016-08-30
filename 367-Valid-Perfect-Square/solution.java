@@ -12,10 +12,10 @@ public class Solution {
         while(left <= right) {
             int mid = left + (right - left) / 2;
             long t = mid * mid;
-            if (temp == num) {
+            if (t == num) {
                 return true;
             }
-            else if (temp > num) {
+            else if (t > num) {
                 right = mid - 1;
             }
             else {
