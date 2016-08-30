@@ -1,22 +1,23 @@
 public class Solution {
     public int superPow(int a, int[] b) {
-        a = a % 1337;
-        if (a == 0) {
-            return 0;
+        long res = 1;
+        for(int i = 0; i < b.length; i++) {
+            res = pow(a, 10) * pow(a, b[i]) % 1337;
         }
-        else if (a == 1) {
+        
+        return res;
+    }
+    
+    private int pow(int x, int n) {
+        if (n == 0) {
             return 1;
         }
         
-        long result = 1;
-        int multi = 1;
-        for(int i = b.length - 1; i >= 0; i--) {
-            result *= Math.pow(a, multi * b[i]);
-            multi = multi * 10;
+        if (x == 1) {
+            return 1;
         }
         
-        result = result % 1337;
-        
-        return result;
+        int x = x % 1337;
+        return pow(x, n / 2) * pow(x, n - n / 2) % 1337;
     }
 }
