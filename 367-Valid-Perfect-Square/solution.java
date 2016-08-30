@@ -8,7 +8,7 @@ public class Solution {
             return true;
         }
         
-        int left = 2, right = num / 2;
+        int left = 2, right = num;
         while(left <= right) {
             int mid = left + (right - left) / 2;
             long temp = mid * mid;
@@ -16,10 +16,10 @@ public class Solution {
                 return true;
             }
             else if (temp > num) {
-                right--;
+                right = mid - 1;
             }
             else {
-                left++;
+                left = mid + 1;
             }
         }
         
