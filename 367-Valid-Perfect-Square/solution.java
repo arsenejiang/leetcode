@@ -8,16 +8,21 @@ public class Solution {
             return true;
         }
         
-        long candidate = num / 2;
-        while(candidate * candidate > num) {
-            candidate--;
+        int left = 2, right = num / 2;
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            long temp = mid * mid;
+            if (temp == num) {
+                return true;
+            }
+            else if (temp > num) {
+                right--;
+            }
+            else {
+                left++;
+            }
         }
         
-        if (candidate * candidate == num) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return false;
     }
 }
