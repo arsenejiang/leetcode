@@ -50,7 +50,7 @@ public class Solution {
             }
             else if (nums[i] > nums[i + 1]) {
                 res++;
-                while(j <= len - 3 && nums[i + 1] >= nums[i + 2]) {
+                while(i <= len - 3 && nums[i + 1] >= nums[i + 2]) {
                     i++;
                 }
             }
