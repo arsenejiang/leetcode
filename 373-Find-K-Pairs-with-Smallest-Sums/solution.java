@@ -41,8 +41,11 @@ public class Solution {
     // https://discuss.leetcode.com/topic/50529/java-9ms-heap-queue-solution-k-log-k
     // 9ms solution
     // complexity: O(klogk)
-    // Frist, we take the first k elements of nums1 and paired with nums2[0] as the starting pairs so that we have (0,0), (1,0), (2,0),.....(k-1,0) in the heap.
-    // Each time after we pick the pair with min sum, we put the new pair with the second index +1. ie, pick (0,0), we put back (0,1). Therefore, the heap alway maintains at most min(k, len(nums1)) elements.
+    // Frist, we take the first k elements of nums1 and paired with nums2[0] as the starting pairs 
+    // so that we have (0,0), (1,0), (2),.....(k-1,0) in the heap.
+    // Each time after we pick the pair with min sum, we put the new pair with the second index +1. ie, pick (0,0), we put back (0,1).
+    // Therefore, the heap alway maintains at most min(k, len(nums1)) elements.
+    
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> res = new ArrayList();
         if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0 || k <= 0) {
