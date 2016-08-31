@@ -8,7 +8,6 @@ public class RandomizedSet {
         array = new ArrayList<Integer>();
         map = new HashMap<Integer, Integer>();
         rand = new Random();
-        rand.setSeed(0);
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
@@ -18,7 +17,7 @@ public class RandomizedSet {
         }
         else {
             array.add(val);
-            map.put(val, size);
+            map.put(val, array.size() - 1);
             return true;
         }
     }
@@ -28,8 +27,8 @@ public class RandomizedSet {
         if (map.containsKey(val)) {
             int index = map.get(val);
             map.remove(val);
-            if (index != array.size() - 1) {
-                array.add(index, array.get(array.size() - 1));
+            if (index < array.size() - 1) {
+                array.set(index, array.get(array.size() - 1));
                 map.put(array.get(index), index);
             }
             array.remove(array.size() - 1);
