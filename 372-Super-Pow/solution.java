@@ -8,7 +8,7 @@ public class Solution {
         return (int)res;
     }
     
-    private int pow(int x, int n) {
+    private long pow(long x, long n) {
         if (n == 0) {
             return 1;
         }
