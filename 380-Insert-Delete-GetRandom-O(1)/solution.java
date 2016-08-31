@@ -17,7 +17,7 @@ public class RandomizedSet {
             return false;
         }
         else {
-            array.add(size, val);
+            array.add(val);
             map.put(val, size);
             return true;
         }
