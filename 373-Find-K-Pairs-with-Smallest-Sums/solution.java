@@ -59,7 +59,7 @@ public class Solution {
             pq.offer(new int[]{i, 0});
         }
         
-        while(res.size() < k) {
+        while(res.size() < k && !pq.isEmpty()) {
             int[] arr = pq.poll();
             res.add(new int[]{nums1[arr[0]], nums2[arr[1]]});
             if (arr[1] + 1 < n) {
