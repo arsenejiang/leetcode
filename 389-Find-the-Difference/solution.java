@@ -5,16 +5,12 @@ public class Solution {
             scounts[c - 'a']++;
         }
         
-        char res = 0;
         for(char c : t.toCharArray()) {
-            if (scounts[c - 'a'] == 0) {
-                res = c;
-                break;
+            if (--scounts[c - 'a'] < 0) {
+                return c;
             }
-            
-            scounts[c - 'a']--;
         }
         
-        return res;
+        return 0;
     }
 }
