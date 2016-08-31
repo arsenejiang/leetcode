@@ -9,36 +9,21 @@ public class Solution {
             return len;
         }
         
-        int res = 0;
+        int res = 1;
         boolean same = false;
-        for(int i = 0; i < len; i++) {
-            if (nums[i] == nums[i+1]) {
-                same = true;
-                continue;
-            }
-            
-            if (same) {
+        for(int i = 0; i < len - 1; i++) {
+            if (nums[i] < nums[i+1]) {
                 res++;
-                same = false;
-            }
-            
-            if (i == 0) {
-                if (nums[i] != nums[i+1]) {
-                    res++;
+                while(i <= n - 2 && nums[i] <= nums[i+1]) {
+                    i++;
                 }
             }
-            else if (i == len - 1) {
-                if (nums[i - 1] != nums[i]) {
-                    res++;
+            else if (nums[i] > nums[i+1]) {
+                res++;
+                while(i <= n - 2 && nums[i] >= nums[i+1]) {
+                    i++;
                 }
             }
-            else if ((nums[i] > nums[i-1] && nums[i] > nums[i+1]) || (nums[i] < nums[i-1] && nums[i] < nums[i+1])) {
-                res++;
-            }
-        }
-        
-        if (same) {
-            res++;
         }
         
         return res;
