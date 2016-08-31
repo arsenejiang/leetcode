@@ -4,17 +4,11 @@ public class Solution {
             return 0;
         }
         
-        Arrays.sort(nums);
         int[] dp = new int[target + 1];
+        dp[0] = 1;
         for(int i = 1; i < dp.length; i++) {
             for(int num : nums) {
-                if (num > i) {
-                    break;
-                }
-                else if (num == i) {
-                    dp[i] += 1;
-                }
-                else {
+                if (i >= num) {
                     dp[i] += dp[i - num];
                 }
             }
