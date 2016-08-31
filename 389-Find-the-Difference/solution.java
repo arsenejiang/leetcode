@@ -5,7 +5,7 @@ public class Solution {
             scounts[c - 'a']++;
         }
         
-        char res;
+        char res = 0;
         for(char c : t.toCharArray()) {
             if (scounts[c - 'a'] == 0) {
                 res = c;
