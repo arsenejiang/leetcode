@@ -10,18 +10,17 @@ public class Solution {
         }
         
         int res = 1;
-        boolean same = false;
-        for(int i = 0; i < len - 1; i++) {
-            if (nums[i] < nums[i+1]) {
+        for(int i = 0, j = 1; i < len - 1; i = j, j++) {
+            if (nums[i] < nums[j]) {
                 res++;
-                while(i <= n - 2 && nums[i] <= nums[i+1]) {
-                    i++;
+                while(j <= len - 2 && nums[j] <= nums[j+1]) {
+                    j++;
                 }
             }
-            else if (nums[i] > nums[i+1]) {
+            else if (nums[i] > nums[j]) {
                 res++;
-                while(i <= n - 2 && nums[i] >= nums[i+1]) {
-                    i++;
+                while(j <= len - 2 && nums[j] >= nums[j+1]) {
+                    j++;
                 }
             }
         }
