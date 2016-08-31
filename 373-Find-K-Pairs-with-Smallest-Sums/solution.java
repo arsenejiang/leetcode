@@ -1,4 +1,6 @@
 public class Solution {
+    // my initial solution
+    // complexity: O(k^2logk)
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> res = new ArrayList();
         if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0 || k <= 0) {
