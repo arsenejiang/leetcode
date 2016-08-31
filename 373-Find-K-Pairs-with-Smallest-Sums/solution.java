@@ -8,7 +8,7 @@ public class Solution {
         Comparator<int[]> comp = new Comparator<int[]>() {
             @Override
             public int compare(int[] a, int[] b) {
-                return b[0] + b[1] - a[0] - a[1];
+                return b[1] - a[1] + b[0] - a[0];
             }
             
         };
