@@ -29,7 +29,7 @@
 public class Solution {
     public NestedInteger deserialize(String s) {
         NestedInteger res = new NestedInteger();
-        if (s == null || s.length == 0) {
+        if (s == null || s.length() == 0) {
             return res;
         }
         
