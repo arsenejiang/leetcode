@@ -91,10 +91,10 @@ public class Solution {
                 }
                 
                 start = i + 1;
-            } else if (ch == ',') {
+            } else if (c == ',') {
                 if (s.charAt(i-1) != ']') {
                     String num = s.substring(start, i);
-                    curr.add(new NestedInteger(Integer.valueOf(num)));
+                    cur.add(new NestedInteger(Integer.valueOf(num)));
                 }
                 start = i + 1;
             }
