@@ -4,10 +4,6 @@ public class Solution {
             return false;
         }
         
-        if (magazine.startsWith(ransomNote)) {
-            return true;
-        }
-        
         int[] counts = new int[26];
         for(char c : magazine.toCharArray()) {
             counts[c-'a']++;
