@@ -9,7 +9,7 @@ public class Solution {
             counts[c-'a']++;
         }
         
-        for(char c : ransomNode) {
+        for(char c : ransomNote) {
             if (--counts[c-'a'] < 0) {
                 return false;
             }
