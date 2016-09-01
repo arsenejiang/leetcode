@@ -1,9 +1,5 @@
 public class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        if (ransomNote == null || magazine == null || ransomNote.length() == 0)
-            return false;
-        }
-        
         int[] counts = new int[26];
         for(char c : magazine.toCharArray()) {
             counts[c-'a']++;
