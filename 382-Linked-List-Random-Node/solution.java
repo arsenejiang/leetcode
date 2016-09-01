@@ -32,13 +32,14 @@ public class Solution {
 
 public class Solution {
     ListNode head;
+    Random rand;
 
     public Solution(ListNode head) {
         this.head = head;
+        rand = new Random();
     }
     
     public int getRandom() {
-        Random rand = new Random();
         int res = head.val;
         ListNode cur = head;
         for(int i = 1; cur.next != null; i++) {
