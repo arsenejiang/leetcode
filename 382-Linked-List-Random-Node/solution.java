@@ -6,12 +6,13 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+// HashMap solution
+/*
 public class Solution {
     private HashMap<Integer, ListNode> map;
     private Random rand;
 
-    /** @param head The linked list's head.
-        Note that the head is guaranteed to be not null, so it contains at least one node. */
     public Solution(ListNode head) {
         map = new HashMap<Integer, ListNode>();
         rand = new Random();
@@ -23,9 +24,31 @@ public class Solution {
         }
     }
     
-    /** Returns a random node's value. */
     public int getRandom() {
         return map.get(rand.nextInt(map.size())).val;
+    }
+}
+*/
+
+public class Solution {
+    ListNode head;
+
+    public Solution(ListNode head) {
+        this.head = head;
+    }
+    
+    public int getRandom() {
+        Random rand = new Random();
+        int res = head.val;
+        ListNode cur = head;
+        for(int i = 1; cur.next != null; i++) {
+            cur = cur.next;
+            if (rand.nextInt(i + 1) == i) {
+                res = cur.val;
+            }
+        }
+        
+        return res;
     }
 }
 
