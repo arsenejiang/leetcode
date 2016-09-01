@@ -29,21 +29,25 @@ public class RandomizedCollection {
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
     public boolean remove(int val) {
         if (map.containsKey(val)) {
-            HashSet<Integer> set = map.get(val);
-            int index = set.iterator().next();
-            if (index < nums.size() - 1) {
-                int endValue = nums.get(nums.size() - 1);
-                nums.set(index, endValue);
-                map.get(endValue).remove(nums.size() - 1);
-                map.get(endValue).add(index);
-            }
-            set.remove(index);
-            if (set.size() == 0) {
-                map.remove(val);
+            if (val == nums.get(nums.size() - 1)) {
+            	map.get(val).remove(nums.size() - 1);
             }
             else {
-                map.put(val, set);
+            	int index = map.get(val).iterator().next();
+	            if (index < nums.size() - 1) {
+	                int endValue = nums.get(nums.size() - 1);
+	                nums.set(index, endValue);
+	                map.get(endValue).remove(nums.size() - 1);
+	                map.get(endValue).add(index);
+	            }
+
+	            map.get(val).remove(index);
             }
+            
+            if (map.get(val).size() == 0) {
+                map.remove(val);
+            }
+            
             nums.remove(nums.size() - 1);
             return true;
         }
