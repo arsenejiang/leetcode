@@ -100,6 +100,6 @@ public class Solution {
             }
         }
     
-        return curr;
+        return cur;
     }
 }
