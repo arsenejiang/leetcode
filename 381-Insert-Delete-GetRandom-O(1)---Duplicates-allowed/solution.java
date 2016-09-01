@@ -28,7 +28,6 @@ public class RandomizedCollection {
     
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
     // check val vs endValue
-    /*
     public boolean remove(int val) {
         if (map.containsKey(val)) {
             if (val == nums.get(nums.size() - 1)) {
@@ -57,8 +56,8 @@ public class RandomizedCollection {
             return false;
         }
     }
-    */
     
+    /*
     public boolean remove(int val) {
         if (map.containsKey(val)) {
         	int index = map.get(val).iterator().next();
@@ -85,6 +84,7 @@ public class RandomizedCollection {
             return false;
         }
     }
+    */
     
     /** Get a random element from the collection. */
     public int getRandom() {
