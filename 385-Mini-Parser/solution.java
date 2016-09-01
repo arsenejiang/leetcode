@@ -41,7 +41,7 @@ public class Solution {
             for(int i = 1; i < s.length(); i++) {
                 char c = s.charAt(i);
                 if (count == 0 && (c == ',' || i == s.length() - 1)) {
-                    res.add(deserialize(s.substring(start, i));
+                    res.add(deserialize(s.substring(start, i)));
                     start = i + 1;
                 }
                 else if (c == '[') {
