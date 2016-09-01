@@ -1,6 +1,6 @@
 public class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        if (ransomNote == null || magazine == null || ransomNode.length() == 0 || magazine.length() == 0) {
+        if (ransomNote == null || magazine == null || ransomNote.length() == 0 || magazine.length() == 0) {
             return false;
         }
         
