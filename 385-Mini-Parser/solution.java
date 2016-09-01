@@ -27,6 +27,8 @@
  * }
  */
 public class Solution {
+    // recursive solution
+    /*
     public NestedInteger deserialize(String s) {
         NestedInteger res = new NestedInteger();
         if (s == null || s.length() == 0) {
@@ -54,5 +56,50 @@ public class Solution {
         }
         
         return res;
+    }
+    */
+    
+    public NestedInteger deserialize(String s) {
+        if (s == null) {
+            return null;
+        }
+        else if (s.isEmpty()) {
+            return new NestedInteger(Integer.valueOf(s));
+        }
+        
+        Stack<NestedInteger> stack = new Stack<NestedInteger>();
+        NestedInteger cur = null;
+        int start = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '[') {
+                if (cur != null) {
+                    stack.push(cur);
+                }
+                cur = new NestedInteger();
+                start = i + 1;
+            }
+            else if (c == ']') {
+                String num = s.substring(start, i);
+                if (!num.isEmpty()) {
+                    cur.add(new NestedInteger(Integer.valueOf(num)));
+                }
+                if (!stack.isEmpty()) {
+                    NestedInteger pop = stack.pop();
+                    pop.add(cur);
+                    cur = pop;
+                }
+                
+                start = i + 1;
+            } else if (ch == ',') {
+                if (s.charAt(i-1) != ']') {
+                    String num = s.substring(start, i);
+                    curr.add(new NestedInteger(Integer.valueOf(num)));
+                }
+                start = i + 1;
+            }
+        }
+    
+        return curr;
     }
 }
