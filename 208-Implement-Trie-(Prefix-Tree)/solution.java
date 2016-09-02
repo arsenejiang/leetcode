@@ -1,9 +1,10 @@
 class TrieNode {
-    public boolean isWord;
-    public TrieNode[] children = new TrieNode[26];
     // Initialize your data structure here.
+    TrieNode[] children;
+    boolean isLeaf;
     public TrieNode() {
-        
+        children = new TrieNode[26];
+        isLeaf = false;
     }
 }
 
@@ -16,44 +17,51 @@ public class Trie {
 
     // Inserts a word into the trie.
     public void insert(String word) {
-        TrieNode r = root;
-        int len = word.length();
-        for(int i = 0; i < len; i++) {
+        TrieNode cur = root;
+        for(int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (r.children[c - 'a'] == null) {
-                r.children[c - 'a'] = new TrieNode();
+            if (cur.children[c-'a'] == null) {
+                cur.children[c-'a'] = new TrieNode();
             }
-            r = r.children[c - 'a'];
+            
+            if (i == word.length() - 1) {
+                cur.isLeaf = true;
+            }
+            cur = cur.children[c-'a'];
         }
-        r.isWord = true;
     }
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
-        TrieNode r = root;
-        int len = word.length();
-        for(int i = 0; i < len; i++) {
+        TrieNode cur = root;
+        for(int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (r.children[c - 'a'] == null) {
+            if (cur.children[c-'a'] == null) {
                 return false;
             }
-            r = r.children[c - 'a'];
+            else {
+                if (i == word.length() - 1) {
+                    return cur.isLeaf;
+                }
+                cur = cur.childrens[c-'a'];
+            }
         }
         
-        return r.isWord;
+        return false;
     }
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
-        TrieNode r = root;
-        int len = prefix.length();
-        for(int i = 0; i < len; i++) {
+        TrieNode cur = root;
+        for(int i = 0; i < prefix.length(); i++) {
             char c = prefix.charAt(i);
-            if (r.children[c - 'a'] == null) {
+            if (cur.children[c-'a'] == null) {
                 return false;
             }
-            r = r.children[c - 'a'];
+            else {
+                cur = cur.childrens[c-'a'];
+            }
         }
         
         return true;
