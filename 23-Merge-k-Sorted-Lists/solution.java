@@ -23,7 +23,9 @@ public class Solution {
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
         for(ListNode n : lists) {
-            pq.offer(n);
+            if (n != null) {
+                pq.offer(n);
+            }
         }
         
         while(!pq.isEmpty()) {
