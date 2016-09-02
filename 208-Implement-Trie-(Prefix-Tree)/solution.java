@@ -24,11 +24,10 @@ public class Trie {
                 cur.children[c-'a'] = new TrieNode();
             }
             
-            if (i == word.length() - 1) {
-                cur.isLeaf = true;
-            }
             cur = cur.children[c-'a'];
         }
+        
+        cur.isLeaf = true;
     }
 
     // Returns if the word is in the trie.
@@ -40,14 +39,11 @@ public class Trie {
                 return false;
             }
             else {
-                if (i == word.length() - 1) {
-                    return cur.isLeaf;
-                }
-                cur = cur.childrens[c-'a'];
+                cur = cur.children[c-'a'];
             }
         }
         
-        return false;
+        return cur.isLeaf;
     }
 
     // Returns if there is any word in the trie
@@ -60,7 +56,7 @@ public class Trie {
                 return false;
             }
             else {
-                cur = cur.childrens[c-'a'];
+                cur = cur.children[c-'a'];
             }
         }
         
