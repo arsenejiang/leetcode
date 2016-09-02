@@ -116,8 +116,8 @@ public class Trie {
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
         TrieNode cur = root;
-        for(int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
+        for(int i = 0; i < prefix.length(); i++) {
+            char c = prefix.charAt(i);
             if (!cur.children.containsKey(c)) {
                 return false;
             }
