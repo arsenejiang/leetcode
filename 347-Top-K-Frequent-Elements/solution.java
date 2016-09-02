@@ -5,7 +5,7 @@ public class Solution {
             return res;
         }
         
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         for(int num : nums) {
             if (map.containsKey(num)) {
                 map.put(num, map.get(num) + 1);
@@ -15,21 +15,25 @@ public class Solution {
             }
         }
         
-        List<Integer>[] buckets = new List[nums.length + 1];
-        for(int num : map.keySet()) {
-            int count = map.get(num);
-            if (buckets[count] == null) {
-                buckets[count] = new ArrayList<Integer>();
-            }
-            buckets[count].add(num);
+        if (map.size() <= k) {
+            res.addAll(map.keySet());
+            return res;
         }
         
-        for(int i = buckets.length - 1; i >= 0 && res.size() < k; i--) {
-            if (buckets[i] != null) {
-                for(int j = 0; j < buckets[i].size() && res.size() < k; j++) {
-                    res.add(buckets[i].get(j));
-                }
+        Comparator<Map.Entry<Integer, Integer>> comp = new Comparator<Map.Entry<Integer, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
+                return b.getValue() - a.getValue();
             }
+        };
+        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<Map.Entry<Integer, Integer>>(comp);
+        
+        for(Map.Entry<Integer, Integer> e : map.entrySet()) {
+            pq.offer(e);
+        }
+        
+        while(k-- > 0) {
+            res.add(pq.poll().getKey());
         }
         
         return res;
