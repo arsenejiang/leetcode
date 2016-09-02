@@ -88,7 +88,7 @@ public class Trie {
     public void insert(String word) {
         TrieNode cur = root;
         for(int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i)；
+            char c = word.charAt(i);
             if(!cur.children.containsKey(c)) {
                 cur.children.put(c, new TrieNode());
             }
