@@ -20,20 +20,18 @@ public class Solution {
             return res;
         }
         
-        Comparator<Map.Entry<Integer, Integer>> comp = new Comparator<Map.Entry<Integer, Integer>>() {
-            @Override
-            public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
-                return b.getValue() - a.getValue();
-            }
-        };
-        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<Map.Entry<Integer, Integer>>(comp);
-        
+        List<Integer>[] buckets = new List[nums.length + 1];
         for(Map.Entry<Integer, Integer> e : map.entrySet()) {
-            pq.offer(e);
+            if (buckets[e.getValue()] == null) {
+                buckets[e.getValue()] = new ArrayList<Integer>();
+            }
+            buckets[e.getValue()].add(e.getKey());
         }
         
-        while(k-- > 0) {
-            res.add(pq.poll().getKey());
+        for(int i = buckets.length - 1; i >= 0 && res.size() < k; i--) {
+            if (buckets[i] != null) {
+                res.addAll(buckets[i]);
+            }
         }
         
         return res;
