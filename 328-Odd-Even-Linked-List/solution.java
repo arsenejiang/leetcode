@@ -7,46 +7,26 @@
  * }
  */
 public class Solution {
-    /*
     public ListNode oddEvenList(ListNode head) {
         if (head == null || head.next == null || head.next.next == null) {
             return head;
         }
         
-        ListNode oddDummyHead = new ListNode(0);
-        ListNode evenDummyHead = new ListNode(0);
-        ListNode cur = head, oddCur = oddDummyHead, evenCur = evenDummyHead;
-        while(true) {
-            oddCur.next = cur;
-            evenCur.next = cur.next;
-            oddCur = oddCur.next;
-            evenCur = evenCur.next;
-            if (cur.next == null || cur.next.next == null) {
+        ListNode cur = head;
+        ListNode dummyEven = new ListNode(0);
+        ListNode even = dummyEven;
+        while(cur != null && cur.next != null) {
+            even.next = cur.next;
+            even = even.next;
+            cur.next = cur.next.next;
+            even.next = null;
+            if (cur.next == null) {
                 break;
             }
-            cur = cur.next.next;
+            cur = cur.next;
         }
         
-        oddCur.next = evenDummyHead.next;
-        return oddDummyHead.next;
-    }
-    */
-    
-    // clean solution
-    public ListNode oddEvenList(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-        
-        ListNode odd = head, even = head.next, evenHead = even;
-        while(even != null && even.next != null) {
-            odd.next = even.next;
-            odd = odd.next;
-            even.next = odd.next;
-            even = even.next;
-        }
-        
-        odd.next = evenHead;
+        cur.next = dummyEven.next;
         return head;
     }
 }
