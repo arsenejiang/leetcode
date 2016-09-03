@@ -1,23 +1,23 @@
 public class LRUCache {
-    int capacity, size;
     Map<Integer, Node> map;
-    Node dummyHead, dummyTail;
+    Node head;
+    Node tail;
+    int capacity;
     
     public LRUCache(int capacity) {
-        this.capacity = capacity;
-        size = 0;
         map = new HashMap<Integer, Node>();
-        dummyHead = new Node(0, 0);
-        dummyTail = new Node(0, 0);
-        dummyHead.next = dummyTail;
-        dummyTail.prev = dummyHead;
+        head = new Node(0);
+        tail = new Node(0);
+        head.next = tail;
+        tail.prev = head;
+        this.capacity = capacity;
     }
     
     public int get(int key) {
         if (map.containsKey(key)) {
             Node n = map.get(key);
             remove(n);
-            addToEnd(n);
+            insert(n);
             return n.value;
         }
         else {
@@ -30,23 +30,18 @@ public class LRUCache {
             Node n = map.get(key);
             n.value = value;
             remove(n);
-            addToEnd(n);
+            insert(n);
         }
         else {
-            if (size < capacity) {
-                Node n = new Node(key, value);
-                addToEnd(n);
-                map.put(key, n);
-                size++;
+            Node n = new Node(key, value);
+            if (map.size() == capacity) {
+                Node remove = head.next;
+                map.remove(remove.key);
+                remove(remove);
             }
-            else {
-                Node removeCandidate = dummyHead.next;
-                remove(removeCandidate);
-                map.remove(removeCandidate.key);
-                Node n = new Node(key, value);
-                addToEnd(n);
-                map.put(key, n);
-            }
+            
+            insert(n);
+            map.put(key, n);
         }
     }
     
@@ -55,19 +50,19 @@ public class LRUCache {
         n.next.prev = n.prev;
     }
     
-    private void addToEnd(Node n) {
-        dummyTail.prev.next = n;
-        n.prev = dummyTail.prev;
-        n.next = dummyTail;
-        dummyTail.prev = n;
+    private void insert(Node n) {
+        tail.prev.next = n;
+        n.prev = tail.prev;
+        n.next = tail;
+        tail.prev = n;
     }
     
-    public class Node {
+    class Node{
         int key;
         int value;
         Node prev;
         Node next;
-        public Node(int key, int value) {
+        Node(int key, int value) {
             this.key = key;
             this.value = value;
             this.prev = null;
