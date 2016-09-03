@@ -31,6 +31,12 @@ Special thanks to [@fujiaozhu](https://discuss.leetcode.com/user/fujiaozhu) for 
 
 <div>
 
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+
+<span class="hidebutton">[Google](/company/google/)</span></div>
+
+<div>
+
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Binary Search](/tag/binary-search/) [Dynamic Programming](/tag/dynamic-programming/) [Queue](/tag/queue/)</span></div>
