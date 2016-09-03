@@ -1,38 +1,55 @@
 public class Solution {
+    
+    private static final String operators = "+-*";
+    
     public List<Integer> diffWaysToCompute(String input) {
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<Integer>();
         if (input == null || input.length() == 0) {
             return res;
         }
         
-        int len = input.length();
-        for(int i = 0; i < len; i++) {
+        HashMap<String, List<Integer>> map = new HashMap<String, List<Integer>>();
+        return helper(input, map);
+    }
+    
+    private List<Integer> helper(String input, HashMap<String, List<Integer>> map) {
+        if (map.containsKey(input)) {
+            return map.get(input);
+        }
+        
+        boolean isNumber = true;
+        List<Integer> list = new ArrayList<Integer>();
+        for(int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
-            if (c == '*' || c == '+' || c == '-') {
-                List<Integer> left = diffWaysToCompute(input.substring(0, i));
-                List<Integer> right = diffWaysToCompute(input.substring(i+1));
+            if (!Character.isDigit(c)) {
+                isNumber = false;
+                List<Integer> left = helper(input.substring(0, i), map);
+                List<Integer> right = helper(input.substring(i + 1), map);
                 for(int l : left) {
                     for(int r : right) {
-                        switch(c) {
-                            case '*':
-                                res.add(l*r);
-                                break;
-                            case '+':
-                                res.add(l+r);
-                                break;
-                            case '-':
-                                res.add(l-r);
-                                break;
+                        int val = 0;
+                        if (c == '*') {
+                            val = l * r;
                         }
+                        else if (c == '-') {
+                            val = l - r;
+                        }
+                        else if (c == '+') {
+                            val = l + r;
+                        }
+                        
+                        list.add(val);
                     }
                 }
             }
         }
         
-        if (res.size() == 0) {
-            res.add(Integer.parseInt(input));
+        if (isNumber) {
+            list.add(Integer.valueOf(input));
         }
         
-        return res;
+        map.put(input, list);
+        
+        return list;
     }
 }
