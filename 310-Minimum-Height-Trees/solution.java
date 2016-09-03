@@ -1,6 +1,6 @@
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<Integer>();
         if (n <= 0) {
             return res;
         }
@@ -10,38 +10,44 @@ public class Solution {
             return res;
         }
         
-        List<List<Integer>> adj = new ArrayList();
+        HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
         for(int i = 0; i < n; i++) {
-            adj.add(new ArrayList<Integer>());
+            map.put(i, new ArrayList<Integer>());
         }
         
+        int[] counts = new int[n];
         for(int[] edge : edges) {
-            adj.get(edge[0]).add(edge[1]);
-            adj.get(edge[1]).add(edge[0]);
+            map.get(edge[0]).add(edge[1]);
+            map.get(edge[1]).add(edge[0]);
+            counts[edge[0]]++;
+            counts[edge[1]]++;
         }
         
-        int[] neighbors = new int[n];
+        Queue<Integer> q = new LinkedList<Integer>();
         for(int i = 0; i < n; i++) {
-            neighbors[i] = adj.get(i).size();
-            if (neighbors[i] == 1) {
-                res.add(i);
+            if (counts[i] == 1) {
+                q.offer(i);
             }
         }
         
         while(n > 2) {
-            List<Integer> tmp = new ArrayList();
-            for(Integer i : res) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                int key = q.poll();
                 n--;
-                for(Integer j : adj.get(i)) {
-                    if (--neighbors[j] == 1) {
-                        tmp.add(j);
+                for(int neighbor : map.get(key)) {
+                    counts[neighbor]--;
+                    if (counts[neighbor] == 1) {
+                        q.offer(neighbor);
                     }
                 }
             }
-            res = tmp;
+        }
+        
+        while(!q.isEmpty()) {
+            res.add(q.poll());
         }
         
         return res;
-        
     }
 }
