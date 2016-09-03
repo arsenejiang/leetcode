@@ -1,7 +1,4 @@
 public class Solution {
-    
-    private static final String operators = "+-*";
-    
     public List<Integer> diffWaysToCompute(String input) {
         List<Integer> res = new ArrayList<Integer>();
         if (input == null || input.length() == 0) {
