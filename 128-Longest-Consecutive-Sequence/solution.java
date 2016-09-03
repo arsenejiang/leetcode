@@ -4,37 +4,31 @@ public class Solution {
             return 0;
         }
         
-        Set<Integer> set = new HashSet();
-        for(int n : nums) {
-            set.add(n);
+        Set<Integer> set = new HashSet<Integer>();
+        for(int num : nums) {
+            set.add(num);
         }
         
         int res = 0;
-        for(int i = 0; i < nums.length && !set.isEmpty(); i++) {
-            if (!set.contains(nums[i])) {
+        for(int num : nums) {
+            if (!set.contains(num)) {
                 continue;
             }
             
             int curLen = 1;
-            set.remove(nums[i]);
-            
-            int j = 1;
-            while(set.contains(nums[i] + j)) {
+            int j = num - 1;
+            while(set.contains(j)) {
                 curLen++;
-                set.remove(nums[i] + j);
-                j++;
+                set.remove(j--);
             }
             
-            j = 1;
-            while(set.contains(nums[i] - j)) {
+            j = num + 1;
+            while(set.contains(j)) {
                 curLen++;
-                set.remove(nums[i] - j);
-                j++;
+                set.remove(j++);
             }
             
-            if (curLen > res) {
-                res = curLen;
-            }
+            res = Math.max(res, curLen);
         }
         
         return res;
