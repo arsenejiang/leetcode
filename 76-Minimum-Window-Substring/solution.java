@@ -1,12 +1,10 @@
 public class Solution {
     public String minWindow(String s, String t) {
-        if (s == null || t == null || s.length() == 0 || t.length() == 0) {
+        if (s == null || s.length() == 0 || t == null || t.length() == 0) {
             return "";
         }
         
-        int sLen = s.length();
-        int tLen = t.length();
-        HashMap<Character, Integer> map = new HashMap();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         for(char c : t.toCharArray()) {
             if (map.containsKey(c)) {
                 map.put(c, map.get(c) + 1);
@@ -16,49 +14,53 @@ public class Solution {
             }
         }
         
-        HashMap<Character, Integer> coveredMap = new HashMap();
-        int start = 0;
-        int minStart = 0;
-        int minEnd = 0;
         int match = 0;
-        int minLen = Integer.MAX_VALUE;
-        for(int i = 0; i < sLen; i++) {
+        int[] result = new int[]{0, s.length()};
+        
+        int start = 0;
+        for(start = 0; start < s.length(); start++) {
+            if (map.containsKey(s.charAt(start))) {
+                break;
+            }
+        }
+        
+        if (start == s.length()) {
+            return "";
+        }
+        
+        for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(map.containsKey(c)) {
-                if(coveredMap.containsKey(c)) {
-                    if(coveredMap.get(c) < map.get(c)) {
-                        match++;
-                    }
-                    coveredMap.put(c, coveredMap.get(c) + 1);
-                }
-                else {
-                    coveredMap.put(c, 1);
+            if (!map.containsKey(c)) {
+                continue;
+            }
+            
+            map.put(c, map.get(c) - 1);
+            if (map.get(c) <= 0) {
+                if (map.get(c) == 0) {
                     match++;
                 }
                 
-                while(match == tLen) {
-                    if (i - start + 1 < minLen) {
-                        minStart = start;
-                        minEnd = i;
-                        minLen = i - start + 1;
+                if (match == map.size()) {
+                    while(!map.containsKey(s.charAt(start)) || map.get(s.charAt(start)) < 0) {
+                        if (map.containsKey(s.charAt(start))) {
+                            map.put(s.charAt(start), map.get(s.charAt(start)) + 1);
+                        }
+                        start++;
                     }
                     
-                    char remove = s.charAt(start);
-                    if(!map.containsKey(remove)) {
-                        start++;
-                    }
-                    else {
-                        if (coveredMap.get(remove) <= map.get(remove)) {
-                            match--;
-                        }
-                        coveredMap.put(remove, coveredMap.get(remove) - 1);
-                        start++;
+                    if ((i - start) < (result[1] - result[0])) {
+                        result[0] = start;
+                        result[1] = i;
                     }
                 }
             }
         }
         
-        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minEnd + 1);
-        
+        if (result[1] - result[0] == s.length()) {
+            return "";
+        }
+        else {
+            return s.substring(result[0], result[1] + 1);
+        }
     }
 }
