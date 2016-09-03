@@ -2,9 +2,9 @@ public class Solution {
     public int maxSumSubmatrix(int[][] matrix, int k) {
         int m = matrix.length;
         int n = matrix[0].length;
-        int res = 0;
+        int res = Integer.MIN_VALUE;
         for(int l = 0; l < n; l++) {
-            int[] sums = new int[n];
+            int[] sums = new int[m];
             for(int r = l; r < n; r++) {
                 for(int i = 0; i < m; i++) {
                     sums[i] += matrix[i][r];
