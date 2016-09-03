@@ -1,30 +1,23 @@
 public class Solution {
     public boolean wordPattern(String pattern, String str) {
-        if (pattern == null && str == null) {
-            return true;
-        }
-        else if (pattern == null || str == null) {
+        String[] arr = str.split(" ");
+        if (pattern.length() != arr.length) {
             return false;
         }
         
-        char[] pArr = pattern.toCharArray();
-        String[] sArr = str.split(" ");
-        if (pArr.length != sArr.length) {
-            return false;
-        }
-        
-        Map<Character, String> map = new HashMap();
-        for(int i = 0; i < pArr.length; i++) {
-            if (map.containsKey(pArr[i])) {
-                if (!map.get(pArr[i]).equals(sArr[i])) {
+        HashMap<Character, String> map = new HashMap<Character, String>();
+        for(int i = 0; i < arr.length; i++) {
+            char c = pattern.charAt(i);
+            if (map.containsKey(c)) {
+                if (!arr[i].equals(map.get(c))) {
                     return false;
                 }
             }
-            else if (map.containsValue(sArr[i])) {
+            else if (map.containsValue(arr[i])) {
                 return false;
             }
             else {
-                map.put(pArr[i], sArr[i]);
+                map.put(c, arr[i]);
             }
         }
         
