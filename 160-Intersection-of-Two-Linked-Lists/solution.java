@@ -15,24 +15,25 @@ public class Solution {
             return null;
         }
         
-        ListNode p1 = headA, p2 = headB;
-        while(p1 != null && p2 != null && p1 != p2) {
-            p1 = p1.next;
-            p2 = p2.next;
-            
-            if (p1 == p2) {
-                return p1;
+        ListNode a = headA;
+        ListNode b = headB;
+        
+        while (a != b) {
+            if (a == null) {
+                a = headB;
+            }
+            else {
+                a = a.next;
             }
             
-            if (p1 == null) {
-                p1 = headB;
+            if (b == null) {
+                b = headA;
             }
-            
-            if (p2 == null) {
-                p2 = headA;
+            else {
+                b = b.next;
             }
         }
         
-        return p1;
+        return a;
     }
 }
