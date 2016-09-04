@@ -23,7 +23,7 @@ public class Solution {
             }
             else {
                 int val = Integer.valueOf(s.substring(i-1, i+1));
-                if (val >= 10 && val <= 26) {
+                if (s.charAt(i-1) == '1' || (s.charAt(i-1) == '2' && c <= '6')) {
                     dp[i] = dp[i - 1] + ((i >= 2) ? dp[i - 2] : 1);
                 }
                 else {
