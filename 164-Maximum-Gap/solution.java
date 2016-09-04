@@ -12,7 +12,7 @@ public class Solution {
             min = Math.min(num, min);
         }
         
-        int bucketLen = (max - min) / (len - 1);
+        int bucketLen = (int)Math.ceil((double)(max - min) / (len - 1));
         int[][] buckets = new int[len - 1][2];
         for(int i = 0; i < len - 1; i++) {
             buckets[i][0] = Integer.MAX_VALUE;
