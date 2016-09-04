@@ -6,27 +6,14 @@ public class Solution {
         
         int len = nums.length;
         int nonZeroIndex = 0;
-        for(int i = 0; i < len; i++) {
+        for(int i = 0, index = 0; i < len; i++) {
             if (nums[i] != 0) {
-                continue;
-            }
-            
-            for(int j = Math.max(i + 1, nonZeroIndex); j < len; j++) {
-                if (nums[j] != 0) {
-                    swap(nums, i, j);
-                    nonZeroIndex = j + 1;
-                    if (nonZeroIndex == len) {
-                        return;
-                    }
-                    break;
+                if (i != index) {
+                    nums[index] = nums[i];
+                    nums[i] = 0;
                 }
+                index++;
             }
         }
-    }
-    
-    private void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
     }
 }
