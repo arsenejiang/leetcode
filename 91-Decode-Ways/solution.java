@@ -1,38 +1,37 @@
 public class Solution {
     public int numDecodings(String s) {
-        if (s == null || s.length() == 0 || s.charAt(0) == '0') {
+        if (s == null || s.isEmpty()) {
             return 0;
         }
         
         int len = s.length();
-        int[] dp = new int[len + 1];
-        dp[0] = 1;
-        if (isValid(s.substring(0, 1))) {
-            dp[1] = 1;
-        }
-        else {
-            dp[1] = 0;
-        }
-        
-        for(int i = 2; i <= len; i++) {
-            if(isValid(s.substring(i-1, i))) {
-                dp[i] += dp[i-1];
-            }
-            
-            if(isValid(s.substring(i-2, i))) {
-                dp[i] += dp[i-2];
-            }
-        }
-        
-        return dp[len];
-    }
-    
-    private boolean isValid(String s) {
         if (s.charAt(0) == '0') {
-            return false;
+            return 0;
         }
         
-        int num = Integer.parseInt(s);
-        return num >= 1 && num <= 26;
+        int[] dp = new int[len];
+        dp[0] = 1;
+        for(int i = 1; i < len; i++) {
+            char c = s.charAt(i);
+            if (c == '0') {
+                if (s.charAt(i - 1) == '1' || s.charAt(i - 1) == '2') {
+                    dp[i] = (i >= 2) ? dp[i-2] : 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+            else {
+                int val = Integer.valueOf(s.substring(i-1, i+1));
+                if (val >= 10 && val <= 26) {
+                    dp[i] = dp[i - 1] + ((i >= 2) ? dp[i - 2] : 1);
+                }
+                else {
+                    dp[i] = dp[i - 1];
+                }
+            }
+        }
+        
+        return dp[len - 1];
     }
 }
