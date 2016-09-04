@@ -1,22 +1,16 @@
 public class Solution {
     public int lengthOfLastWord(String s) {
-        if (s == null || s.isEmpty()) {
+        if (s == null || s.length() == 0) {
             return 0;
-        }
+        }    
         
-        int len = s.length();
-        int lastWordLength = 0;
-        for(int i = len - 1; i >= 0; i--) {
-            if (s.charAt(i) != ' ') {
-                lastWordLength++;
-            }
-            else {
-                if (lastWordLength > 0) {
-                    return lastWordLength;
-                }
-            }
+        s = s.trim();
+        int spaceIndex = s.lastIndexOf(" ");
+        if (spaceIndex == -1) {
+            return s.length();
         }
-        
-        return lastWordLength;
+        else {
+            return s.length() - spaceIndex - 1;
+        }
     }
 }
