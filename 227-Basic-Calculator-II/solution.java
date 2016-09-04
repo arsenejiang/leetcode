@@ -4,22 +4,21 @@ public class Solution {
             return 0;
         }
         
-        int len = s.length();
-        int num = 0;
+        Stack<Integer> stack = new Stack<Integer>();
         char sign = '+';
-        Stack<Integer> stack = new Stack();
-        for(int i = 0; i < len; i++) {
+        int num = 0;
+        for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
                 num = num * 10 + c - '0';
             }
             
-            if ((!Character.isDigit(c) && c != ' ') || i == len - 1) {
+            if ((!Character.isDigit(c) && c != ' ') || i == s.length() - 1) {
                 if (sign == '+') {
                     stack.push(num);
                 }
                 else if (sign == '-') {
-                    stack.push(-1 * num);
+                    stack.push(-num);
                 }
                 else if (sign == '*') {
                     stack.push(stack.pop() * num);
@@ -27,17 +26,16 @@ public class Solution {
                 else if (sign == '/') {
                     stack.push(stack.pop() / num);
                 }
-                
                 sign = c;
                 num = 0;
             }
         }
         
-        int result = 0;
-        while(!stack.isEmpty()) {
-            result += stack.pop();
+        int res = 0;
+        for(int i : stack) {
+            res += i;
         }
         
-        return result;
+        return res;
     }
 }
