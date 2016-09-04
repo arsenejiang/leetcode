@@ -5,8 +5,9 @@ public class Solution {
         int result = 0;
         int len = s.length();
         for(int i = 0; i < len; i++) {
-            if (Character.isDigit(s.charAt(i))) {
-                int num = s.charAt(i) - '0';
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                int num = c - '0';
                 while(i + 1 < len && Character.isDigit(s.charAt(i+1))) {
                     num = num * 10 + s.charAt(i + 1) - '0';
                     i++;
