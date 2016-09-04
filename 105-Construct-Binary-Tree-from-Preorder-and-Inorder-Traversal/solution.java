@@ -13,37 +13,28 @@ public class Solution {
             return null;
         }
         
-        return buildTreeHelper(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+        
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        
+        return buildTreeHelper(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1, map);
     }
     
-    private TreeNode buildTreeHelper(int[] preorder, int[] inorder, int pLeft, int pRight, int iLeft, int iRight) {
+    private TreeNode buildTreeHelper(int[] preorder, int[] inorder, int pLeft, int pRight, int iLeft, int iRight, Map<Integer, Integer> map) {
+        if (pLeft > pRight) {
+            return null;
+        }
+        
         TreeNode root = new TreeNode(preorder[pLeft]);
         if (pLeft == pRight) {
             return root;
         }
         
-        int index = search(inorder, iLeft, iRight, preorder[pLeft]);
+        int index = map.get(preorder[pLeft]);
         root.left = buildTreeHelper(preorder, inorder, pLeft + 1, index - iLeft + pLeft, iLeft, index - 1);
         root.right = buildTreeHelper(preorder, inorder, index - iLeft + pLeft + 1, pRight, index + 1, iRight);
         return root;
     }
-    
-    private int search(int[] nums, int left, int right, int target) {
-        while(left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) {
-                return mid;
-            }
-            else if (nums[mid] < target) {
-                left = mid + 1;
-            }
-            else {
-                right = mid - 1;
-            }
-        }
-        
-        return left;
-    }
-    
-    
 }
