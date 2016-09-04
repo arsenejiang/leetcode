@@ -5,40 +5,41 @@ public class Solution {
         }
         
         int len = nums.length;
-        int min = nums[0], max = nums[0];
-        for(int i = 1; i < len; i++) {
-            min = Math.min(min, nums[i]);
-            max = Math.max(max, nums[i]);
+        int max = nums[0];
+        int min = nums[0];
+        for(int num : nums) {
+            max = Math.max(num, max);
+            min = Math.min(num, min);
         }
         
-        int bucketLen = (int)Math.ceil((double)(max - min) / (len - 1));
-        int[] bucketMin = new int[len - 1];
-        int[] bucketMax = new int[len - 1];
-        Arrays.fill(bucketMin, Integer.MAX_VALUE);
-        Arrays.fill(bucketMax, Integer.MIN_VALUE);
-        for(int i = 0; i < len; i++) {
-            if (nums[i] == min || nums[i] == max) {
-                continue;
+        int bucketLen = (max - min) / (len - 1);
+        int[][] buckets = new int[len - 1][2];
+        for(int i = 0; i < len - 1; i++) {
+            buckets[i][0] = Integer.MAX_VALUE;
+            buckets[i][1] = Integer.MIN_VALUE;
+        }
+        
+        for(int num : nums) {
+            if (num > min && num < max) {
+                int index = (num - min) / bucketLen;
+                buckets[index][0] = Math.min(buckets[index][0], num);
+                buckets[index][1] = Math.max(buckets[index][1], num);
             }
-            
-            int index = (nums[i] - min) / bucketLen;
-            bucketMin[index] = Math.min(bucketMin[index], nums[i]);
-            bucketMax[index] = Math.max(bucketMax[index], nums[i]);
         }
         
         int maxGap = 0;
-        int previous = min;
+        int prevMax = min;
         for(int i = 0; i < len - 1; i++) {
-            if (bucketMin[i] == Integer.MAX_VALUE && bucketMax[i] == Integer.MIN_VALUE) {
+            if (buckets[i][0] == Integer.MAX_VALUE) {
                 continue;
             }
             
-            int gap = bucketMin[i] - previous;
-            maxGap = Math.max(maxGap, gap);
-            previous = bucketMax[i];
+            maxGap = Math.max(maxGap, buckets[i][0] - prevMax);
+            prevMax = buckets[i][1];
         }
         
-        maxGap = Math.max(maxGap, max - previous);
+        maxGap = Math.max(maxGap, max - prevMax);
+        
         return maxGap;
     }
 }
