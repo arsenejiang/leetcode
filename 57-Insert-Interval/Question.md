@@ -22,6 +22,12 @@ This is because the new interval `[4,9]` overlaps with `[3,5],[6,7],[8,10]`.
 
 <div>
 
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+
+<span class="hidebutton">[Facebook](/company/facebook/) [Google](/company/google/) [LinkedIn](/company/linkedin/)</span></div>
+
+<div>
+
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Array](/tag/array/) [Sort](/tag/sort/)</span></div>
