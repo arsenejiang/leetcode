@@ -10,24 +10,22 @@
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> res = new ArrayList<Interval>();
-        Interval cur = newInterval;
-        boolean added = false;
-        for(int i = 0; i < intervals.size(); i++) {
-            if (!added && cur.end < intervals.get(i).start) {
-                res.add(cur);
-                added = true;
-                res.add(intervals.get(i));
-            }
-            else if (added || cur.start > intervals.get(i).end) {
-                res.add(intervals.get(i));
-            }
-            else {
-                cur = new Interval(Math.min(cur.start, intervals.get(i).start), Math.max(cur.end, intervals.get(i).end));
-            }
+        int size = intervals.size();
+        int i = 0;
+        while(i < size && intervals.get(i).end < newInterval.start) {
+            res.add(intervals.get(i++));
         }
         
-        if (!added) {
-            res.add(cur);
+        while(i < size && intervals.get(i).start <= newInterval.end) {
+            newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
+            newInterval.end = Math.max(newInterval.end, intervals.get(i).end);
+            i++;
+        }
+        
+        res.add(newInterval);
+        
+        while(i < size) {
+            res.add(intervals.get(i++));
         }
         
         return res;
