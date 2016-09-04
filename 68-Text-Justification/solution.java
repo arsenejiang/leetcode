@@ -1,7 +1,7 @@
 public class Solution {
     public List<String> fullJustify(String[] words, int maxWidth) {
         List<String> res = new ArrayList<String>();
-        if (words == null || words.length == 0) {
+        if (words == null || words.length == 0 || maxWidth == 0) {
             return res;
         }
         
@@ -15,18 +15,25 @@ public class Solution {
                 int spaceLen = maxWidth - curLen;
                 int numOfGap = i - 1 - start;
                 StringBuilder sb = new StringBuilder();
-                int eachSpaceLen = spaceLen / numOfGap;
-                int reminder = spaceLen % numOfGap;
                 sb.append(words[start]);
-                for(int j = start + 1; j <= i - 1; j++) {
-                    for(int k = 1; k <= eachSpaceLen; k++) {
+                if (numOfGap == 0) {
+                    while(spaceLen-- > 0) {
                         sb.append(" ");
                     }
-                    if (reminder-- > 0) {
-                        sb.append(" ");
+                }
+                else {
+                    int eachSpaceLen = spaceLen / numOfGap;
+                    int reminder = spaceLen % numOfGap;
+                    for(int j = start + 1; j <= i - 1; j++) {
+                        for(int k = 1; k <= eachSpaceLen; k++) {
+                            sb.append(" ");
+                        }
+                        if (reminder-- > 0) {
+                            sb.append(" ");
+                        }
+                        
+                        sb.append(" " + words[j]);
                     }
-                    
-                    sb.append(" " + words[j]);
                 }
                 res.add(sb.toString());
                 
@@ -35,14 +42,14 @@ public class Solution {
             }
         }
         
-        StringBuilder sb = new StringBuilder();
-        sb.append(words[start]);
-        for(int j = start + 1; j < words.length; j++) {
-            sb.append(" ");
-            sb.append(words[j]);
-        }
-        
-        if (sb.length() > 0) {
+        if (start )
+            StringBuilder sb = new StringBuilder();
+            sb.append(words[start]);
+            for(int j = start + 1; j < words.length; j++) {
+                sb.append(" ");
+                sb.append(words[j]);
+            }
+            
             for(int i = sb.length(); i <= maxWidth; i++) {
                 sb.append(" ");
             }
