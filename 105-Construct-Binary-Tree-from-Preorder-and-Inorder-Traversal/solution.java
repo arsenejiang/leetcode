@@ -14,7 +14,7 @@ public class Solution {
         }
         
         
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for(int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
@@ -33,8 +33,8 @@ public class Solution {
         }
         
         int index = map.get(preorder[pLeft]);
-        root.left = buildTreeHelper(preorder, inorder, pLeft + 1, index - iLeft + pLeft, iLeft, index - 1);
-        root.right = buildTreeHelper(preorder, inorder, index - iLeft + pLeft + 1, pRight, index + 1, iRight);
+        root.left = buildTreeHelper(preorder, inorder, pLeft + 1, index - iLeft + pLeft, iLeft, index - 1, map);
+        root.right = buildTreeHelper(preorder, inorder, index - iLeft + pLeft + 1, pRight, index + 1, iRight, map);
         return root;
     }
 }
