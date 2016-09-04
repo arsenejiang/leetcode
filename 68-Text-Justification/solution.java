@@ -1,41 +1,54 @@
 public class Solution {
     public List<String> fullJustify(String[] words, int maxWidth) {
-        List<String> res = new ArrayList();
+        List<String> res = new ArrayList<String>();
         if (words == null || words.length == 0) {
             return res;
         }
         
-        int w = 0;
-        for(int i = 0; i < words.length; i = w) {
-            int sum = -1;
-            for(w = i; w < words.length && sum + 1 + words[w].length() <= maxWidth; w++) {
-                sum += 1 + words[w].length();
+        int curLen = 0;
+        int start = 0;
+        for(int i = 0; i < words.length; i++) {
+            if (curLen + 1 + words[i].length() <= maxWidth) {
+                curLen += 1 + words[i].length();
             }
-            
-            int space = 1, extra = 0;
-            if (w != i + 1 && w < words.length) {
-                space = (maxWidth - sum) / (w - i - 1) + 1;
-                extra = (maxWidth - sum) % (w - i - 1);
-            }
-            
-            StringBuilder sb = new StringBuilder(words[i]);
-            for(int k = i+1; k < w; k++) {
-                for(int l = 0; l < space; l++) {
-                    sb.append(' ');
+            else {
+                int spaceLen = maxWidth - curLen;
+                int numOfGap = i - 1 - start;
+                StringBuilder sb = new StringBuilder();
+                int eachSpaceLen = spaceLen / numOfGap;
+                int reminder = spaceLen % numOfGap;
+                sb.append(words[start]);
+                for(int j = start + 1; j <= i - 1; j++) {
+                    for(int k = 1; k <= eachSpaceLen; k++) {
+                        sb.append(" ");
+                    }
+                    if (reminder-- > 0) {
+                        sb.append(" ");
+                    }
+                    
+                    sb.append(" " + words[j]);
                 }
-                if (extra-- > 0) {
-                    sb.append(' ');
-                }
-                sb.append(words[k]);
+                res.add(sb.toString());
+                
+                curLen = words[i].length();
+                start = i;
             }
-            
-            int strLen = maxWidth - sb.length();
-            while(strLen-- > 0) {
-                sb.append(' ');
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(words[start]);
+        for(int j = start + 1; j < words.length; j++) {
+            sb.append(" ");
+            sb.append(words[j]);
+        }
+        
+        if (sb.length() > 0) {
+            for(int i = sb.length(); i <= maxWidth; i++) {
+                sb.append(" ");
             }
-            
             res.add(sb.toString());
         }
+        
         return res;
     }
 }
