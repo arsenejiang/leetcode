@@ -4,7 +4,10 @@ public class Solution {
             return Integer.MAX_VALUE;
         }
         
-        int sign = (dividend < 0) ^ (divisor < 0) ? -1 : 1;
+        int sign = -1;
+        if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
+            sign = 1;
+        }
         long dvd = Math.abs((long)dividend);
         long dvs = Math.abs((long)divisor);
         int res = 0;
