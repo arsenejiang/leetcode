@@ -1,61 +1,39 @@
 public class Solution {
     public List<String> restoreIpAddresses(String s) {
-        List<String> result = new ArrayList();
-        if (s == null || s.length() == 0) {
-            return result;
-        }
-        
-        int len = s.length();
-        if (len > 12) {
-            return result;
-        }
-        
-        List<StringBuilder> sbList = new ArrayList();
-        sbList = helper(s, 4);
-        for(StringBuilder sb : sbList) {
-            result.add(sb.toString());
-        }
-        
-        return result;
-    }
-    
-    private List<StringBuilder> helper(String s, int part) {
-        List<StringBuilder> res = new ArrayList();
-        if (s.length() == 0) {
+        List<String> res = new ArrayList<String>();
+        if (s == null || s.length() < 4) {
             return res;
         }
         
-        int len = s.length();
+        List<String> path = new ArrayList<String>();
+        helper(s, 0, path, res);
+        return res;
+    }
+    
+    private void helper(String s, int start, List<String> path, List<String> res) {
+        if (start == s.length() || path.size() >= 4) {
+            if (start == s.length() && path.size() == 4) {
+                StringBuilder sb = new StringBuilder(path.get(0));
+                for(int i = 1; i < 4; i++) {
+                    sb.append('.');
+                    sb.append(path.get(i));
+                }
+                res.add(sb.toString());
+            }
+            return;
+        }
         
-        if (part == 1 && len <= 3) {
-            if (s.charAt(0) == '0' && len > 1) {
-                return res;
+        for(int j = start; j < s.length() && j < start + 3; j++) {
+            if (s.charAt(start) == '0' && j > start) {
+                break;
             }
             
-            int val = Integer.parseInt(s);
+            int val = Integer.valueOf(s.substring(start, j + 1));
             if (val >= 0 && val <= 255) {
-                res.add(new StringBuilder(s));
+                path.add(Integer.toString(val));
+                helper(s, j + 1, path, res);
+                path.remove(path.size() - 1);
             }
         }
-        else {
-            for(int i = 1; i <= 3 && i <= len && (s.charAt(0) != '0' || i <= 1); i++) {
-                String sub = s.substring(0, i);
-                int val = Integer.parseInt(sub);
-                if (val < 0 || val > 255) {
-                    continue;
-                }
-                
-                List<StringBuilder> subList = helper(s.substring(i), part - 1);
-                if (!subList.isEmpty()) {
-                    for(StringBuilder sb : subList) {
-                        sb.insert(0, sub + ".");
-                    }
-                }
-                
-                res.addAll(subList);
-            }
-        }
-        
-        return res;
     }
 }
