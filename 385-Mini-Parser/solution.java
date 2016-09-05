@@ -43,6 +43,7 @@ public class Solution {
                 char c = s.charAt(i);
                 if (count == 0 && (c == ',' || i == s.length() - 1)) {
                     res.add(deserialize(s.substring(start, i)));
+                    start = i + 1;
                 }
                 else if (c == '[') {
                     count++;
