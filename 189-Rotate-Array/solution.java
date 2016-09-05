@@ -12,9 +12,9 @@ public class Solution {
         
         int start = 0;
         int current = 0;
-        int count = len;
         int temp = nums[current];
-        while(count > 0) {
+        int count = len;
+        while(count-- > 0) {
             int next = (current + k) % len;
             int val = nums[next];
             nums[next] = temp;
@@ -25,7 +25,6 @@ public class Solution {
                 temp = nums[current];
                 start = current;
             }
-            count--;
         }
     }
 }
