@@ -13,23 +13,11 @@ public class Solution {
             return false;
         }
         
-        return helper(root, 0, sum);
-    }
-    
-    private boolean helper(TreeNode root, int cur, int sum) {
-        cur = cur + root.val;
+        int newSum = sum - root.val;
         if (root.left == null && root.right == null) {
-            return cur == sum;
+            return newSum == 0;
         }
         
-        if (root.left == null) {
-            return helper(root.right, cur, sum);
-        }
-        else if (root.right == null) {
-            return helper(root.left, cur, sum);
-        }
-        else {
-            return helper(root.left, cur, sum) || helper(root.right, cur, sum);
-        }
+        return hasPathSum(root.left, newSum) || hasPathSum(root.right, newSum);
     }
 }
