@@ -20,6 +20,8 @@ public class RandomizedCollection {
             return false;
         }
         else {
+            list.add(val);
+            map.get(val).add(list.size() - 1);
             return true;
         }
     }
