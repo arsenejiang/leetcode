@@ -18,7 +18,7 @@ public class Solution {
         else {
             int i = 1;
             while(i < count) {
-                if ((data[start + i] & 0x80) != 0x80) {
+                if (start + i == data.length || (data[start + i] & 0x80) != 0x80) {
                     return false;
                 }
                 i++;
