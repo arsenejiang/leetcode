@@ -1,94 +1,60 @@
 public class RandomizedCollection {
-    private ArrayList<Integer> nums;
-    private HashMap<Integer, HashSet<Integer>> map;
-    private Random rand;
-
+    Map<Integer, Set<Integer>> map;
+    ArrayList<Integer> list;
+    Random rand;
+    
     /** Initialize your data structure here. */
     public RandomizedCollection() {
-        nums = new ArrayList<Integer>();
-        map = new HashMap<Integer, HashSet<Integer>>();
+        map = new HashMap<Integer, Set<Integer>>();
+        list = new ArrayList<Integer>();
         rand = new Random();
     }
     
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     public boolean insert(int val) {
-        if (map.containsKey(val)) {
-            nums.add(val);
-            map.get(val).add(nums.size() - 1);
+        if(!map.containsKey(val)) {
+            list.add(val);
+            HashSet<Integer> set = new HashSet<Integer>();
+            set.add(list.size() - 1);
+            map.put(val, set);
             return false;
         }
         else {
-            HashSet<Integer> set = new HashSet<Integer>();
-            nums.add(val);
-            set.add(nums.size() - 1);
-            map.put(val, set);
             return true;
         }
     }
     
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
-    // check val vs endValue
     public boolean remove(int val) {
-        if (map.containsKey(val)) {
-            if (val == nums.get(nums.size() - 1)) {
-            	map.get(val).remove(nums.size() - 1);
+        if (!map.containsKey(val)) {
+            return false;
+        }
+        else {
+            Set<Integer> set = map.get(val);
+            if (set.contains(list.size() - 1)) {
+                set.remove(list.size() - 1);
             }
             else {
-            	int index = map.get(val).iterator().next();
-	            if (index < nums.size() - 1) {
-	                int endValue = nums.get(nums.size() - 1);
-	                nums.set(index, endValue);
-	                map.get(endValue).remove(nums.size() - 1);
-	                map.get(endValue).add(index);
-	            }
+                int removeIndex = set.iterator().next();
+                set.remove(removeIndex);
+                int lastValue = list.get(list.size() - 1);
+                list.set(removeIndex, lastValue);
+                map.get(lastValue).remove(list.size() - 1);
+                map.get(lastValue).add(removeIndex);
+            }
+            
+            if (set.size() == 0) {
+                map.remove(val);
+            }
 
-	            map.get(val).remove(index);
-            }
-            
-            if (map.get(val).size() == 0) {
-                map.remove(val);
-            }
-            
-            nums.remove(nums.size() - 1);
+            list.remove(list.size() - 1);
             return true;
         }
-        else {
-            return false;
-        }
     }
-    
-    /*
-    public boolean remove(int val) {
-        if (map.containsKey(val)) {
-        	int index = map.get(val).iterator().next();
-            if (index < nums.size() - 1) {
-                int endValue = nums.get(nums.size() - 1);
-                nums.set(index, endValue);
-                map.get(endValue).remove(nums.size() - 1);
-                map.get(val).remove(index);
-                map.get(endValue).add(index);
-            }
-            else 
-            {
-            	map.get(val).remove(index);
-            }
-            
-            if (map.get(val).size() == 0) {
-                map.remove(val);
-            }
-            
-            nums.remove(nums.size() - 1);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    */
     
     /** Get a random element from the collection. */
     public int getRandom() {
-        return nums.get(rand.nextInt(nums.size()));
+        return list.get(rand.nextInt(list.size()));
     }
 }
 
