@@ -12,50 +12,41 @@ public class Solution {
             return head;
         }
         
-        ListNode mid = findMid(head);
-        ListNode l2 = mid.next;
-        mid.next = null;
-        return merge(sortList(head), sortList(l2));
-    }
-    
-    private ListNode merge(ListNode l1, ListNode l2) {
-        ListNode dummy = new ListNode(0);
-        ListNode p1 = l1, p2 = l2, p = dummy;
-        while(p1 != null && p2 != null) {
-            if (p1.val <= p2.val) {
-                p.next = p1;
-                p1 = p1.next;
-            }
-            else {
-                p.next = p2;
-                p2 = p2.next;
-            }
-            
-            p = p.next;
-        }
-        
-        if (p1 == null) {
-            p.next = p2;
-        }
-        else {
-            p.next = p1;
-        }
-        
-        return dummy.next;
-    }
-    
-    private ListNode findMid(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        
         ListNode slow = head;
-        ListNode fast = head.next;
-        while(fast != null && fast.next != null) {
+        ListNode fast = head;
+        while(fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
         
-        return slow;
+        ListNode m = slow.next;
+        slow.next  = null;
+        return merge(sortList(head), sortList(m));
+    }
+    
+    public ListNode merge(ListNode m, ListNode n) {
+        ListNode dummy = new ListNode(0);
+        ListNode m1 = m, n1 = n;
+        ListNode cur = dummy;
+        while(m1 != null || n1 != null) {
+            if (m1 == null) {
+                cur.next = n1;
+                n1 = n1.next;
+            }
+            else if (n1 == null) {
+                cur.next = m1;
+                m1 = m1.next;
+            }
+            else if (m1.val < n1.val) {
+                cur.next = m1;
+                m1 = m1.next;
+            }
+            else {
+                cur.next = n1;
+                n1 = n1.next;
+            }
+        }
+        
+        return dummy.next;
     }
 }
