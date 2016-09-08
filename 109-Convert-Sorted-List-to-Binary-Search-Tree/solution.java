@@ -23,7 +23,13 @@ public class Solution {
         }
         else {
             TreeNode root = new TreeNode(mid.val);
-            root.left = sortedListToBST(head);
+            if (head == mid) {
+                root.left = null;
+            }
+            else {
+                root.left = sortedListToBST(head);
+            }
+            
             root.right = sortedListToBST(mid.next);
             return root;
         }
