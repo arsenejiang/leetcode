@@ -14,27 +14,22 @@ public class Solution {
             return res;
         }
         
-        Map<Integer, Set<Integer>> preqs = new HashMap<Integer, Set<Integer>>();
+        int[] indegree = new int[numCourses];
         Map<Integer, List<Integer>> follows = new HashMap<Integer, List<Integer>>();
         for(int[] preq : prerequisites) {
-            if (!preqs.containsKey(preq[0])) {
-                Set<Integer> set = new HashSet<Integer>();
-                preqs.put(preq[0], set);
-            }
-            
-            preqs.get(preq[0]).add(preq[1]);
-            
             if (!follows.containsKey(preq[1])) {
                 List<Integer> list = new ArrayList<Integer>();
                 follows.put(preq[1], list);
             }
             
             follows.get(preq[1]).add(preq[0]);
+            
+            indegree[preq[0]]++;
         }
         
         Queue<Integer> courses = new LinkedList<Integer>();
         for(int i = 0; i < numCourses; i++) {
-            if (!preqs.containsKey(i)) {
+            if (indegree[i] == 0) {
                 courses.offer(i);
             }
         }
@@ -46,12 +41,9 @@ public class Solution {
             if (follows.containsKey(c)) {
                 List<Integer> followers = follows.get(c);
                 for (int f : followers) {
-                    if (preqs.containsKey(f)) {
-                        preqs.get(f).remove(c);
-                        if (preqs.get(f).size() == 0) {
-                            courses.offer(f);
-                            preqs.remove(f);
-                        }
+                    indegree[f]--;
+                    if (indegree[f] == 0) {
+                        courses.offer(f);
                     }
                 }
             }
