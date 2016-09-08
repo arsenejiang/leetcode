@@ -16,7 +16,7 @@ public class Solution {
         dummy.next = head;
         ListNode cur = head;
         ListNode tail = head;
-        for(int i = 1; i < k; i++) {
+        for(int i = 1; i <= k; i++) {
             if (cur == null) {
                 return head;
             }
@@ -25,15 +25,16 @@ public class Solution {
             }
         }
         
-        k = k - 1;
-        while(k-- > 0) {
+        int count = k - 1;
+        while(count-- > 0) {
             cur = tail.next;
             tail.next = cur.next;
             cur.next = dummy.next;
             dummy.next = cur;
         }
         
-        tail.next = reverseKGroup(tail.next, k);
+        ListNode newHead = tail.next;
+        tail.next = reverseKGroup(newHead, k);
         return dummy.next;
     }
 }
