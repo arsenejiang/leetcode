@@ -15,15 +15,13 @@ public class Solution {
         }
         
         int[] indegree = new int[numCourses];
-        Map<Integer, List<Integer>> follows = new HashMap<Integer, List<Integer>>();
+        List<List<Integer>> follows = new ArrayList<List<Integer>>();
+        for(int i = 0; i < numCourses; i++) {
+            follows.add(new ArrayList<Integer>());
+        }
+ 
         for(int[] preq : prerequisites) {
-            if (!follows.containsKey(preq[1])) {
-                List<Integer> list = new ArrayList<Integer>();
-                follows.put(preq[1], list);
-            }
-            
             follows.get(preq[1]).add(preq[0]);
-            
             indegree[preq[0]]++;
         }
         
@@ -38,13 +36,11 @@ public class Solution {
         while(!courses.isEmpty()) {
             int c = courses.poll();
             res[curIndex++] = c;
-            if (follows.containsKey(c)) {
-                List<Integer> followers = follows.get(c);
-                for (int f : followers) {
-                    indegree[f]--;
-                    if (indegree[f] == 0) {
-                        courses.offer(f);
-                    }
+            List<Integer> followers = follows.get(c);
+            for (int f : followers) {
+                indegree[f]--;
+                if (indegree[f] == 0) {
+                    courses.offer(f);
                 }
             }
         }
