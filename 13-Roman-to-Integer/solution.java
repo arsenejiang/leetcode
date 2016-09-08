@@ -16,7 +16,7 @@ public class Solution {
         int res = 0;
         int prev = Integer.MAX_VALUE;
         for(int i = 0; i < s.length(); i++) {
-            if (i <= s.length() - 1 && map.get(s.charAt(i)) < map.get(s.charAt(i+1))) {
+            if (i <= s.length() - 2 && map.get(s.charAt(i)) < map.get(s.charAt(i+1))) {
                 res += map.get(s.charAt(i+1)) - map.get(s.charAt(i));
                 i++;
             }
