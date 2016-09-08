@@ -4,38 +4,23 @@ public class Solution {
             return s;
         }
         
-        Set<Character> set = new HashSet<Character>();
-        set.add('a');
-        set.add('e');
-        set.add('i');
-        set.add('o');
-        set.add('u');
-        set.add('A');
-        set.add('E');
-        set.add('I');
-        set.add('O');
-        set.add('U');
-        
+        String vowels = "AaEeIiOoUu";
         char[] arr = s.toCharArray();
-        int low = 0;
-        int high = arr.length - 1;
-        while(low < high) {
-            while(low < high && !set.contains(arr[low])) {
-                low++;
+        int left = 0;
+        int right = arr.length - 1;
+        while(left < right) {
+            if (vowels.indexOf(arr[left]) == -1) {
+                left++;
             }
-            
-            while(low < high && !set.contains(arr[high])) {
-                high--;
+            else if (vowels.indexOf(arr[right]) == -1) {
+                right--;
             }
-            
-            if (low < high) {
-                if (arr[low] != arr[high]) {
-                    char c = arr[low];
-                    arr[low] = arr[high];
-                    arr[high] = c;
-                }
-                low++;
-                high--;
+            else {
+                char temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
             }
         }
         
