@@ -17,27 +17,36 @@
  */
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        if (head == null) {
+        ListNode mid = findMid(head);
+        if (mid == null) {
             return null;
         }
-        
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode prev = dummy;
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while(fast != null && fast.next != null) {
-            prev = slow;
-            slow = slow.next;
-            fast = fast.next.next;
+        else {
+            TreeNode root = new TreeNode(mid.val);
+            root.left = sortedListToBST(head);
+            root.right = sortedListToBST(mid.next);
+            return root;
+        }
+    }
+    
+    private ListNode findMid(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
         
-        prev.next = null;
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+        while(fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
         
-        TreeNode root = new TreeNode(slow.val);
-        root.left = sortedListToBST(dummy.next);
-        root.right = sortedListToBST(slow.next);
+        if (prev != null) {
+            prev.next = null;
+        }
         
-        return root;
+        return slow;
     }
 }
