@@ -1,18 +1,35 @@
 public class Solution {
     public int compareVersion(String version1, String version2) {
-        String[] v1 = version1.trim().split("\\.");
-        String[] v2 = version2.trim().split("\\.");
-        int len1 = v1.length;
-        int len2 = v2.length;
-        int len = Math.max(len1, len2);
-        for(int i = 0; i < len; i++) {
-            int n1 = (i >= len1) ? 0 : Integer.parseInt(v1[i]);
-            int n2 = (i >= len2) ? 0 : Integer.parseInt(v2[i]);
-            if (n1 < n2) {
+        if (version1 == null && version2 == null) {
+            return 0;
+        }
+        else if (version1 == null) {
+            return -1;
+        }
+        else if (version2 == null) {
+            return 1;
+        }
+        
+        if (version1.equals(version2)) {
+            return 0;
+        }
+        
+        String[] arr1 = version1.split("\\.");
+        String[] arr2 = version2.split("\\.");
+        
+        int i = 0, j = 0;
+        while(i < arr1.length || j < arr2.length) {
+            int v1 = i < arr1.length ? Integer.valueOf(arr1[i]) : 0;
+            int v2 = j < arr2.length ? Integer.valueOf(arr2[j]) : 0;
+            if (v1 < v2) {
                 return -1;
             }
-            else if (n1 > n2) {
+            else if (v1 > v2) {
                 return 1;
+            }
+            else {
+                i++;
+                j++;
             }
         }
         
