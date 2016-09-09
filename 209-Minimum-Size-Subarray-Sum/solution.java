@@ -6,12 +6,12 @@ public class Solution {
         
         int i = 0, j = 0, sum = 0, min = Integer.MAX_VALUE;
   
-        while (j < a.length) {
-            sum += a[j++];
+        while (j < nums.length) {
+            sum += nums[j++];
             
             while (sum >= s) {
               min = Math.min(min, j - i);
-              sum -= a[i++];
+              sum -= nums[i++];
             }
           }
       
