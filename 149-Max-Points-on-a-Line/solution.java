@@ -18,8 +18,9 @@ public class Solution {
         
         int maxPoint = 0;
         for (int i = 0; i < points.length; i++) {
-            int localMax = 1;
+            int localMax = 0;
             int same = 1;
+            int vertical = 0, horizontal = 0;
             Map<Double, Integer> map = new HashMap<Double, Integer>();
             for (int j = i + 1; j < points.length; j++) {
                 if (points[i].x == points[j].x && points[i].y == points[j].y) {
@@ -27,13 +28,31 @@ public class Solution {
                     continue;
                 }
                 
-                double slop = (points[j].y - points[i].y) / (points[j].x - points[i].x);
+                if (points[i].x == points[j].x) {
+                    vertical++;
+                    continue;
+                }
+                
+                if (points[j].y == points[i].y) {
+                    horizontal++;
+                    continue;
+                }
+                
+                double slop = (double)(points[j].y - points[i].y) / (points[j].x - points[i].x);
                 if (map.containsKey(slop)) {
                     map.put(slop, map.get(slop) + 1);
                 }
                 else {
                     map.put(slop, 1);
                 }
+            }
+            
+            if (vertical > localMax) {
+                localMax = vertical;
+            }
+            
+            if (horizontal > localMax) {
+                localMax = horizontal;
             }
             
             for(int v : map.values()) {
