@@ -30,6 +30,7 @@ public class Solution {
         }
         
         s.next = largeDummy.next;
+        l.next = null;
         return smallDummy.next;
         
     }
