@@ -8,7 +8,7 @@ public class Solution {
         int curSum = nums[0];
         for(int left = 0, right = 0; left < nums.length && right < nums.length;) {
             if (curSum >= s) {
-                minLen = Math.minLen(right - left + 1, minLen);
+                minLen = Math.min(right - left + 1, minLen);
                 if (minLen == 1) {
                     return minLen;
                 }
