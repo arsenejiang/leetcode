@@ -12,24 +12,25 @@ public class Solution {
             return head;
         }
         
-        ListNode d1 = new ListNode(0);
-        ListNode d2 = new ListNode(0);
-        ListNode cur = head, cur1 = d1, cur2 = d2;
+        ListNode smallDummy = new ListNode(0);
+        ListNode largeDummy = new ListNode(0);
+        ListNode s = smallDummy, l = largeDummy;
+        ListNode cur = head;
         while(cur != null) {
             if (cur.val < x) {
-                cur1.next = cur;
-                cur1 = cur1.next;
+                s.next = cur;
+                s = s.next;
+                cur = cur.next;
             }
             else {
-                cur2.next = cur;
-                cur2 = cur2.next;
+                l.next = cur;
+                l = l.next;
+                cur = cur.next;
             }
-            
-            cur = cur.next;
         }
         
-        cur1.next = d2.next;
-        cur2.next = null;
-        return d1.next;
+        s.next = largeDummy.next;
+        return smallDummy.next;
+        
     }
 }
