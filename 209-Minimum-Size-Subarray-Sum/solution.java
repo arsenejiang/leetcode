@@ -4,28 +4,32 @@ public class Solution {
             return 0;
         }
         
-        int result = Integer.MAX_VALUE;
-        int curSum = nums[0];
+        int minLen = Integer.MAX_VALUE;
+        int left = 0, right = 0;
+        int curSum = nums[left];
+        if (curSum >= s) {
+            return 1;
+        }
         
-        for(int start = 0, end = 0; end < nums.length && start < nums.length;) {
-            if (curSum >= s) {
-                result = Math.min(result, end - start + 1);
-                if (result == 1) {
-                    return result;
+        while(left < nums.length && right < nums.length) {
+            if (curSum < s) {
+                right++;
+                if (right < nums.length) {
+                    curSum += nums[right];
                 }
-                
-                curSum -= nums[start];
-                start++;
-                
             }
             else {
-                end++;
-                if (end != nums.length) {
-                    curSum += nums[end];
+                minLen = Math.min(right - left + 1, minLen);
+                if (left < right) {
+                    curSum -= nums[left];
+                    left++;
+                }
+                else {
+                    return 1;
                 }
             }
         }
         
-        return result == Integer.MAX_VALUE ? 0 : result;
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }
 }
