@@ -31,7 +31,7 @@ public class Solution {
             return false;
         }
         
-        board[x][y] = '.'
+        board[x][y] = '.';
         boolean result = helper(board, x - 1, y, word, index + 1) ||
                          helper(board, x + 1, y, word, index + 1) ||
                          helper(board, x, y - 1, word, index + 1) ||
