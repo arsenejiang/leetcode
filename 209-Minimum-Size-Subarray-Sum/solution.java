@@ -5,27 +5,21 @@ public class Solution {
         }
         
         int minLen = Integer.MAX_VALUE;
-        int left = 0, right = 0;
-        int curSum = nums[left];
-        if (curSum >= s) {
-            return 1;
-        }
-        
-        while(left < nums.length && right < nums.length) {
-            if (curSum < s) {
+        int curSum = nums[0];
+        for(int left = 0, right = 0; left < nums.length && right < nums.length;) {
+            if (curSum >= s) {
+                minLen = Math.minLen(right - left + 1, minLen);
+                if (minLen == 1) {
+                    return minLen;
+                }
+                
+                curSum -= nums[left];
+                left++;
+            }
+            else {
                 right++;
                 if (right < nums.length) {
                     curSum += nums[right];
-                }
-            }
-            else {
-                minLen = Math.min(right - left + 1, minLen);
-                if (left < right) {
-                    curSum -= nums[left];
-                    left++;
-                }
-                else {
-                    return 1;
                 }
             }
         }
