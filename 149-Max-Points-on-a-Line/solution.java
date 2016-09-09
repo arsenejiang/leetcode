@@ -16,39 +16,35 @@ public class Solution {
             return 1;
         }
         
-        int len = points.length;
-        int res = 0;
-        for(int i = 0; i < len; i++) {
-            Map<Double, Integer> map = new HashMap();
-            int same = 0;
+        int maxPoint = 0;
+        for (int i = 0; i < points.length; i++) {
             int localMax = 1;
-            for(int j = 0; j < len; j++) {
-                if (i == j) {
-                    continue;
-                }
-                
-                if (points[j].x == points[i].x && points[j].y == points[i].y) {
+            int same = 1;
+            Map<Double, Integer> map = new HashMap<Double, Integer>();
+            for (int j = i + 1; j < points.length; j++) {
+                if (points[i].x == points[j].x && points[i].y == points[j].y) {
                     same++;
                     continue;
                 }
                 
-                double slop = ((double)(points[j].y - points[i].y))/ (points[j].x - points[i].x);
+                double slop = (points[j].y - points[i].y) / (points[j].x - points[i].x);
                 if (map.containsKey(slop)) {
-                    int count = map.get(slop) + 1;
-                    map.put(slop, count);
+                    map.put(slop, map.get(slop) + 1);
                 }
                 else {
-                    map.put(slop, 2);
+                    map.put(slop, 1);
                 }
             }
             
-            for(Integer value : map.values()) {
-                localMax = Math.max(localMax, value);
+            for(int v : map.values()) {
+                if (v > localMax) {
+                    localMax = v;
+                }
             }
             
-            res = Math.max(res, localMax + same);
+            maxPoint = Math.max(maxPoint, localMax + same);
         }
         
-        return res;
+        return maxPoint;
     }
 }
