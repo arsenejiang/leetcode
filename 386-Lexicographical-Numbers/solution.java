@@ -1,18 +1,17 @@
 public class Solution {
     public List<Integer> lexicalOrder(int n) {
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<Integer>();
         if (n <= 0) {
             return res;
         }
         
         res.add(1);
-        int curNum = 1;
         int i = 2;
+        int curNum = 1;
         while(i <= n) {
             if (curNum * 10 <= n) {
                 curNum = curNum * 10;
                 res.add(curNum);
-                i++;
             }
             else {
                 curNum = curNum + 1;
@@ -22,21 +21,14 @@ public class Solution {
                 
                 if (curNum <= n) {
                     res.add(curNum);
-                    i++;
                 }
                 else {
-                    curNum = curNum - 1;
-                    if (curNum / 10 > 0) {
-                        curNum = curNum / 10;
-                    }
-                    
-                    curNum = curNum + 1;
-                    if (curNum <= n) {
-                        res.add(curNum);
-                        i++;
-                    }
+                    curNum = curNum / 10 + 1;
+                    res.add(curNum);
                 }
             }
+            
+            i++;
         }
         
         return res;
