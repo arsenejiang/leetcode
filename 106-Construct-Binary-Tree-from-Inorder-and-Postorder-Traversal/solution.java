@@ -9,38 +9,27 @@
  */
 public class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        if (inorder == null || postorder == null) {
-            return null;
-        }        
-        
-        int iLen = inorder.length;
-        int pLen = postorder.length;
-        if (iLen == 0 || iLen != pLen) {
+        if(inorder == null || inorder.length == 0 || postorder == null || postorder.length == 0 || inorder.length != postorder.length) {
             return null;
         }
         
-        HashMap<Integer, Integer> map = new HashMap();
-        for(int i = 0; i < iLen; i++) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
         
-        return buildTreeHelper(inorder, 0, iLen - 1, postorder, 0, pLen - 1, map);
+        return buildTreeHelper(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1, map);
     }
     
-    private TreeNode buildTreeHelper(int[] inorder, int istart, int iend, int[] postorder, int pstart, int pend, HashMap<Integer, Integer> map) {
-        if (istart > iend || pstart > pend) {
+    private TreeNode buildTreeHelper(int[] inorder, int iStart, int iEnd, int[] postorder, int pStart, int pEnd, HashMap<Integer, Integer> map) {
+        if (iStart > iEnd || pStart > pEnd) {
             return null;
         }
         
-        if (iend - istart != pend - pstart) {
-            return null;
-        }
-        
-        int index = map.get(postorder[pend]);
-        TreeNode root = new TreeNode(postorder[pend]);
-        root.left = buildTreeHelper(inorder, istart, index - 1, postorder, pstart, pstart + index - 1 - istart, map);
-        root.right = buildTreeHelper(inorder, index + 1, iend, postorder, pstart + index - istart, pend - 1, map);
-        
+        TreeNode root = new TreeNode(postorder[pEnd]);
+        int index = map.get(postorder[pEnd]);
+        root.left = buildTreeHelper(inorder, iStart, index - 1, postorder, pStart, index - 1 - iStart + pStart, map);
+        root.right = buildTreeHelper(inorder, index + 1, iEnd, postorder, index - iStart + pStart, pEnd - 1, map);
         return root;
     }
 }
