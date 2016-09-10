@@ -1,29 +1,42 @@
 public class Solution {
+    private static final int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}; 
+     
     public int longestIncreasingPath(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return 0;
         }   
         
-        int[] res = new int[1];
-        res[0] = 0;
-        for(int i = 0; i < matrix.length; i++) {
-            for(int j = 0; j < matrix[0].length; j++) {
-                helper(matrix, Integer.MIN_VALUE, i, j, 0, res);
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[][] cache = new int[m][n];
+        int result = 0;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                result = Math.max(result, dfs(matrix, i, j, m, n, cache));
             }
         }
         
-        return res[0];
+        return result;
     }
     
-    private void helper(int[][] matrix, int prev, int row, int col, int cur, int[] res) {
-        if (row < 0 || col < 0 || row >= matrix.length || col >= matrix[0].length || prev >= matrix[row][col]) {
-            return;
+    private int dfs(int[][] matrix, int row, int col, int m, int n, int[][] cache) {
+        if (cache[row][col] != 0) {
+            return cache[row][col];
         }
         
-        res[0] = Math.max(res[0], cur + 1);
-        helper(matrix, matrix[row][col], row - 1, col, cur + 1, res);
-        helper(matrix, matrix[row][col], row + 1, col, cur + 1, res);
-        helper(matrix, matrix[row][col], row, col - 1, cur + 1, res);
-        helper(matrix, matrix[row][col], row, col + 1, cur + 1, res);
+        int max = 1;
+        for(int[] dir : dirs) {
+            int x = row + dir[0];
+            int y = col + dir[1];
+            if (x < 0 || y < 0 || x >= m || y >= n || matrix[x][y] <= matrix[row][col] ) {
+                continue;
+            }
+            
+            int len = 1 + dfs(matrix, x, y, m, n, cache);
+            max = Math.max(len, max);
+        }
+        
+        cache[row][col] = max;
+        return max;
     }
 }
