@@ -22,19 +22,19 @@ public class Solution {
             }
             
             colEnd--;
-            if (colEnd >= colBegin) {
+            // if (colEnd >= colBegin) {
                 for(int i = colEnd; i >= colBegin; i--) {
                     res[rowEnd][i] = cur++;                    
                 }
                 rowEnd--;
-            }
+            // }
             
-            if (rowEnd >= rowBegin) {
+            // if (rowEnd >= rowBegin) {
                 for(int i = rowEnd; i >= rowBegin; i--) {
                     res[i][colBegin] = cur++;
                 }
                 colBegin++;
-            }
+             // }
         }
         
         return res;
