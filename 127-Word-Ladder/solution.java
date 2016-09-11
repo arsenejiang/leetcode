@@ -6,7 +6,7 @@ public class Solution {
         endSet.add(endWord);
         int len = 1;
         HashSet<String> visited = new HashSet<String>();
-        while(!beginSet.isEmpty() || !endSet.isEmpty()) {
+        while(!beginSet.isEmpty() && !endSet.isEmpty()) {
             if (beginSet.size() > endSet.size()) {
                 HashSet<String> temp = beginSet;
                 beginSet = endSet;
