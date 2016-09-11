@@ -5,6 +5,7 @@ public class Solution {
         beginSet.add(beginWord);
         endSet.add(endWord);
         int len = 1;
+        HashSet<String> visited = new HashSet<String>();
         while(!beginSet.isEmpty() || !endSet.isEmpty()) {
             if (beginSet.size() > endSet.size()) {
                 HashSet<String> temp = beginSet;
@@ -18,19 +19,15 @@ public class Solution {
                 for(int i = 0; i < arr.length; i++) {
                     char old = arr[i];
                     for(char c = 'a'; c <= 'z'; c++) {
-                        if (c == old) {
-                            continue;
-                        }
-                        
                         arr[i] = c;
                         String newString = new String(arr);
-                        if (wordList.contains(newString)) {
-                            if (endSet.contains(newString)) {
-                                return len + 1;
-                            }
-                            else {
-                                temp.add(newString);
-                            }
+                        if (endSet.contains(newString)) {
+                            return len + 1;
+                        }
+                        
+                        if (!visited.contains(newString) && wordList.contains(newString)) {
+                            temp.add(newString);
+                            visited.add(newString);
                         }
                     }
                     arr[i] = old;
