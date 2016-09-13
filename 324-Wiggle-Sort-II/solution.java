@@ -1,16 +1,18 @@
 public class Solution {
     public void wiggleSort(int[] nums) {
-        if (nums == null || nums.length <= 1) {
+        // sort approach
+        if (nums == null || nums.length == 0) {
             return;
         }
         
         Arrays.sort(nums);
+        int[] copy = Arrays.copyOf(nums, nums.length);
         int len = nums.length;
-        int[] copy = Arrays.copyOf(nums, len);
-        int low = (len - 1) >> 1;
-        int high = len - 1;
-        for(int i = 0; i < len; i++) {
-            nums[i] = (i % 2 == 0) ? copy[low--] : copy[high--];
+        int left = (len - 1) >> 1;
+        int right = len - 1;
+        for(int i = 0; i < nums.length; i++) {
+            nums[i] = ((i & 1) == 0) ? copy[left--] : copy[right--];
         }
+        
     }
 }
