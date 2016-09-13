@@ -33,6 +33,12 @@ If no valid conversion could be performed, a zero value is returned. If the corr
 
 <div>
 
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+
+<span class="hidebutton">[Amazon](/company/amazon/) [Bloomberg](/company/bloomberg/) [Microsoft](/company/microsoft/) [Uber](/company/uber/)</span></div>
+
+<div>
+
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Math](/tag/math/) [String](/tag/string/)</span></div>
