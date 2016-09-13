@@ -21,11 +21,17 @@ public class Solution {
         else if (Character.isDigit(str.charAt(0))) {
             num = str.charAt(0) - '0';
         }
+        else {
+            return 0;
+        }
         
         for(int i = 1; i < str.length(); i++) {
             char c = str.charAt(i);
             if (Character.isDigit(c)) {
                 num = num * 10 + c - '0';
+                if(num > Integer.MAX_VALUE) {
+                    break;
+                }
             }
             else {
                 break;
@@ -40,7 +46,7 @@ public class Solution {
             return Integer.MIN_VALUE;
         }
         else {
-            return num;
+            return (int)num;
         }
     }
 }
