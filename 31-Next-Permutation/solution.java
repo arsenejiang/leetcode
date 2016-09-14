@@ -12,16 +12,18 @@ public class Solution {
             }
         }
         
-        int j = len - 1;
-        for (j = len - 1; j > i; j--) {
-            if (nums[j] > nums[i]) {
-                break;
+        if (i >= 0) {
+            int j = len - 1;
+            for (j = len - 1; j > i; j--) {
+                if (nums[j] > nums[i]) {
+                    break;
+                }
             }
+            
+            swap(nums, i, j);
         }
         
-        swap(nums, i, j);
-        
-        reverse(nums, i, len - 1);
+        reverse(nums, i + 1, len - 1);
     }
     
     private void swap(int[] nums, int i, int j) {
