@@ -26,7 +26,7 @@ public class Solution {
         nums[swapIndex] = nums[candidateIndex];
         nums[candidateIndex] = temp;
         
-        Arrays.sort(nums, swapIndex + 1, len - 1);
+        Arrays.sort(nums, swapIndex + 1, len);
     }
     
     private void reverse(int[] nums) {
@@ -37,7 +37,7 @@ public class Solution {
             nums[left] = nums[right];
             nums[right] = temp;
             left++;
-            rigth--;
+            right--;
         }
     }
 }
