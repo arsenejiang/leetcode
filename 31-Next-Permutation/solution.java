@@ -5,33 +5,36 @@ public class Solution {
         }
         
         int len = nums.length;
-        int candidateIndex = len - 1;
-        int swapIndex = -1;
-        for(int i = len - 1; i > 0; i--) {
-            for(int j = i - 1; j >= 0; j--) {
-                if (nums[j] < nums[i] && j > swapIndex) {
-                    swapIndex = j;
-                    candidateIndex = i;
-                    break;
-                }
+        int i = len - 2;
+        for(i = len - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                break;
             }
         }
         
-        if (swapIndex == -1) {
-            reverse(nums);
+        int j = len - 1;
+        for (j = len - 1; j > i; j--) {
+            if (nums[j] > nums[i]) {
+                break;
+            }
+        }
+        
+        swap(nums, i, j);
+        
+        reverse(nums, i, len - 1);
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        if (i == j) {
             return;
         }
         
-        int temp = nums[swapIndex];
-        nums[swapIndex] = nums[candidateIndex];
-        nums[candidateIndex] = temp;
-        
-        Arrays.sort(nums, swapIndex + 1, len);
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
     
-    private void reverse(int[] nums) {
-        int left = 0;
-        int right = nums.length - 1;
+    private void reverse(int[] nums, int left, int right) {
         while(left < right) {
             int temp = nums[left];
             nums[left] = nums[right];
