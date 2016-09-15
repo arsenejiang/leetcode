@@ -19,12 +19,15 @@ public class Solution {
         int[][] dp = new int[rows][cols];
         int result = Integer.MAX_VALUE;
         for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
+            for(int j = 0; j < triangle.get(i).size(); j++) {
                 if (i == 0) {
                     dp[i][j] = triangle.get(i).get(j);
                 }
                 else if (j == 0) {
                     dp[i][j] = triangle.get(i).get(j) + dp[i-1][j];
+                }
+                else if (j == triangle.get(i).size() - 1) {
+                    dp[i][j] = triangle.get(i).get(j) + dp[i-1][j-1];
                 }
                 else {
                     dp[i][j] = triangle.get(i).get(j) + Math.min(dp[i-1][j], dp[i-1][j-1]);
