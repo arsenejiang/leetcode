@@ -4,10 +4,7 @@ public class Solution {
             return 0;
         }
         
-        if (num % 9 == 0) {
-            return 9;
-        }
-        
-        return num % 9;
+        int result = num % 9;
+        return result == 0 ? 9 : result;
     }
 }
