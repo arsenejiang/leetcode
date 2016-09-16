@@ -13,8 +13,8 @@ public class Solution {
         }
         
         ListNode dummy = new ListNode(0);
-        dummy.next = head;
         ListNode prev = dummy;
+        dummy.next = head;
         while(prev.next != null) {
             if (prev.next.val == val) {
                 prev.next = prev.next.next;
