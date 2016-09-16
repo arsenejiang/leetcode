@@ -4,10 +4,9 @@ public class Solution {
             return 0;
         }
         
-        int len = s.length();
         int num = 0;
-        for(int i = 0; i < len; i++) {
-            num = num * 26 + (s.charAt(i) - 'A' + 1);
+        for(int i = 0; i < s.length(); i++) {
+            num = num * 26 + s.charAt(i) - 'A' + 1;
         }
         
         return num;
