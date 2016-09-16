@@ -6,7 +6,7 @@ public class Solution {
         
         Stack<Integer> stack = new Stack<Integer>();
         for (int i = 0; i < tokens.length; i++) {
-            if (Character.isDigit(tokens[i].charAt(0))) {
+            if (isInteger(tokens[i])) {
                 stack.push(Integer.valueOf(tokens[i]));
             }
             else {
@@ -28,5 +28,15 @@ public class Solution {
         }
         
         return stack.peek();
+    }
+    
+    private boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
     }
 }
