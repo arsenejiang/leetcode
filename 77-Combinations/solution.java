@@ -1,20 +1,24 @@
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
-        if (k == n || k == 0) {
-            List<Integer> list = new ArrayList();
-            for(int i = 1; i <= k; i++) {
-                list.add(i);
-            }
-            List<List<Integer>> res = new ArrayList();
-            res.add(list);
-            return res;
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        helper(n, 1, k, new ArrayList<Integer>(), res);
+        return res;
+    }
+    
+    private void helper(int n, int start, int k, List<Integer> cur, List<List<Integer>> res) {
+        if (k == 0) {
+            res.add(new ArrayList<Integer>(cur));
+            return;
         }
         
-        List<List<Integer>> result = combine(n - 1, k - 1);
-        for(List<Integer> list : result) {
-            list.add(n);
+        if (n - start + 1 < k) {
+            return;
         }
-        result.addAll(combine(n-1, k));
-        return result;
+        
+        for(int i = start; i <= n + 1 - k; i++) {
+            cur.add(i);
+            helper(n, i + 1, k - 1, cur, res);
+            cur.remove(cur.size() - 1);
+        }
     }
 }
