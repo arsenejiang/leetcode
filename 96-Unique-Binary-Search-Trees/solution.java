@@ -2,8 +2,6 @@ public class Solution {
     public int numTrees(int n) {
         int[] cache = new int[n + 1];
         cache[0] = 1;
-        cache[1] = 1;
-        cache[2] = 2;
         return helper(n, cache);
     }
     
