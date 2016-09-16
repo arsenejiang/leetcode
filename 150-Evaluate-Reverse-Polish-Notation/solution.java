@@ -4,29 +4,26 @@ public class Solution {
             return 0;
         }
         
-        Stack<Integer> stack = new Stack();
-        for(int i = 0; i < tokens.length; i++) {
-            String s = tokens[i];
-            if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
-                int second = stack.pop();
-                int first = stack.pop();
-                int result;
-                if (s.equals("+")) {
-                    result = first + second;
-                }
-                else if (s.equals("-")) {
-                    result = first - second;
-                }
-                else if (s.equals("*")) {
-                    result = first * second;
-                }
-                else {
-                    result = first / second;
-                }
-                stack.push(result);
+        Stack<Integer> stack = new Stack<Integer>();
+        for (int i = 0; i < tokens.length; i++) {
+            if (Character.isDigit(tokens[i].charAt(0))) {
+                stack.push(Integer.valueOf(tokens[i]));
             }
             else {
-                stack.push(Integer.valueOf(s));
+                int b = stack.pop();
+                int a = stack.pop();
+                if (tokens[i].equals("+")) {
+                    stack.push(a + b);
+                }
+                else if (tokens[i].equals("-")) {
+                    stack.push(a - b);
+                }
+                else if (tokens[i].equals("*")) {
+                    stack.push(a * b);
+                }
+                else if (tokens[i].equals("/")) {
+                    stack.push(a / b);
+                }
             }
         }
         
