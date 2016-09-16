@@ -9,6 +9,7 @@ public class Solution {
             if (!isPrime[i]) {
                 continue;
             }
+            
             for(int j = i * i; j < n; j += i) {
                 isPrime[j] = false;
             }
