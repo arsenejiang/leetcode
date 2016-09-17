@@ -3,11 +3,18 @@ public class Solution {
         if (n == 0) {
             return 1;
         }
-        
-        if (n < 0) {
-            return 1 / (x * myPow(x, -(n+1)));
+        else if (n < 0) {
+            return 1 / myPow(x, -n);
+        }
+        else if (n == 1) {
+            return x;
         }
         
-        return (n % 2 == 0) ? myPow(x*x, n/2) : x*myPow(x*x, n/2);
+        if (n % 2 == 0) {
+            return myPow(x * x, n / 2);
+        }
+        else {
+            return x * myPow(x * x, (n - 1) / 2);
+        }
     }
 }
