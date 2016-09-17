@@ -4,13 +4,18 @@ public class Solution {
             return 0;
         }
         
-        int max = Integer.MIN_VALUE;
+        int len = A.length;
+        int allSum = 0;
+        int start = 0;
         for(int i = 0; i < A.length; i++) {
-            int cur = 0;
-            for(int j = 0; j < A.length; j++) {
-                cur += ((i + j) % A.length) * A[j];
-            }
-            max = Math.max(cur, max);
+            start += (i * A[i]);
+            allSum += A[i];
+        }
+        
+        int max = start;
+        for(int i = 0; i < A.length - 1; i++) {
+            start = start - allSum + len * A[i];
+            max = Math.max(max, start);
         }
         
         return max;
