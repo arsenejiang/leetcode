@@ -3,6 +3,9 @@ public class Solution {
         if (n == 0) {
             return 1;
         }
+        else if (Double.compare(x, 1) == 0) {
+            return 1;
+        }
         else if (n < 0) {
             return 1 / myPow(x, -n);
         }
