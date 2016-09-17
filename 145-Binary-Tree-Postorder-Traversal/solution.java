@@ -9,26 +9,26 @@
  */
 public class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<Integer>();
         if (root == null) {
             return res;
         }
         
-        Stack<TreeNode> stack = new Stack();
-        stack.push(root);
-        // Set<TreeNode> visited = new HashSet();
-        while(!stack.isEmpty()) {
-            TreeNode n = stack.pop();
-            res.add(0, n.val);
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        s.push(root);
+        while(!s.isEmpty()) {
+            TreeNode n = s.pop();
+            res.add(n.val);
             if (n.left != null) {
-                stack.push(n.left);
+                s.push(n.left);
             }
             
             if (n.right != null) {
-                stack.push(n.right);
+                s.push(n.right);
             }
         }
         
+        Collections.reverse(res);
         return res;
     }
 }
