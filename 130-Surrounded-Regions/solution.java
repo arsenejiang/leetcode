@@ -31,7 +31,7 @@ public class Solution {
                 q.offer(new int[]{p[0] - 1, p[1]});
             }
             
-            if (p[0] <= n - 2 && board[p[0] + 1][p[1]] == 'O') {
+            if (p[0] <= m - 2 && board[p[0] + 1][p[1]] == 'O') {
                 board[p[0] + 1][p[1]] = 'B';
                 q.offer(new int[]{p[0] + 1, p[1]});
             }
@@ -41,7 +41,7 @@ public class Solution {
                 q.offer(new int[]{p[0], p[1] - 1});
             }
             
-            if (p[1] <= m - 2 && board[p[0]][p[1] + 1] == 'O') {
+            if (p[1] <= n - 2 && board[p[0]][p[1] + 1] == 'O') {
                 board[p[0]][p[1] + 1] = 'B';
                 q.offer(new int[]{p[0], p[1] + 1});
             }
