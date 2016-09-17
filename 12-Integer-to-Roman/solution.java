@@ -5,6 +5,10 @@ public class Solution {
         String[] X = new String[] {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
         String[] I = new String[] {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
         
-        return M[num / 1000] + C[(num % 1000)/100] + X[(num % 100)/10] + I[num % 10];
+        StringBuilder sb = new StringBuilder(M[num / 1000]);
+        sb.append(C[(num % 1000)/100]);
+        sb.append(X[(num % 100)/10]);
+        sb.append(I[num % 10]);
+        return sb.toString();
     }
 }
