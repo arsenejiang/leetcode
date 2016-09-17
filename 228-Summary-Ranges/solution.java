@@ -16,16 +16,16 @@ public class Solution {
             }
             
             if (start == end) {
-                sb.add(Integer.toString(start));
+                res.add(Integer.toString(start));
             }
             else {
-                sb.add(start + "->" + end);
+                res.add(start + "->" + end);
             }
             
             start = nums[i];
             end = nums[i];
         }
         
-        return sb.toString();
+        return res
     }
 }
