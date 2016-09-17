@@ -7,12 +7,11 @@ public class Solution {
         
         int start = nums[0];
         int end = nums[0];
+        
         for(int i = 1; i < nums.length; i++) {
             if (nums[i] == end + 1) {
                 end = nums[i];
-                if (i < nums.length - 1) {
-                    continue;
-                }
+                continue;
             }
             
             if (start == end) {
@@ -26,6 +25,13 @@ public class Solution {
             end = nums[i];
         }
         
-        return res
+        if (start == end) {
+            res.add(Integer.toString(start));
+        }
+        else {
+            res.add(start + "->" + end);
+        }
+        
+        return res;
     }
 }
