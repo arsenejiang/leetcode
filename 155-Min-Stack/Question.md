@@ -29,12 +29,6 @@ minStack.getMin();   --> Returns -2.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Amazon](/company/amazon/) [Bloomberg](/company/bloomberg/) [Google](/company/google/) [Snapchat](/company/snapchat/) [Uber](/company/uber/) [Zenefits](/company/zenefits/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Stack](/tag/stack/) [Design](/tag/design/)</span></div>
