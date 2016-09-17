@@ -5,7 +5,7 @@ public class Solution {
             return res;
         }
         
-        int[] arr = new int[rowIndex + 1];
+        Integer[] arr = new Integer[rowIndex + 1];
         arr[0] = 1;
         for(int i = 0; i <= rowIndex; i++) {
             arr[i] = 1;
@@ -14,10 +14,6 @@ public class Solution {
             }
         }
         
-        for(int num : arr) {
-            res.add(num);
-        }
-        
-        return res;
+        return Arrays.asList(arr);
     }
 }
