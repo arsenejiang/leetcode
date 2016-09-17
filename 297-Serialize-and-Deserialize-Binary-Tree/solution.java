@@ -65,7 +65,6 @@ public class Codec {
                 }
                 else {
                     n.right = new TreeNode(Integer.valueOf(strs[index]));
-                    index++;
                     q.offer(n.right);
                 }
                 
