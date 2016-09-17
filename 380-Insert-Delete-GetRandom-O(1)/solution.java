@@ -1,12 +1,11 @@
 public class RandomizedSet {
-    private ArrayList<Integer> array;
-    private HashMap<Integer, Integer> map;
-    private Random rand;
-
+    HashMap<Integer, Integer> map;
+    ArrayList<Integer> list;
+    Random rand;
     /** Initialize your data structure here. */
     public RandomizedSet() {
-        array = new ArrayList<Integer>();
         map = new HashMap<Integer, Integer>();
+        list = new ArrayList<Integer>();
         rand = new Random();
     }
     
@@ -16,8 +15,8 @@ public class RandomizedSet {
             return false;
         }
         else {
-            array.add(val);
-            map.put(val, array.size() - 1);
+            list.add(val);
+            map.put(val, list.size() - 1);
             return true;
         }
     }
@@ -27,11 +26,13 @@ public class RandomizedSet {
         if (map.containsKey(val)) {
             int index = map.get(val);
             map.remove(val);
-            if (index < array.size() - 1) {
-                array.set(index, array.get(array.size() - 1));
-                map.put(array.get(index), index);
+            if (index != list.size() - 1) {
+                int endValue = list.get(list.size() - 1);
+                map.put(endValue, index);
+                list.set(index, endValue);
             }
-            array.remove(array.size() - 1);
+            
+            list.remove(list.size() - 1);
             return true;
         }
         else {
@@ -41,12 +42,7 @@ public class RandomizedSet {
     
     /** Get a random element from the set. */
     public int getRandom() {
-        if (array.size() == 0) {
-            return 0;
-        }
-        
-        int index = rand.nextInt(array.size());
-        return array.get(index);
+        return list.get(rand.nextInt(list.size()));
     }
 }
 
