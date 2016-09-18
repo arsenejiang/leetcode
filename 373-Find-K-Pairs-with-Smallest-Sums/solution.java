@@ -18,7 +18,7 @@ public class Solution {
             pq.offer(new int[]{i, 0});
         }
         
-        while(k-- > 0) {
+        while(k-- > 0 && !pq.isEmpty()) {
             int[] p = pq.poll();
             res.add(new int[]{nums1[p[0]], nums2[p[1]]});
             if (p[1] < n - 1) {
