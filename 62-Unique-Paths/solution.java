@@ -1,4 +1,5 @@
 public class Solution {
+    /*
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
         dp[0][0] = 1;
@@ -17,5 +18,16 @@ public class Solution {
         }
         
         return dp[m-1][n-1];
+    }
+    */
+    
+    // match solution
+    public int uniquePaths(int m, int n) {
+        double res = 1;
+        for(int i = m - 1; i >= 1; i++) {
+            res *= (n - 1 + i) / i;
+        }
+        
+        return (int)res;
     }
 }
