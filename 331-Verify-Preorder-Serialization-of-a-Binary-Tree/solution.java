@@ -1,4 +1,6 @@
 public class Solution {
+    // TLE
+    /*
     public boolean isValidSerialization(String preorder) {
         if (preorder == null || preorder.length() == 0) {
             return true;
@@ -30,5 +32,26 @@ public class Solution {
         }
         
         return false;
+    }
+    */
+    public boolean isValidSerialization(String preorder) {
+        if (preorder == null || preorder.length() == 0) {
+            return true;
+        }
+        
+        String[] strs = preorder.split(",");
+        int diff = 1;
+        for(String s : strs) {
+            diff--;
+            if (diff < 0) {
+                return false;
+            }
+            
+            if (!s.equals("#")) {
+                diff += 2;
+            }
+        }
+        
+        return diff == 0;
     }
 }
