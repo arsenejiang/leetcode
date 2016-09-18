@@ -9,7 +9,19 @@
  */
 public class Solution {
     public boolean isBalanced(TreeNode root) {
-        return height(root) != -1;
+        if (root == null) {
+            return true;
+        }
+        
+        int left = height(root.left);
+        int right = height(root.right);
+        
+        if (Math.abs(left - right) <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
     private int height(TreeNode root) {
@@ -17,21 +29,6 @@ public class Solution {
             return 0;
         }
         
-        int leftHeight = height(root.left);
-        if (leftHeight == -1) {
-            return -1;
-        }
-        
-        int rightHeight = height(root.right);
-        if (rightHeight == -1) {
-            return -1;
-        }
-        
-        if(Math.abs(leftHeight - rightHeight) > 1) {
-            return -1;
-        }
-        else {
-            return 1 + Math.max(leftHeight, rightHeight);
-        }
+        return 1 + Math.max(height(root.left), height(root.right));
     }
 }
