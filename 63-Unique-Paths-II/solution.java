@@ -5,7 +5,7 @@ public class Solution {
         }
         
         int m = obstacleGrid.length;
-        int n = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
         int[][] dp = new int[m][n];
         if (obstacleGrid[0][0] == 1) {
             return 0;
