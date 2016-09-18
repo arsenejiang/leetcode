@@ -5,7 +5,7 @@ public class Solution {
         }
         
         int step = 0;
-        while (m != n) {
+        while (n != m) {
             m = m >> 1;
             n = n >> 1;
             step++;
