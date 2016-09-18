@@ -4,17 +4,18 @@ public class Solution {
             return 0;
         }
         
-        int step = 0;
-        int max = 0;
-        int preEnd = 0;
-        for(int i = 0; i < nums.length - 1; i++) {
-            max = Math.max(max, i + nums[i]);
-            if (i == preEnd) {
-                step++;
-                preEnd = max;
+        int len = nums.length;
+        int[] dp = new int[len];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i = 0; i < len; i++) {
+            int reachIndex = Math.min(len - 1, i + nums[i]);
+            int step = dp[i] + 1;
+            for (int j = reachIndex; j > i; j--) {
+                dp[j] = Math.min(dp[j], step);
             }
         }
         
-        return step;
+        return dp[len - 1];
     }
 }
