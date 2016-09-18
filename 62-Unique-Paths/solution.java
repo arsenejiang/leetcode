@@ -1,14 +1,13 @@
 public class Solution {
     public int uniquePaths(int m, int n) {
-        /*
-        // dp solution
         int[][] dp = new int[m][n];
-        for(int i = 0; i < n; i++) {
-            dp[0][i] = 1;
+        dp[0][0] = 1;
+        for(int i = 1; i < m; i++) {
+            dp[i][0] = 1;
         }
         
-        for(int i = 0; i < m; i++) {
-            dp[i][0] = 1;
+        for(int i = 1; i < n; i++) {
+            dp[0][i] = 1;
         }
         
         for(int i = 1; i < m; i++) {
@@ -18,16 +17,5 @@ public class Solution {
         }
         
         return dp[m-1][n-1];
-        */
-        
-        // math solution
-        int total = m + n - 2;
-        int k = m - 1;
-        double res = 1;
-        for(int i = 1; i <= k; i++) {
-            res = res * (total - k + i) / i;
-        }
-        
-        return (int)res;
     }
 }
