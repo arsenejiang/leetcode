@@ -5,17 +5,22 @@ public class Solution {
         }
         
         int len = nums.length;
-        int[] dp = new int[len];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0;
-        for(int i = 0; i < len; i++) {
-            int reachIndex = Math.min(len - 1, i + nums[i]);
-            int step = dp[i] + 1;
-            for (int j = reachIndex; j > i; j--) {
-                dp[j] = Math.min(dp[j], step);
+        int level = 0;
+        int curMax = 0;
+        int nextMax = 0;
+        int i = 0;
+        
+        while(i <= curMax) {
+            level++;
+            for(;i <= curMax;i++) {
+                nextMax = Math.max(nextMax, i + nums[i]);
+                if (nextMax >= len - 1) {
+                    return level;
+                }
             }
+            curMax = nextMax;
         }
         
-        return dp[len - 1];
+        return 0;
     }
 }
