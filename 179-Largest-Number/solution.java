@@ -5,9 +5,9 @@ public class Solution {
         }
         
         int len = nums.length;
-        String[] s = new String[len];
+        String[] strs = new String[len];
         for(int i = 0; i < len; i++) {
-            s[i] = Integer.toString(nums[i]);
+            strs[i] = Integer.toString(nums[i]);
         }
         
         Comparator<String> comp = new Comparator<String>() {
@@ -19,14 +19,15 @@ public class Solution {
             }
         };
         
-        Arrays.sort(s, comp);
-        if (s[len - 1].charAt(0) == '0') {
+        Arrays.sort(strs, comp);
+        
+        if (strs[len - 1].charAt(0) == '0') {
             return "0";
         }
         
         StringBuilder sb = new StringBuilder();
         for(int i = len - 1; i >= 0; i--) {
-            sb.append(s[i]);
+            sb.append(strs[i]);
         }
         
         return sb.toString();
