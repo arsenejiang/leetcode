@@ -26,12 +26,12 @@ public class Solution {
         return max;
     }
     
-    private int maxRectangleInHistogram(int[] height) {
+    private int maxRectangleInHistogram(int[] heights) {
         Stack<Integer> s = new Stack<Integer>();
         int max = 0;
         for(int i = 0; i <= heights.length; i++) {
-            int h = (i == heights.length ? 0 : heights[i]);
-            if (s.isEmpty() || h >= s.peek()) {
+            int h = i == heights.length ? 0 : heights[i];
+            if (s.isEmpty() || h >= heights[s.peek()]) {
                 s.push(i);
             }
             else {
