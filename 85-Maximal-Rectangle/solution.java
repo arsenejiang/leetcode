@@ -26,7 +26,7 @@ public class Solution {
         return max;
     }
     
-    private int maxRectangleInHistogram(int[] heights) {
+    private int maxRectangleInHistogram(int[] height) {
         /*
         Stack<Integer> s = new Stack<Integer>();
         int max = 0;
