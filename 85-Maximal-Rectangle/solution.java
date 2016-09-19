@@ -6,43 +6,59 @@ public class Solution {
         
         int m = matrix.length;
         int n = matrix[0].length;
-        int[][] heights = new int[m][n+1];
+        int[][] heights = new int[m][n];
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
                 if (matrix[i][j] == '0') {
                     heights[i][j] = 0;
                 }
                 else {
-                    heights[i][j] = i == 0 ? 1 : heights[i-1][j] + 1;
+                    heights[i][j] = (i == 0) ? 1 : heights[i-1][j] + 1;
                 }
             }
         }
         
-        int result = 0;
+        int max = 0;
         for(int i = 0; i < m; i++) {
-            result = Math.max(result, maximalRectangleInHistogram(heights[i]));
+            max = Math.max(max, maxRectangleInHistogram(heights[i]));
         }
         
-        return result;
+        return max;
     }
     
-    private int maximalRectangleInHistogram(int[] heights) {
-        int result = 0;
+    private int maxRectangleInHistogram(int[] heights) {
+        /*
         Stack<Integer> s = new Stack<Integer>();
-        for(int i = 0; i < heights.length; i++) {
-            if (s.isEmpty() || heights[i] >= heights[s.peek()]) {
+        int max = 0;
+        for(int i = 0; i <= heights.length; i++) {
+            int h = (i == heights.length) ? 0 : heights[i];
+            if (s.isEmpty() || h >= s.peek()) {
                 s.push(i);
             }
             else {
-                while(!s.isEmpty() && heights[i] < heights[s.peek()]) {
-                    int index = s.pop();
-                    int width = s.isEmpty() ? i : i - 1 - s.peek();
-                    result = Math.max(result, heights[index]*width);
-                }
-                s.push(i);
+                int index = s.pop();
+                int width = s.isEmpty() ? i : i - s.peek() - 1;
+                max = Math.max(max, heights[index]*width);
+                i--;
             }
         }
         
-        return result;
+        return max;
+        */
+        
+        int len = height.length;
+        Stack<Integer> s = new Stack<Integer>();
+        int maxArea = 0;
+        for(int i = 0; i <= len; i++){
+            int h = (i == len ? 0 : height[i]);
+            if(s.isEmpty() || h >= height[s.peek()]){
+                s.push(i);
+            }else{
+                int tp = s.pop();
+                maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));
+                i--;
+            }
+        }
+        return maxArea;
     }
 }
