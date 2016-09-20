@@ -1,42 +1,43 @@
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        int[] indegree = new int[numCourses];
-        List<List<Integer>> adjs = new ArrayList();
-        initilize(adjs, indegree, prerequisites);
-        return solve(adjs, indegree);
-    }
-    
-    private void initilize(List<List<Integer>> adjs, int[] indegree, int[][] pre) {
-        for(int i = 0; i < indegree.length; i++) {
-            adjs.add(new ArrayList<Integer>());
+        if (prerequisites == null || prerequisites.length == 0 || prerequisites[0].length == 0) {
+            return true;
         }
         
-        for(int i = 0; i < pre.length; i++) {
-            indegree[pre[i][0]]++;
-            adjs.get(pre[i][1]).add(pre[i][0]);
+        int[] pres = new int[numCourses];
+        ArrayList<Integer>[] adjs = new ArrayList[numCourses];
+        for(int[] prerequisite : prerequisites) {
+            pres[prerequisite[0]]++;
+            if (adjs[prerequisite[1]] == null) {
+                adjs[prerequisite[1]] = new ArrayList<Integer>();
+            }
+            adjs[prerequisite[1]].add(prerequisite[0]);
         }
-    }
-    
-    private boolean solve(List<List<Integer>> adjs, int[] indegree) {
-        Queue<Integer> q = new LinkedList();
-        for(int i = 0; i < indegree.length; i++) {
-            if (indegree[i] == 0) {
+        
+        int count = 0;
+        Queue<Integer> q = new LinkedList<Integer>();
+        for(int i = 0; i < numCourses; i++) {
+            if (pres[i] == 0) {
                 q.offer(i);
+                count++;
             }
         }
         
-        int visited = 0;
+        if (count == 0) {
+            return false;
+        }
+        
         while(!q.isEmpty()) {
-            int cur = q.poll();
-            visited++;
-            for(int j : adjs.get(cur)) {
-                indegree[j]--;
-                if (indegree[j] == 0) {
-                    q.offer(j);
+            int index = q.poll();
+            for(int i : adjs[index]) {
+                pres[i]--;
+                if (pres[i] == 0) {
+                    q.offer(i);
+                    count++;
                 }
             }
         }
         
-        return visited == indegree.length;
+        return count == numCourses;
     }
 }
