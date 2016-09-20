@@ -1,5 +1,6 @@
 public class Solution {
     public char findTheDifference(String s, String t) {
+        /* hashMap
         HashMap<Character, Integer> smap = new HashMap<Character, Integer>();
         for(char c : s.toCharArray()) {
             if (!smap.containsKey(c)) {
@@ -25,6 +26,18 @@ public class Solution {
             }
         }
         
-        return '0';
+        return 0;
+        */
+        
+        char c = 0;
+        for(int i = 0; i < s.length(); i++) {
+            c ^= s.charAt(i);
+        }
+        
+        for(int i = 0; i < t.length(); i++) {
+            c ^= t.charAt(i);
+        }
+        
+        return c;
     }
 }
