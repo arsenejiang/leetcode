@@ -1,25 +1,30 @@
 public class Solution {
     public boolean isPerfectSquare(int num) {
-        if (num <= 0) {
-            return false;
-        }
-        
         if (num == 1) {
             return true;
         }
         
-        long left = 1, right = num;
+        if (num < 4) {
+            return false;
+        }
+        
+        if (num == 4) {
+            return true;
+        }
+        
+        long left = 1;
+        long right = num / 2;
         while(left <= right) {
             long mid = left + (right - left) / 2;
-            long t = mid * mid;
-            if (t == num) {
+            long square = mid * mid;
+            if (square == num) {
                 return true;
             }
-            else if (t > num) {
-                right = mid - 1;
+            else if (square < num) {
+                left = mid + 1;
             }
             else {
-                left = mid + 1;
+                right = mid - 1;
             }
         }
         
