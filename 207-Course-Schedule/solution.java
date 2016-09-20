@@ -6,11 +6,12 @@ public class Solution {
         
         int[] pres = new int[numCourses];
         ArrayList<Integer>[] adjs = new ArrayList[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            adjs[i] = new ArrayList<Integer>();
+        }
+        
         for(int[] prerequisite : prerequisites) {
             pres[prerequisite[0]]++;
-            if (adjs[prerequisite[1]] == null) {
-                adjs[prerequisite[1]] = new ArrayList<Integer>();
-            }
             adjs[prerequisite[1]].add(prerequisite[0]);
         }
         
