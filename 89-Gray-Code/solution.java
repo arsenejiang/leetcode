@@ -9,8 +9,9 @@ public class Solution {
         res.add(1);
         for(int i = 2; i <= n; i++) {
             int size = res.size();
+            int add = 1 << (i - 1);
             for(int j = size - 1; j >= 0; j--) {
-                int val = res.get(j) | (1 << (i - 1));
+                int val = res.get(j) | add;
                 res.add(val);
             }
         }
