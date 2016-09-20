@@ -4,14 +4,6 @@ public class Solution {
             return true;
         }
         
-        if (num < 4) {
-            return false;
-        }
-        
-        if (num == 4) {
-            return true;
-        }
-        
         long left = 1;
         long right = num / 2;
         while(left <= right) {
