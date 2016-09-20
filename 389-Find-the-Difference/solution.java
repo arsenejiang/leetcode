@@ -10,7 +10,7 @@ public class Solution {
             }
         }
         
-        for(char c : t.CharArray()) {
+        for(char c : t.toCharArray()) {
             if (!smap.containsKey(c)) {
                 return c;
             }
@@ -18,6 +18,9 @@ public class Solution {
                 int count = smap.get(c) - 1;
                 if (count == 0) {
                     smap.remove(c);
+                }
+                else {
+                    smap.put(c, count);
                 }
             }
         }
