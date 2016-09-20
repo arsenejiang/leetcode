@@ -30,7 +30,7 @@ public class BSTIterator {
     
     private void pushAll(TreeNode node) {
         while(node != null) {
-            stack.push(node.left);
+            stack.push(node);
             node = node.left;
         }
     }
