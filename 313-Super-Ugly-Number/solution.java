@@ -20,6 +20,10 @@ public class Solution {
         while(n > 0) {
             cur = pq.poll();
             n--;
+            if (n == 0) {
+                return cur;
+            }
+            
             for(int i = 0; i < primes.length; i++) {
                 int next = cur * primes[i];
                 if (!visited.contains(next)) {
