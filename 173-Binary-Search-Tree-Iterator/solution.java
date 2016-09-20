@@ -9,27 +9,28 @@
  */
 
 public class BSTIterator {
-    Stack<TreeNode> s = new Stack();
+    Stack<TreeNode> stack = null;
 
     public BSTIterator(TreeNode root) {
+        stack = new Stack<TreeNode>();
         pushAll(root);
     }
 
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return !s.isEmpty();
+        return !stack.isEmpty();
     }
 
     /** @return the next smallest number */
     public int next() {
-        TreeNode n = s.pop();
+        TreeNode n = stack.pop();
         pushAll(n.right);
         return n.val;
     }
     
     private void pushAll(TreeNode node) {
         while(node != null) {
-            s.push(node);
+            stack.push(node.left);
             node = node.left;
         }
     }
