@@ -1,32 +1,27 @@
 public class Solution {
-    /*
-    // array solution (6ms)
     public char findTheDifference(String s, String t) {
-        int[] scounts = new int[26];
+        HashMap<Character, Integer> smap = new HashMap<Character, Integer>();
         for(char c : s.toCharArray()) {
-            scounts[c - 'a']++;
-        }
-        
-        for(char c : t.toCharArray()) {
-            if (--scounts[c - 'a'] < 0) {
-                return c;
+            if (!smap.containsKey(c)) {
+                smap.put(c, 1);
+            }
+            else {
+                smap.put(c, smap.get(c) + 1);
             }
         }
         
-        return 0;
-    }
-    */
-    
-    public char findTheDifference(String s, String t) {
-        char res = 0;
-        for(char c : s.toCharArray()) {
-            res ^= c;
+        for(char c : t.CharArray()) {
+            if (!smap.containsKey(c)) {
+                return c;
+            }
+            else {
+                int count = smap.get(c) - 1;
+                if (count == 0) {
+                    smap.remove(c);
+                }
+            }
         }
         
-        for(char c : t.toCharArray()) {
-            res ^= c;
-        }
-        
-        return res;
+        return '0';
     }
 }
