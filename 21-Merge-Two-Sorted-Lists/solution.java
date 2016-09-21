@@ -12,7 +12,7 @@ public class Solution {
         ListNode p1 = l1, p2 = l2;
         ListNode cur = dummy;
         while(p1 != null || p2 != null) {
-            if (p2 == null || p1.val < p2.val) {
+            if (p2 == null || (p1 != null && p1.val < p2.val)) {
                 cur.next = p1;
                 p1 = p1.next;
             }    
