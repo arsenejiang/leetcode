@@ -13,22 +13,28 @@ public class Solution {
             return;
         }
         
-        Stack<TreeNode> stack = new Stack();
-        stack.push(root);
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        if (root.right != null) {
+                stack.push(root.right);
+        }
+        
+        if (root.left != null) {
+            stack.push(root.left);
+        }
+        
         TreeNode cur = root;
         while(!stack.isEmpty()) {
-            TreeNode n = stack.pop();
-            if (n.right != null) {
-                stack.push(n.right);
-            }
-            if (n.left != null) {
-                stack.push(n.left);
+            TreeNode node = stack.pop();
+            cur.right = node;
+            cur.left = null;
+            cur = cur.right;
+            
+            if (node.right != null) {
+                stack.push(node.right);
             }
             
-            if (n != root) {
-                cur.left = null;
-                cur.right = n;
-                cur = n;
+            if (node.left != null) {
+                stack.push(node.left);
             }
         }
     }
