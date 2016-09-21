@@ -15,10 +15,16 @@ public class Solution {
             if (p2 == null || (p1 != null && p1.val < p2.val)) {
                 cur.next = p1;
                 p1 = p1.next;
+                if (p2 == null) {
+                    break;
+                }
             }    
             else {
                 cur.next = p2;
                 p2 = p2.next;
+                if (p1 == null) {
+                    break;
+                }
             }
             
             cur = cur.next;
