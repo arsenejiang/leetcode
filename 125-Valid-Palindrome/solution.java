@@ -8,17 +8,13 @@ public class Solution {
         int left = 0;
         int right = arr.length - 1;
         while(left < right) {
-            while (!Character.isDigit(arr[left]) && !Character.isLetter(arr[left])) {
+            if (!Character.isLetterOrDigit(arr[left])) {
                 left++;
             }
-            
-            while (!Character.isDigit(arr[right]) && !Character.isLetter(arr[right])) {
+            else if (!Character.isLetterOrDigit(arr[right])) {
                 right--;
             }
-            
-            if (arr[left] != arr[right]) {
-                left++;
-                right--;
+            else if (Character.toLowerCase(arr[left++]) != Character.toLowerCase(arr[right--])) {
                 return false;
             }
         }
