@@ -9,30 +9,31 @@
  */
 public class Solution {
     public List<TreeNode> generateTrees(int n) {
-        if (n <= 0) {
-            List<TreeNode> res = new ArrayList();
-            return res;
-        }
-        return helper(1, n);
-    }
-    
-    private List<TreeNode> helper(int left, int right) {
-        List<TreeNode> res = new ArrayList();
-        if (left > right) {
-            res.add(null);
-            return res;
-        }
-        else if (left == right) {
-            TreeNode root = new TreeNode(left);
-            res.add(root);
+        List<TreeNode> res = new ArrayList<TreeNode>();
+        if (n < 1) {
             return res;
         }
         
-        for(int i = left; i <= right; i++) {
-            List<TreeNode> leftList = helper(left, i - 1);
-            List<TreeNode> rightList = helper(i + 1, right);
-            for(TreeNode l : leftList) {
-                for(TreeNode r : rightList) {
+        return helper(1, n);
+    }
+    
+    private List<TreeNode> helper(int start, int end) {
+        List<TreeNode> res = new ArrayList<TreeNode>();
+        if (start > end) {
+            res.add(null);
+            return res;
+        }
+        
+        if (start == end) {
+            res.add(new TreeNode(start));
+            return res;
+        }
+        
+        for(int i = start; i <= end; i++) {
+            List<TreeNode> left = helper(start, i - 1);
+            List<TreeNode> right = helper(i + 1, end);
+            for(TreeNode l : left) {
+                for(TreeNode r : right) {
                     TreeNode root = new TreeNode(i);
                     root.left = l;
                     root.right = r;
