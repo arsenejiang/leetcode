@@ -17,6 +17,7 @@ public class Solution {
         }
         
         ListNode dummy = new ListNode(0);
+        dummy.next = head;
         ListNode prev = dummy;
         int total = n - m + 1;
         while(m-- > 1) {
