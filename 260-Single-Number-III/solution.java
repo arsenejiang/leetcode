@@ -1,23 +1,26 @@
 public class Solution {
     public int[] singleNumber(int[] nums) {
-        if (nums == null || nums.length <= 1) {
-            return new int[0];
+        int[] res = new int[2];
+        if (nums == null || nums.length < 2) {
+            return res;
         }
         
         int xor = 0;
-        for(int i : nums) {
-            xor = xor ^ i;
+        for(int num : nums) {
+            xor ^= num;
         }
         
-        int lastOne = xor & (-xor);
+        int bit = 1;
+        while((xor & bit) == 0) {
+            bit = bit << 1;
+        }
         
-        int[] res = new int[2];
-        for(int i : nums) {
-            if ((i & lastOne) == 0) {
-                res[0] ^= i;
+        for(int num : nums) {
+            if ((num & bit) == 0) {
+                res[0] ^= num;
             }
             else {
-                res[1] ^= i;
+                res[1] ^= num;
             }
         }
         
