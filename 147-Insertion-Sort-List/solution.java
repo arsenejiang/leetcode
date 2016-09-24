@@ -12,25 +12,25 @@ public class Solution {
             return head;
         }
         
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+        ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode cur = head.next;
         ListNode prev = head;
+        ListNode cur = head.next;
         while(cur != null) {
-            if (prev.val <= cur.val) {
+            ListNode start = dummy;
+            while(start != prev && cur.val >= start.next.val) {
+                start = start.next;
+            }
+            
+            if (start != prev) {
+                prev.next = cur.next;
+                cur.next = start.next;
+                start.next = cur;
+            }
+            else {
                 prev = cur;
-                cur = cur.next;
-                continue;
             }
             
-            ListNode pos = dummy;
-            while(pos.next.val <= cur.val) {
-                pos = pos.next;
-            }
-            
-            prev.next = cur.next;
-            cur.next = pos.next;
-            pos.next = cur;
             cur = prev.next;
         }
         
