@@ -1,18 +1,17 @@
 public class Solution {
     public String reverseString(String s) {
-        if (s == null || s.length() <= 1) {
+        if (s == null || s.length() == 0) {
             return s;
         }
         
         char[] arr = s.toCharArray();
-        int low = 0;
-        int high = arr.length - 1;
-        while(low < high) {
-            char temp = arr[low];
-            arr[low] = arr[high];
-            arr[high] = temp;
-            low++;
-            high--;
+        int left = 0, right = arr.length - 1;
+        while(left < right) {
+            char c = arr[left];
+            arr[left] = arr[right];
+            arr[right] = c;
+            left++;
+            right--;
         }
         
         return new String(arr);
