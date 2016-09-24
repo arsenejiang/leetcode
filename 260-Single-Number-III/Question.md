@@ -32,4 +32,4 @@ Special thanks to [@jianchao.li.fighter](https://leetcode.com/discuss/user/jianc
 
 <div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton">[(M) Single Number](/problems/single-number/) [(M) Single Number II](/problems/single-number-ii/)</span></div>
+<span class="hidebutton">[(E) Single Number](/problems/single-number/) [(M) Single Number II](/problems/single-number-ii/)</span></div>
