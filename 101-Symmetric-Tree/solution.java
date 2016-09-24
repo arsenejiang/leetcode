@@ -25,6 +25,6 @@ public class Solution {
             return false;
         }
         
-        return helper(left.left, right.right) && helper(left.right, right.left);
+        return helper(left.left, right.right) & helper(left.right, right.left);
     }
 }
