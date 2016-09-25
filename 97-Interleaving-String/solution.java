@@ -7,38 +7,19 @@ public class Solution {
             return false;
         }
         
-        boolean[][] dp = new boolean[l1 + 1][l2 + 1];
-        dp[0][0] = true;
-        for(int i = 1; i <= l1; i++) {
-            if (dp[i-1][0] == true) {
-                dp[i][0] = (s1.charAt(i-1) == s3.charAt(i-1));
+        if (l1 == 0) {
+            return s2.equals(s3);
+        }
+        else if (l2 == 0) {
+            return s1.equals(s3);
+        }
+        else {
+            if (s1.charAt(0) == s3.charAt(0) || s2.charAt(0) == s3.charAt(0)) {
+                return (s1.charAt(0) == s3.charAt(0) && isInterleave(s1.substring(1, l1), s2, s3.substring(1, l3))) || (s2.charAt(0) == s3.charAt(0) && isInterleave(s1, s2.substring(1, l2), s3.substring(1, l3)));
             }
             else {
-                break;
+                return false;
             }
         }
-        
-        for(int j = 1; j <= l2; j++) {
-            if (dp[0][j - 1] == true) {
-                dp[0][j] = (s2.charAt(j-1) == s3.charAt(j-1));
-            }
-            else {
-                break;
-            }
-        }
-        
-        for(int i = 1; i <= l1; i++) {
-            for(int j = 1; j <= l2; j++) {
-                if (dp[i-1][j] == true) {
-                    dp[i][j] = (s1.charAt(i-1) == s3.charAt(i + j - 1));
-                }
-                
-                if (dp[i][j] != true && dp[i][j-1] == true) {
-                    dp[i][j] = (s2.charAt(j-1) == s3.charAt(i + j - 1));
-                }
-            }
-        }
-        
-        return dp[l1][l2];
     }
 }
