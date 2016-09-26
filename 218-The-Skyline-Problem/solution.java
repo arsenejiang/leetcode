@@ -31,6 +31,7 @@ public class Solution {
         }
         Collections.sort(edges, comp);
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+        pq.offer(0);
         int prev = 0;
         for(Edge e: edges) {
             if (e.isLeft) {
