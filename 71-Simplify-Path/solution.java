@@ -1,64 +1,35 @@
 public class Solution {
     public String simplifyPath(String path) {
-        if (path == null) {
+        if (path == null || path.length() == 0) {
             return "";
         }
         
-        String s = path.trim();
-        int length = s.length();
-        if (length == 0) {
-            return "";
-        }
-        
+        String[] arr = path.split("/");
         Stack<String> stack = new Stack<String>();
-        int start = 0;
-        boolean found = false;
-        int i = 0;
-        for(; i < length; i++) {
-            char c = s.charAt(i);
-            if (c == '/') {
-                if (found) {
-                    String cur = s.substring(start, i);
-                    if (cur.equals(".")) {
-                    }
-                    else if (cur.equals("..")) {
-                        if (!stack.isEmpty()) {
-                            stack.pop();
-                        }
-                    }
-                    else {
-                        stack.push(cur);
-                    }
-                    found = false;
-                }
-            }
-            else {
-                if (!found) {
-                    found = true;
-                    start = i;
-                }
-            }
-        }
-        
-        if (found) {
-            String cur = s.substring(start, i);
-            if (cur.equals(".")) {
-            }
-            else if (cur.equals("..")) {
+        for(int i = 0; i < arr.length; i++) {
+            if (arr[i].equals("..") {
                 if (!stack.isEmpty()) {
                     stack.pop();
                 }
             }
-            else {
-                stack.push(cur);
+            else if (arr[i].equals(".") {
+                continue;
             }
+            else if (arr[i].length() > 0) {
+                stack.push(arr[i]);
+            }
+        }
+        
+        if (stack.size() == 0) {
+            return "/";
         }
         
         StringBuilder sb = new StringBuilder();
         while(!stack.isEmpty()) {
-            sb.insert(0, "/" + stack.pop());
+            sb.insert(0, stack.pop());
+            sb.insert(0, "/");
         }
         
-        return sb.length() == 0 ? "/" : sb.toString();
+        return sb.toString();
     }
 }
