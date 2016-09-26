@@ -1,14 +1,8 @@
 public class Solution {
     public List<int[]> getSkyline(int[][] buildings) {
-        List<int[]> res = new ArrayList();
-        if (buildings == null || buildings.length == 0 || buildings[0].length == 0) {
+        List<int[]> res = new ArrayList<int[]>();
+        if (buildings == null || buildings.length == 0 || buildings[0].length < 3) {
             return res;
-        }
-        
-        List<Edge> edges = new ArrayList();
-        for(int i = 0; i < buildings.length; i++) {
-            edges.add(new Edge(buildings[i][0], buildings[i][2], true));
-            edges.add(new Edge(buildings[i][1], buildings[i][2], false));
         }
         
         Comparator<Edge> comp = new Comparator<Edge>() {
@@ -18,36 +12,35 @@ public class Solution {
                     return a.x - b.x;
                 }
                 
-                // when both are left, higher height go first to prevent unnecessary peek change
-                if (a.isLeft && b.isLeft) {
-                    return b.height - a.height;
+                if (a.isLeft == true && b.isLeft == true) {
+                    return b.y - a.y;
                 }
-                
-                // when both are not left, lower height go first to prevent unnecessary peek change
-                if (!a.isLeft && !b.isLeft) {
-                    return a.height - b.height;
+                else if (a.isLeft != true && b.isLeft != true) {
+                    return a.y - b.y;
                 }
-                
-                // left goes first to avoid peek goes to 0
-                return a.isLeft ? -1 : 1;
+                else {
+                    return a.isLeft ? -1 : 1;
+                }
             }
         };
         
+        List<Edge> edges = new ArrayList<Edge>();
+        for(int[] building : buildings) {
+            edges.add(new Edge(building[0], building[2], true));
+            edges.add(new Edge(building[1], building[2], false));
+        }
         Collections.sort(edges, comp);
-        PriorityQueue<Integer> pq = new PriorityQueue(11, Collections.reverseOrder());
-        pq.offer(0);
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
         int prev = 0;
-        for(Edge e : edges) {
+        for(Edge e: edges) {
             if (e.isLeft) {
-                pq.offer(e.height);
+                pq.offer(e.y);
             }
             else {
-                pq.remove(e.height);
+                pq.remove(e.y);
             }
             
             int cur = pq.peek();
-            
-            // compare cur peek with prev skyline, and add into result if they are different
             if (cur != prev) {
                 res.add(new int[]{e.x, cur});
                 prev = cur;
@@ -56,15 +49,15 @@ public class Solution {
         
         return res;
     }
-}
-
-class Edge {
-    int x;
-    int height;
-    boolean isLeft;
-    Edge(int x, int height, boolean isLeft) {
-        this.x = x;
-        this.height = height;
-        this.isLeft = isLeft;
+    
+    class Edge{
+        int x;
+        int y;
+        boolean isLeft;
+        Edge(int x, int y, boolean isLeft) {
+            this.x = x;
+            this.y = y;
+            this.isLeft = isLeft;
+        }
     }
 }
