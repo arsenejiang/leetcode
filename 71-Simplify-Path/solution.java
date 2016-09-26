@@ -12,7 +12,7 @@ public class Solution {
                     stack.pop();
                 }
             }
-            else if (arr[i].equals(".") {
+            else if (arr[i].equals(".")) {
                 continue;
             }
             else if (arr[i].length() > 0) {
