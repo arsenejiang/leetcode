@@ -5,18 +5,15 @@ public class Solution {
         }
         
         int max = nums[0];
-        int min = nums[0];
-        int res = nums[0];
-        int curMax, curMin;
-        
+        int curMax = nums[0], curMin = nums[0];
         for(int i = 1; i < nums.length; i++) {
-            curMax = Math.max(Math.max(max*nums[i], min*nums[i]), nums[i]);
-            curMin = Math.min(Math.min(max*nums[i], min*nums[i]), nums[i]);
-            res = Math.max(curMax, res);
-            max = curMax;
-            min = curMin;
+            int m1 = curMax * nums[i];
+            int m2 = curMin * nums[i];
+            curMax = Math.max(Math.max(m1, m2), nums[i]);
+            curMin = Math.min(Math.min(m1, m2), nums[i]);
+            max = Math.max(max, curMax);
         }
         
-        return res;
+        return max;
     }
 }
