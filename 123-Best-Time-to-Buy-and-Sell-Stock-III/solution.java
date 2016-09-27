@@ -4,26 +4,26 @@ public class Solution {
             return 0;
         }
         
-        int len = prices.length;
-        int[] arrayA = new int[len];
-        int min = prices[0];
-        for(int i = 1; i < len; i++) {
-            min = Math.min(min, prices[i]);
-            arrayA[i] = Math.max(arrayA[i-1], prices[i] - min);
+        int max = 0;
+        for(int i = 0; i <= prices.length - 1; i++) {
+            max = Math.max(max, maxProfit(prices, 0, i) + maxProfit(prices, i, prices.length - 1));
         }
         
-        int[] arrayB = new int[len];
-        int max = prices[len - 1];
-        for(int i = len - 2; i >= 0; i--) {
-            max = Math.max(max, prices[i]);
-            arrayB[i] = Math.max(arrayB[i+1], max - prices[i]);
+        return max;
+    }
+    
+    private int maxProfit(int[] prices, int start, int end) {
+        int max = 0;
+        int min = Integer.MAX_VALUE;
+        for(int i = start; i <= end; i++) {
+            if (prices[i] < min) {
+                min = prices[i];
+            }
+            else {
+                max = Math.max(max, prices[i] - min);
+            }
         }
         
-        int maxProfit = 0;
-        for(int i = 0; i < len; i++) {
-            maxProfit = Math.max(maxProfit, arrayA[i] + arrayB[i]);
-        }
-        
-        return maxProfit;
+        return max;
     }
 }
