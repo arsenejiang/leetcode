@@ -8,22 +8,21 @@
  */
 public class Solution {
     public void connect(TreeLinkNode root) {
-        if(root == null) {
+        if (root == null) {
             return;
         }
         
-        TreeLinkNode row, cur;
-        row = root;
-        while(row.left != null) {
-            cur = row;
+        root.next = null;
+        TreeLinkNode curLevel = root;
+        while(curLevel.left != null) {
+            TreeLinkNode cur = curLevel;
             while(cur != null) {
                 cur.left.next = cur.right;
-                if (cur.next != null) {
-                    cur.right.next = cur.next.left;
-                }
+                cur.right.next = (cur.next == null) ? null : cur.next.left;
                 cur = cur.next;
             }
-            row = row.left;
+            
+            curLevel = curLevel.left;
         }
     }
 }
