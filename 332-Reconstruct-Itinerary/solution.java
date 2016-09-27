@@ -14,14 +14,17 @@ public class Solution {
             map.get(str[0]).offer(str[1]);
         }
         
-        res.add("JFK");
-        int count = tickets.length;
-        String start = "JFK";
-        while(count-- > 0) {
-            start = map.get(start).poll();
-            res.add(start);
+        Stack<String> stack = new Stack<String>();
+        stack.push("JFK");
+        while(!stack.isEmpty()) {
+            while(map.containsKey(stack.peek()) && !map.get(stack.peek()).isEmpty()) {
+                stack.push(map.get(stack.peek()).poll());
+            }
+            
+            res.add(stack.pop());
         }
         
+        Collections.reverse(res);
         return res;
     }
 }
