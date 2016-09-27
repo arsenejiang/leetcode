@@ -10,16 +10,8 @@ public class Solution {
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
+                    dfs(grid, m, n, i, j);
                     count++;
-                    dfsMarking(grid, m, n, i, j);
-                }
-            }
-        }
-        
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                if (grid[i][j] == '.') {
-                    grid[i][j] = '1';
                 }
             }
         }
@@ -27,15 +19,15 @@ public class Solution {
         return count;
     }
     
-    private void dfsMarking(char[][] grid, int m, int n, int row, int col) {
-        if (row < 0 || row >= m || col < 0 || col >= n || grid[row][col] != '1') {
+    private void dfs(char[][] grid, int m, int n, int i, int j) {
+        if (i < 0 || j < 0 || i >= m || j >= n || grid[i][j] != '1') {
             return;
         }
         
-        grid[row][col] = '.';
-        dfsMarking(grid, m, n, row + 1, col);
-        dfsMarking(grid, m, n, row - 1, col);
-        dfsMarking(grid, m, n, row, col + 1);
-        dfsMarking(grid, m, n, row, col - 1);
+        grid[i][j] = 'I';
+        dfs(grid, m, n, i - 1, j);
+        dfs(grid, m, n, i + 1, j);
+        dfs(grid, m, n, i, j - 1);
+        dfs(grid, m, n, i, j + 1);
     }
 }
