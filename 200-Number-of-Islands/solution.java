@@ -16,6 +16,14 @@ public class Solution {
             }
         }
         
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if (grid[i][j] == '.') {
+                    grid[i][j] = '1';
+                }
+            }
+        }
+        
         return count;
     }
     
@@ -24,7 +32,7 @@ public class Solution {
             return;
         }
         
-        grid[i][j] = 'I';
+        grid[i][j] = '.';
         dfs(grid, m, n, i - 1, j);
         dfs(grid, m, n, i + 1, j);
         dfs(grid, m, n, i, j - 1);
