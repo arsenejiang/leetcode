@@ -1,54 +1,27 @@
 public class Solution {
-    // recursion
-    /*
     public List<String> findItinerary(String[][] tickets) {
-        Map<String, PriorityQueue<String>> map = new HashMap();
-        for(String[] ticket : tickets) {
-            if (!map.containsKey(ticket[0])) {
-                map.put(ticket[0], new PriorityQueue<String>());
+        List<String> res = new ArrayList<String>();
+        if (tickets == null || tickets.length == 0 || tickets[0].length != 2) {
+            return res;
+        }
+        
+        HashMap<String, PriorityQueue<String>> map = new HashMap<String, PriorityQueue<String>>();
+        for(String[] str : tickets) {
+            if (!map.containsKey(str[0])) {
+                map.put(str[0], new PriorityQueue<String>());
             }
             
-            map.get(ticket[0]).add(ticket[1]);
+            map.get(str[0]).offer(str[1]);
         }
         
-        List<String> route = new ArrayList();
-        dfs(map, route, "JFK");
-        Collections.reverse(route);
-        return route;
-    }
-    
-    private void dfs(Map<String, PriorityQueue<String>> map, List<String> route, String cur) {
-        while (map.containsKey(cur) && !map.get(cur).isEmpty()) {
-            dfs(map, route, map.get(cur).poll());
+        res.add("JFK");
+        int count = tickets.length;
+        String start = "JFK";
+        while(count-- > 0) {
+            start = map.get(start).poll();
+            res.add(start);
         }
         
-        route.add(cur);
-    }
-    */
-    
-    // iterative
-    public List<String> findItinerary(String[][] tickets) {
-        Map<String, PriorityQueue<String>> map = new HashMap();
-        for(String[] ticket : tickets) {
-            if (!map.containsKey(ticket[0])) {
-                map.put(ticket[0], new PriorityQueue<String>());
-            }
-            
-            map.get(ticket[0]).add(ticket[1]);
-        }
-        
-        Stack<String> stack = new Stack<String>();
-        stack.push("JFK");
-        List<String> route = new ArrayList<String>();
-        while(!stack.isEmpty()) {
-            while(map.containsKey(stack.peek()) && !map.get(stack.peek()).isEmpty()) {
-                stack.push(map.get(stack.peek()).poll());
-            }
-            
-            route.add(stack.pop());
-        }
-        
-        Collections.reverse(route);
-        return route;
+        return res;
     }
 }
