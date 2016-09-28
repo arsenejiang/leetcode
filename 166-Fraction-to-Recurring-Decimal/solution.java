@@ -5,7 +5,7 @@ public class Solution {
         }
         
         StringBuilder sb = new StringBuilder();
-        Map<Long, Integer> map = new HashMap();
+        Map<Long, Integer> map = new HashMap<Long, Integer>();
         sb.append((numerator > 0) ^ (denominator > 0) ? "-" : "");
         long num = Math.abs((long)numerator);
         long den = Math.abs((long)denominator);
@@ -22,8 +22,7 @@ public class Solution {
             sb.append(reminder / den);
             reminder = reminder % den;
             if (map.containsKey(reminder)) {
-                int index = map.get(reminder);
-                sb.insert(index, "(");
+                sb.insert(map.get(reminder), "(");
                 sb.append(")");
                 break;
             }
