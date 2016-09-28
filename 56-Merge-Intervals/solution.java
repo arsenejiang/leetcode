@@ -28,7 +28,7 @@ public class Solution {
         Collections.sort(intervals, comp);
         
         Interval cur = intervals.get(0);
-        for(int i = 1; i < intervals.size; i++) {
+        for(int i = 1; i < intervals.size(); i++) {
             if (intervals.get(i).start > cur.end) {
                 res.add(new Interval(cur.start, cur.end));
                 cur = intervals.get(i);
