@@ -9,32 +9,40 @@
  */
 public class Solution {
     public List<Interval> merge(List<Interval> intervals) {
-        if(intervals == null || intervals.size() <= 1) {
-            return intervals;
+        List<Interval> res = new ArrayList<Interval>();
+        if (intervals == null || intervals.size() == 0) {
+            return res;
         }
         
         Comparator<Interval> comp = new Comparator<Interval>() {
+            @Override
             public int compare(Interval a, Interval b) {
-                return a.start - b.start;
+                if (a.start != b.start) {
+                    return a.start - b.start;
+                }
+                
+                return b.end - a.end;
             }
         };
         
-        List<Interval> res = new ArrayList<Interval>();
-        Collections.sort(intervals, comp);
-        int start = intervals.get(0).start;
-        int end = intervals.get(0).end;
-        for(int i = 1; i < intervals.size(); i++) {
-            if (intervals.get(i).start <= end) {
-                end = Math.max(end, intervals.get(i).end);
+        PriorityQueue<Interval> pq = new PriorityQueue<Interval>(comp);
+        for(Interval i : intervals) {
+            pq.offer(i);
+        }
+        
+        Interval cur = pq.poll();
+        while(!pq.isEmpty()) {
+            Interval i = pq.poll();
+            if (i.start > cur.end) {
+                res.add(new Interval(cur.start, cur.end));
+                cur = i;
             }
             else {
-                res.add(new Interval(start, end));
-                start = intervals.get(i).start;
-                end = intervals.get(i).end;
+                cur.end = Math.max(cur.end, i.end);
             }
         }
         
-        res.add(new Interval(start, end));
+        res.add(new Interval(cur.start, cur.end));
         return res;
     }
 }
