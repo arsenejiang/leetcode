@@ -18,7 +18,7 @@ public class Solution {
         UndirectedGraphNode root = new UndirectedGraphNode(node.label);
         map.put(node, root);
         q.offer(node);
-        visited.add(n);
+        visited.add(node);
         
         while(!q.isEmpty()) {
             UndirectedGraphNode n = q.poll();
