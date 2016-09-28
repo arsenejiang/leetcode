@@ -25,20 +25,16 @@ public class Solution {
             }
         };
         
-        PriorityQueue<Interval> pq = new PriorityQueue<Interval>(comp);
-        for(Interval i : intervals) {
-            pq.offer(i);
-        }
+        Collections.sort(intervals, comp);
         
-        Interval cur = pq.poll();
-        while(!pq.isEmpty()) {
-            Interval i = pq.poll();
-            if (i.start > cur.end) {
+        Interval cur = intervals.get(0);
+        for(int i = 1; i < intervals.size; i++) {
+            if (intervals.get(i).start > cur.end) {
                 res.add(new Interval(cur.start, cur.end));
-                cur = i;
+                cur = intervals.get(i);
             }
             else {
-                cur.end = Math.max(cur.end, i.end);
+                cur.end = Math.max(cur.end, intervals.get(i).end);
             }
         }
         
