@@ -26,6 +26,7 @@ public class Solution {
             for(UndirectedGraphNode neighbor: n.neighbors) {
                 if (!visited.contains(neighbor)) {
                     q.offer(neighbor);
+                    visited.add(neighbor);
                 }
                 
                 if (!map.containsKey(neighbor)) {
