@@ -8,35 +8,35 @@
  */
 public class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if(node == null) {
+        if (node == null) {
             return null;
         }
         
-        Queue<UndirectedGraphNode> q = new LinkedList();
-        HashSet<UndirectedGraphNode> visited = new HashSet();
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap();
-        UndirectedGraphNode res = new UndirectedGraphNode(node.label);
+        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+        Queue<UndirectedGraphNode> q = new LinkedList<UndirectedGraphNode>();
+        HashSet<UndirectedGraphNode> visited = new HashSet<UndirectedGraphNode>();
+        UndirectedGraphNode root = new UndirectedGraphNode(node.label);
+        map.put(node, root);
         q.offer(node);
-        map.put(node, res);
+        visited.add(n);
+        
         while(!q.isEmpty()) {
-            UndirectedGraphNode cur = q.poll();
-            if(!visited.contains(cur)) {
-                UndirectedGraphNode newCur = map.get(cur);
-                for(UndirectedGraphNode n : cur.neighbors) {
-                    if(map.containsKey(n)) {
-                        newCur.neighbors.add(map.get(n));
-                    }
-                    else {
-                        UndirectedGraphNode newNode = new UndirectedGraphNode(n.label);
-                        map.put(n, newNode);
-                        newCur.neighbors.add(newNode);
-                    }
-                    q.offer(n);
+            UndirectedGraphNode n = q.poll();
+            UndirectedGraphNode clone = map.get(n);
+            for(UndirectedGraphNode neighbor: n.neighbors) {
+                if (!visited.contains(neighbor)) {
+                    q.offer(neighbor);
                 }
-                visited.add(cur);
+                
+                if (!map.containsKey(neighbor)) {
+                    UndirectedGraphNode cloneNeighbor = new UndirectedGraphNode(neighbor.label);
+                    map.put(neighbor, cloneNeighbor);
+                }
+                
+                clone.neighbors.add(map.get(neighbor));
             }
         }
         
-        return res;
+        return root;
     }
 }
