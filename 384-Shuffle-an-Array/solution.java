@@ -1,6 +1,6 @@
 public class Solution {
-    private int[] nums;
-    private Random rand;
+    int[] nums;
+    Random rand;
     public Solution(int[] nums) {
         this.nums = nums;
         rand = new Random();
@@ -18,18 +18,19 @@ public class Solution {
         }
         
         int[] copy = nums.clone();
-        for(int i = 1; i < nums.length; i++) {
-            swap(copy, i, rand.nextInt(i + 1));
+        for(int i = 1; i < copy.length; i++) {
+            int index = rand.nextInt(i + 1);
+            swap(copy, i, index);
         }
         
         return copy;
     }
     
-    private void swap(int[] arr, int a, int b) {
-        if (a != b) {
-            int temp = arr[a];
-            arr[a] = arr[b];
-            arr[b] = temp;
+    private void swap(int[] arr, int i, int j) {
+        if(i != j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
     }
 }
