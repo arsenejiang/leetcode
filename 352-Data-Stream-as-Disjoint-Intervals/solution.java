@@ -41,11 +41,7 @@ public class SummaryRanges {
     }
     
     public List<Interval> getIntervals() {
-        List<Interval> res = new ArrayList<Interval>();
-        for(Interval i : set) {
-            res.add(i);
-        }
-        return res;
+        return new ArrayList<Interval>(set);
     }
 }
 
