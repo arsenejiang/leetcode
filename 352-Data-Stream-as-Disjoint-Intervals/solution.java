@@ -8,38 +8,55 @@
  * }
  */
 public class SummaryRanges {
-    TreeMap<Integer, Interval> map;
-
+    TreeSet<Interval> set;
     /** Initialize your data structure here. */
     public SummaryRanges() {
-        map = new TreeMap<Integer, Interval>();
+        Comparator<Interval> comp = new Comparator<Interval>() {
+            @Override
+            public int compare(Interval a, Interval b) {
+                return a.start - b.start;
+            }
+        };
+        
+        set = new TreeSet<Interval>(comp);
     }
     
     public void addNum(int val) {
-        if (map.containsKey(val)) {
+        Interval i = new Interval(val, val);
+        if (set.size() == 0) {
+            set.add(i);
             return;
         }
         
-        Integer c = map.ceilingKey(val);
-        Integer f = map.floorKey(val);
-        if (c != null && f != null && map.get(f).end + 1 == val && val + 1 == c) {
-            map.get(f).end = map.get(c).end;
-            map.remove(c);
+        Interval floor = set.floor(i);
+        Interval ceil = set.ceiling(i);
+        if (floor != null && ceil != null && floor.end + 1 == val && ceil.start == val + 1) {
+            set.remove(floor);
+            set.remove(ceil);
+            i.start = floor.start;
+            i.end = ceil.end;
+            set.add(i);
         }
-        else if (f != null && map.get(f).end + 1 >= val) {
-            map.get(f).end = Math.max(map.get(f).end, val);
+        else if (ceil != null && ceil.start == val + 1) {
+            ceil.start = val;
         }
-        else if (c != null && val + 1 == c) {
-            map.put(val, new Interval(val, map.get(c).end));
-            map.remove(c);
+        else if (floor != null && floor.end == val - 1) {
+            floor.end = val;
+        }
+        else if (floor != null && floor.start <= val && floor.end >= val) {
+            
         }
         else {
-            map.put(val, new Interval(val, val));
+            set.add(i);
         }
     }
     
     public List<Interval> getIntervals() {
-        return new ArrayList<Interval>(map.values());
+        List<Interval> res = new ArrayList<Interval>();
+        for(Interval i : set) {
+            res.add(i);
+        }
+        return res;
     }
 }
 
