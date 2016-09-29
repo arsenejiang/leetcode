@@ -23,28 +23,17 @@ public class SummaryRanges {
     
     public void addNum(int val) {
         Interval i = new Interval(val, val);
-        if (set.size() == 0) {
-            set.add(i);
-            return;
-        }
-        
         Interval floor = set.floor(i);
         Interval ceil = set.ceiling(i);
-        if (floor != null && ceil != null && floor.end + 1 == val && ceil.start == val + 1) {
-            set.remove(floor);
+        if (floor != null && ceil != null && floor.end + 1 == val && val + 1 == ceil.start) {
+            floor.end = ceil.end;
             set.remove(ceil);
-            i.start = floor.start;
-            i.end = ceil.end;
-            set.add(i);
         }
         else if (ceil != null && ceil.start == val + 1) {
             ceil.start = val;
         }
-        else if (floor != null && floor.end == val - 1) {
-            floor.end = val;
-        }
-        else if (floor != null && floor.start <= val && floor.end >= val) {
-            
+        else if (floor != null && floor.end + 1 >= val) {
+            floor.end = Math.max(val, floor.end);
         }
         else {
             set.add(i);
