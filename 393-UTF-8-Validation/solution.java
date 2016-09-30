@@ -15,9 +15,6 @@ public class Solution {
                     if (countOfLeadingOneBit(data[j]) != 1) {
                         return false;
                     }
-                    else {
-                        step--;
-                    }
                 }
                 
                 if (j != i + count) {
