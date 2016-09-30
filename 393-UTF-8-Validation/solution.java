@@ -1,29 +1,57 @@
 public class Solution {
     public boolean validUtf8(int[] data) {
-        int count = 0;
-        for(int num : data) {
+        if (data == null || data.length == 0) {
+            return true;
+        }
+        
+        for(int i = 0; i < data.length; i++) {
+            int count = countOfLeadingOneBit(data[i]);
             if (count == 0) {
-                if ((num >> 5) == 0b110) {
-                    count = 1;
+                continue;
+            }
+            else if (count >= 2 && count <= 4) {
+                int j = 0;
+                for(j = i + 1; j < i + count && j < data.length; j++) {
+                    if (countOfLeadingOneBit(data[j]) != 1) {
+                        return false;
+                    }
+                    else {
+                        step--;
+                    }
                 }
-                else if ((num >> 4) == 0b1110) {
-                    count = 2;
-                }
-                else if ((num >> 3) == 0b11110) {
-                    count = 3;
-                }
-                else if ((num >> 7) != 0) {
+                
+                if (j != i + count) {
                     return false;
                 }
+                
+                i = i + count - 1;
             }
             else {
-                if ((num >> 6) != 0b10) {
-                    return false;
-                }
-                count--;
+                return false;
             }
         }
         
-        return count == 0;
+        return true;
+    }
+    
+    private int countOfLeadingOneBit(int data) {
+        if ((data >> 7) == 0) {
+            return 0;
+        }
+        else if ((data >> 6) == 0b10) {
+            return 1;
+        }
+        else if ((data >> 5) == 0b110) {
+            return 2;
+        }
+        else if ((data >> 4) == 0b1110) {
+            return 3;
+        }
+        else if ((data >> 3) == 0b11110) {
+            return 4;
+        }
+        else {
+            return 5;
+        }
     }
 }
