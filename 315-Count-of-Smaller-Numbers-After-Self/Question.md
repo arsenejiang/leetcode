@@ -24,6 +24,12 @@ Return the array `[2, 1, 1, 0]`.
 
 <div>
 
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+
+<span class="hidebutton">[Google](/company/google/)</span></div>
+
+<div>
+
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Divide and Conquer](/tag/divide-and-conquer/) [Binary Indexed Tree](/tag/binary-indexed-tree/) [Segment Tree](/tag/segment-tree/) [Binary Search Tree](/tag/binary-search-tree/)</span></div>
@@ -32,4 +38,4 @@ Return the array `[2, 1, 1, 0]`.
 
 <div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton">[(H) Count of Range Sum](/problems/count-of-range-sum/)</span></div>
+<span class="hidebutton">[(H) Count of Range Sum](/problems/count-of-range-sum/) [(M) Queue Reconstruction by Height](/problems/queue-reconstruction-by-height/)</span></div>
