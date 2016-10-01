@@ -25,12 +25,6 @@ Special thanks to [@ifanchu](https://leetcode.com/discuss/user/ifanchu) for addi
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Facebook](/company/facebook/) [Microsoft](/company/microsoft/) [Zenefits](/company/zenefits/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Math](/tag/math/)</span></div>
