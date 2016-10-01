@@ -31,4 +31,4 @@ Special thanks to [@ts](https://oj.leetcode.com/discuss/user/ts) for adding this
 
 <div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton">[(E) Reverse Bits](/problems/reverse-bits/) [(E) Power of Two](/problems/power-of-two/) [(M) Counting Bits](/problems/counting-bits/)</span></div>
+<span class="hidebutton">[(E) Reverse Bits](/problems/reverse-bits/) [(E) Power of Two](/problems/power-of-two/) [(M) Counting Bits](/problems/counting-bits/) [(E) Binary Watch](/problems/binary-watch/)</span></div>
