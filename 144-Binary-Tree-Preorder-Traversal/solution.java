@@ -9,43 +9,27 @@
  */
 public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        /*
-        // iterative solution
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<Integer>();
         if (root == null) {
             return res;
         }
         
-        Stack<TreeNode> s = new Stack();
+        Stack<TreeNode> s = new Stack<TreeNode>();
         s.push(root);
         while(!s.isEmpty()) {
             TreeNode n = s.pop();
-            res.add(n.val);
+            if (n.left == null && n.right == null) {
+                res.add(n.val);
+            }
             if (n.right != null) {
                 s.push(n.right);
             }
-            
+            s.push(new TreeNode(n.val));
             if (n.left != null) {
                 s.push(n.left);
             }
         }
         
         return res;
-        */
-        
-        // recursion solution
-        List<Integer> res = new ArrayList();
-        preorderTraversal(root, res);
-        return res;
-    }
-    
-    private void preorderTraversal(TreeNode root, List<Integer> res) {
-        if (root == null) {
-            return;
-        }
-        
-        res.add(root.val);
-        preorderTraversal(root.left, res);
-        preorderTraversal(root.right, res);
     }
 }
