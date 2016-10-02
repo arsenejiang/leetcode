@@ -5,31 +5,34 @@ public class Solution {
         }
         
         s = s.trim();
-        int size = s.length();
-        boolean foundDot = false;
-        boolean founde = false;
-        boolean foundNumber = false;
-        for(int i = 0; i < size; i++) {
+        int len = s.length();
+        if (len == 0) {
+            return false;
+        }
+        
+        boolean number = false;
+        boolean e = false;
+        boolean dot = false;
+        for(int i = 0; i < len; i++) {
             char c = s.charAt(i);
-            if (c >= '0' && c <= '9') {
-                foundNumber = true;
-            }
-            else if (c == 'e') {
-                if (founde || !foundNumber) {
-                    return false;
-                }
-                
-                founde = true;
-                foundNumber = false;
+            if (Character.isDigit(c)) {
+                number = true;
             }
             else if (c == '.') {
-                if (founde || foundDot) {
+                if (e == true || dot == true) {
                     return false;
                 }
-                foundDot = true;
+                dot = true;
             }
-            else if (c == '-' || c == '+') {
-                if (i != 0 && s.charAt(i - 1) != 'e') {
+            else if (c == 'e') {
+                if (e == true || number == false) {
+                    return false;
+                }
+                e = true;
+                number = false;
+            }
+            else if (c == '+' || c == '-') {
+                if (i != 0 && s.charAt(i-1) != 'e') {
                     return false;
                 }
             }
@@ -38,6 +41,6 @@ public class Solution {
             }
         }
         
-        return foundNumber;
+        return number;
     }
 }
