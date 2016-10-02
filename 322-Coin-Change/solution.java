@@ -1,27 +1,30 @@
 public class Solution {
-    // backtracking TLE
-    // need to use dp
     public int coinChange(int[] coins, int amount) {
-        if (coins == null || coins.length == 0 || amount < 0) {
+        if (coins == null || coins.length == 0) {
             return -1;
         }
-        
-        if (amount == 0) {
-            return 0;
-        }
-        
-        int[] dp = new int[amount+1];
-        dp[0] = 0;
-        for(int i = 1; i <= amount; i++) {
-            dp[i] = -1;
-        }
-        
         Arrays.sort(coins);
+        
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i = 0; i < coins.length && coins[i] <= amount; i++) {
+            dp[coins[i]] = 1;
+        }
+        
         for(int i = 1; i <= amount; i++) {
-            for(int j = coins.length - 1; j >= 0; j--) {
-                if (i >= coins[j] && dp[i - coins[j]] != -1) {
-                    dp[i] = (dp[i] == - 1) ? dp[i - coins[j]] + 1 : Math.min(dp[i], dp[i - coins[j]] + 1);
+            if (dp[i] != Integer.MAX_VALUE) {
+                continue;
+            }
+            
+            for(int j = 0; j < coins.length; j++) {
+                if (i - coins[j] >= 0 && dp[i - coins[j]] != -1) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
                 }
+            }
+            
+            if (dp[i] == Integer.MAX_VALUE) {
+                dp[i] = -1;
             }
         }
         
