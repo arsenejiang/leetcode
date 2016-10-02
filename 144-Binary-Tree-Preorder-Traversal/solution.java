@@ -18,13 +18,10 @@ public class Solution {
         s.push(root);
         while(!s.isEmpty()) {
             TreeNode n = s.pop();
-            if (n.left == null && n.right == null) {
-                res.add(n.val);
-            }
+            res.add(n.val);
             if (n.right != null) {
                 s.push(n.right);
             }
-            s.push(new TreeNode(n.val));
             if (n.left != null) {
                 s.push(n.left);
             }
