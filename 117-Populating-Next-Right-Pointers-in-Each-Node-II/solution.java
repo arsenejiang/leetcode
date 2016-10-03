@@ -13,36 +13,42 @@ public class Solution {
         }
         
         root.next = null;
-        TreeLinkNode row = root;
-        TreeLinkNode cur;
-        while(row != null) {
-            TreeLinkNode prev = null;
-            TreeLinkNode nextRow = null;
-            cur = row;
+        TreeLinkNode prevLevel = root;
+        
+        while(true) {
+            TreeLinkNode cur = prevLevel;
+            TreeLinkNode nextLevel = null;
+            TreeLinkNode nextCur = null;
             while(cur != null) {
                 if (cur.left != null) {
-                    if (prev != null) {
-                        prev.next = cur.left;
+                    if (nextLevel == null) {
+                        nextLevel = cur.left;
+                        nextCur = nextLevel;
                     }
                     else {
-                        nextRow = cur.left;
+                        nextCur.next = cur.left;
                     }
-                    prev = cur.left;
                 }
                 
                 if (cur.right != null) {
-                    if (prev != null) {
-                        prev.next = cur.right;
+                    if (nextLevel == null) {
+                        nextLevel = cur.right;
+                        nextCur = nextLevel;
                     }
                     else {
-                        nextRow = cur.right;
+                        nextCur.next = cur.right;
                     }
-                    prev = cur.right;
                 }
                 
                 cur = cur.next;
             }
-            row = nextRow;
+            
+            if (nextlevel == null) {
+                return;
+            }
+            else {
+                prevLevel = nextLevel;
+            }
         }
     }
 }
