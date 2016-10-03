@@ -18,7 +18,7 @@ public class Solution {
         while(row != null) {
             TreeLinkNode prev = null;
             TreeLinkNode nextRow = null;
-            cur = row;
+            TreeLinkNode cur = row;
             while(cur != null) {
                 if (cur.left != null) {
                     if (prev != null) {
