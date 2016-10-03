@@ -27,6 +27,7 @@ public class Solution {
                     }
                     else {
                         nextCur.next = cur.left;
+                        nextCur = nextCur.next;
                     }
                 }
                 
@@ -37,6 +38,7 @@ public class Solution {
                     }
                     else {
                         nextCur.next = cur.right;
+                        nextCur = nextCur.next;
                     }
                 }
                 
@@ -47,6 +49,7 @@ public class Solution {
                 return;
             }
             else {
+                nextCur.next = null;
                 prevLevel = nextLevel;
             }
         }
