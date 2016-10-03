@@ -12,30 +12,29 @@ public class Solution {
         return res;
     }
     
-    private void helper(char[][] board, int i, int j, String cur, TrieNode node, List<String> res) {
+    private void helper(char[][] board, int i, int j, TrieNode node, List<String> res) {
         char c = board[i][j];
         if (c == '#' || node.children[c - 'a'] == null) {
             return;
         }
         node = node.children[c - 'a'];
-        String str = cur + c;
-        if (node.isWord) {
-            res.add(str);
-            node.isWord = false; // de-dup
+        if (node.word != null) {
+            res.add(node.word);
+            node.word = null; // de-dup
         }
         
         board[i][j] = '#';
         if (i > 0) {
-            helper(board, i - 1, j, str, node, res);
+            helper(board, i - 1, j, node, res);
         }
         if (i < board.length - 1) {
-            helper(board, i + 1, j, str, node, res);
+            helper(board, i + 1, j, node, res);
         }
         if (j > 0) {
-            helper(board, i, j - 1, str, node, res);
+            helper(board, i, j - 1, node, res);
         }
         if (j < board[0].length - 1) {
-            helper(board, i, j + 1, str, node, res);
+            helper(board, i, j + 1, node, res);
         }
         board[i][j] = c;
     }
@@ -55,28 +54,15 @@ public class Solution {
             cur = cur.children[word.charAt(i) - 'a'];
         }
         
-        cur.isWord = true;
-    }
-    
-    private boolean searchWord(TrieNode root, String word) {
-        TrieNode cur = root;
-        for(int i = 0; i < word.length(); i++) {
-            if (cur.children[word.charAt(i) - 'a'] == null) {
-                return false;
-            }
-            
-            cur = cur.children[word.charAt(i) - 'a'];
-        }
-        
-        return cur.isWord;
+        cur.word = word;
     }
     
     class TrieNode {
         TrieNode[] children;
-        boolean isWord;
+        String word;
         TrieNode() {
             children = new TrieNode[26];
-            isWord = false;
+            word = null;
         }
     }
 }
