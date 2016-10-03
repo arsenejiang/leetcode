@@ -43,7 +43,7 @@ public class Solution {
                 cur = cur.next;
             }
             
-            if (nextlevel == null) {
+            if (nextLevel == null) {
                 return;
             }
             else {
