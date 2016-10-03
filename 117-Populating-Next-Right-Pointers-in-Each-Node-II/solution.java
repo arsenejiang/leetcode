@@ -13,45 +13,37 @@ public class Solution {
         }
         
         root.next = null;
-        TreeLinkNode prevLevel = root;
+        TreeLinkNode row = root;
         
-        while(true) {
-            TreeLinkNode cur = prevLevel;
-            TreeLinkNode nextLevel = null;
-            TreeLinkNode nextCur = null;
+        while(row != null) {
+            TreeLinkNode prev = null;
+            TreeLinkNode nextRow = null;
+            cur = row;
             while(cur != null) {
                 if (cur.left != null) {
-                    if (nextLevel == null) {
-                        nextLevel = cur.left;
-                        nextCur = nextLevel;
+                    if (prev != null) {
+                        prev.next = cur.left;
                     }
                     else {
-                        nextCur.next = cur.left;
-                        nextCur = nextCur.next;
+                        nextRow = cur.left;
                     }
+                    prev = cur.left;
                 }
                 
                 if (cur.right != null) {
-                    if (nextLevel == null) {
-                        nextLevel = cur.right;
-                        nextCur = nextLevel;
+                    if (prev != null) {
+                        prev.next = cur.right;
                     }
                     else {
-                        nextCur.next = cur.right;
-                        nextCur = nextCur.next;
+                        nextRow = cur.right;
                     }
+                    prev = cur.right;
                 }
                 
                 cur = cur.next;
             }
             
-            if (nextLevel == null) {
-                return;
-            }
-            else {
-                nextCur.next = null;
-                prevLevel = nextLevel;
-            }
+            row = nextRow;
         }
     }
 }
