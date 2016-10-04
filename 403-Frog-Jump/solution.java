@@ -14,27 +14,25 @@ public class Solution {
             return false;
         }
         
-        return helper(gap, 1, 1);
-    }
-    
-    private boolean helper(int[] gap, int prevVal, int curIndex) {
-        if (curIndex == gap.length) {
-            return true;
+        List<Integer>[] dp = new List<Integer>[gap.length];
+        for(int i = 0; i < gap.length; i++) {
+            dp[i] = new ArrayList<Integer>();
         }
         
-        int sum = 0;
-        for(int i = curIndex; i < gap.length; i++) {
-            sum += gap[i];
-            if (sum > prevVal + 1) {
-                break;
-            }
-            else if (sum >= prevVal - 1) {
-                if (helper(gap, sum, i + 1)) {
-                    return true;
+        for(int i = 1; i < gap.length; i++) {
+            int sum = gap[i];
+            for(int j = i - 1; j >= 0; j++) {
+                for(int prevVal : dp[j]) {
+                    if (sum >= prevVal - 1 && sum <= prevVal + 1) {
+                        dp[i].add(sum);
+                    }
                 }
+                
+                sum += gap[j];
             }
         }
         
-        return false;
+        
+        return dp[gap.length - 1].size() != 0;
     }
 }
