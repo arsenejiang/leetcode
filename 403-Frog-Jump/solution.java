@@ -14,7 +14,7 @@ public class Solution {
             return false;
         }
         
-        List<Integer>[] dp = new ArrayList<Integer>[gap.length]();
+        List<Integer>[] dp = (List<Integer>[])new Object[gap.length]();
         for(int i = 0; i < gap.length; i++) {
             dp[i] = new ArrayList<Integer>();
         }
