@@ -19,9 +19,11 @@ public class Solution {
             dp[i] = new ArrayList<Integer>();
         }
         
+        dp[0].add(1);
+        
         for(int i = 1; i < gap.length; i++) {
             int sum = gap[i];
-            for(int j = i - 1; j >= 0; j++) {
+            for(int j = i - 1; j >= 0; j--) {
                 for(int prevVal : dp[j]) {
                     if (sum >= prevVal - 1 && sum <= prevVal + 1) {
                         dp[i].add(sum);
