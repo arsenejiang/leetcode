@@ -5,10 +5,16 @@ public class Solution {
         }
         
         int max = nums[0];
-        int current = nums[0];
+        int curSum = nums[0];
         for(int i = 1; i < nums.length; i++) {
-            current = Math.max(current + nums[i], nums[i]);
-            max = Math.max(max, current);
+            if (curSum > 0) {
+                curSum += nums[i];
+            }
+            else {
+                curSum = nums[i];
+            }
+            
+            max = Math.max(max, curSum);
         }
         
         return max;
