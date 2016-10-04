@@ -45,12 +45,6 @@ the gap between the 5th and 6th stone is too large.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Snapchat](/company/snapchat/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Dynamic Programming](/tag/dynamic-programming/)</span></div>
