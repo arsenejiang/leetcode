@@ -12,7 +12,7 @@ public class Solution {
             for(int j = 0; j < dp[i - 1].length(); j++) {
                 char c = dp[i - 1].charAt(j);
                 if (c != prev) {
-                    dp[i].append(count);
+                    dp[i].append(String.valueOf(count));
                     dp[i].append(prev);
                     prev = c;
                     count = 1;
@@ -22,7 +22,7 @@ public class Solution {
                 }
                 
                 if (j == dp[i - 1].length() - 1) {
-                    dp[i].append(count);
+                    dp[i].append(String.valueOf(count));
                     dp[i].append(prev);
                 }
             }
