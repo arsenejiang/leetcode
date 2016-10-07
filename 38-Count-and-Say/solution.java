@@ -9,7 +9,7 @@ public class Solution {
         for(int i = 2; i <= n; i++) {
             char prev = dp[i - 1].charAt(0);
             int count = 1;
-            for(int j = 1; j < dp[i - 1].length(); j++) {
+            for(int j = 0; j < dp[i - 1].length(); j++) {
                 char c = dp[i - 1].charAt(j);
                 if (c != prev) {
                     dp[i].append(count);
