@@ -9,10 +9,7 @@ public class Solution {
                 continue;
             }
             else if (nums[i] >= 1 && nums[i] <= nums.length) {
-                int temp = nums[i];
-                nums[i] = nums[temp - 1];
-                nums[temp - 1] = temp;
-                i--;
+                swap(nums, i, nums[i] - 1)
             }
         }
         
@@ -22,6 +19,16 @@ public class Solution {
             }
         }
         
-        return nums.length;
+        return nums.length + 1;
+    }
+    
+    private void swap(int[] nums, int a, int b) {
+        if (a == b || nums.[a] == nms[b]) {
+            return;
+        }
+        
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
     }
 }
