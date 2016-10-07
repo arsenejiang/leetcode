@@ -9,6 +9,7 @@ public class Solution {
         for(int i = 2; i <= n; i++) {
             char prev = '0';
             int count = 1;
+            dp[i] = new StringBuilder();
             for(int j = 0; j < dp[i - 1].length(); j++) {
                 char c = dp[i - 1].charAt(j);
                 if (j == 0) {
