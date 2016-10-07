@@ -1,54 +1,56 @@
 public class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
-        List<Integer> res = new ArrayList();
-        if (s == null || s.length() == 0 || words == null || words.length == 0) {
+        List<Integer> res = new ArrayList<Integer>();
+        if (s == null || s.length() == 0 || words == null || words.length == 0 || words[0].length() == 0) {
             return res;
         }
         
-        int sLen = s.length();
-        int wLen = words[0].length();
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        for(String w : words) {
-            if (map.containsKey(w)) {
-                map.put(w, map.get(w) + 1);
+        HashMap<String, Integer> wmap = new HashMap<String, Integer>();
+        int wlen = words[0].length();
+        int tlen = 0;
+        int slen = s.length();
+        for(String word : words) {
+            tlen += wlen;
+            if (!wmap.containsKey(word)) {
+                wmap.put(word, 1);
             }
             else {
-                map.put(w, 1);
+                wmap.put(word, wmap.get(word) + 1);
             }
         }
         
-        for(int i = 0; i < wLen; i++) {
+        for(int i = 0; i < wlen; i++) {
+            int start = i, count = 0;
             HashMap<String, Integer> covered = new HashMap<String, Integer>();
-            int start = i;
-            int count = 0;
-            for(int j = i; j <= sLen - wLen; j += wLen) {
-                String sub = s.substring(j, j + wLen);
-                if (map.containsKey(sub)) {
+            for(int j = i; j <= slen - wlen; j+=wlen) {
+                String sub = s.substring(j, j + wlen);
+                if (wmap.containsKey(sub)) {
                     if (covered.containsKey(sub)) {
+                        count++;
                         covered.put(sub, covered.get(sub) + 1);
-                    }   
+                    }
                     else {
+                        count++;
                         covered.put(sub, 1);
                     }
-                    count++;
                     
-                    while(map.get(sub) < covered.get(sub)) {
-                        String temp = s.substring(start, start + wLen);
+                    while(wmap.get(sub) < covered.get(sub)) {
+                        String temp = s.substring(start, start + wlen);
+                        start = start + wlen;
                         covered.put(temp, covered.get(temp) - 1);
                         count--;
-                        start = start + wLen;
                     }
                     
                     if (count == words.length) {
                         res.add(start);
-                        String temp = s.substring(start, start + wLen);
+                        String temp = s.substring(start, start + wlen);
                         covered.put(temp, covered.get(temp) - 1);
                         count--;
-                        start = start + wLen;
+                        start = start + wlen;
                     }
                 }
                 else {
-                    start = j + wLen;
+                    start = j + wlen;
                     covered.clear();
                     count = 0;
                 }
@@ -56,6 +58,5 @@ public class Solution {
         }
         
         return res;
-        
     }
 }
