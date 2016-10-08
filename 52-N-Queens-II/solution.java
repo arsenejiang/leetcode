@@ -1,28 +1,32 @@
 public class Solution {
     public int totalNQueens(int n) {
-        int[] result = new int[1];
-        int[] pos = new int[n];
-        helper(pos, 0, result);
-        return result[0];
+        if (n <= 0) {
+            return 0;
+        }
+        
+        int[] res = new int[1];
+        int[] nums = new int[n];
+        helper(nums, 0, res);
+        return res[0];
     }
     
-    private void helper(int[] pos, int row, int[] result) {
-        if (row == pos.length) {
-            result[0]++;
+    private void helper(int[] nums, int index, int[] res) {
+        if (index == nums.length) {
+            res[0]++;
             return;
         }
         
-        for(int i = 0; i < pos.length; i++) {
-            pos[row] = i;
-            if (isValid(pos, row)) {
-                helper(pos, row + 1, result);
+        for(int i = 0; i < nums.length; i++) {
+            if (isValid(nums, index, i)) {
+                nums[index] = i;
+                helper(nums, index, i);
             }
         }
     }
     
-    private boolean isValid(int[] pos, int row) {
-        for(int i = 0; i < row; i++) {
-            if (pos[i] == pos[row] || Math.abs(pos[i] - pos[row]) == Math.abs(i - row)) {
+    private boolean isValid(int[] nums, int index, int val) {
+        for(int i = 0; i < index; i++) {
+            if (nums[i] == val || Math.abs(val - nums[i]) == index - i) {
                 return false;
             }
         }
