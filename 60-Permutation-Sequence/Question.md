@@ -26,12 +26,6 @@ Given _n_ and _k_, return the _k_<sup>th</sup> permutation sequence.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Twitter](/company/twitter/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Backtracking](/tag/backtracking/) [Math](/tag/math/)</span></div>
