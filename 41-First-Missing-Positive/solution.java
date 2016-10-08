@@ -8,7 +8,7 @@ public class Solution {
             if (nums[i] <= 0) {
                 continue;
             }
-            else if (nums[i] > i + 1 && nums[i] <= nums.length) {
+            else if (nums[i] >= 1 && nums[i] <= nums.length && nums[i] != nums[nums[i] - 1]) {
                 swap(nums, i, nums[i] - 1);
                 i--;
             }
