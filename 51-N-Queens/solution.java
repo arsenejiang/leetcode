@@ -1,40 +1,45 @@
 public class Solution {
     public List<List<String>> solveNQueens(int n) {
-        List<List<String>> res = new ArrayList();
-        int[] pos = new int[n];
-        helper(res, pos, 0);
+        List<List<String>> res = new ArrayList<List<String>>();
+        if (n <= 0) {
+            return res;
+        }
+        
+        int[] nums = new int[n];
+        helper(nums, 0, res);
         return res;
     }
     
-    private void helper(List<List<String>> res, int[] pos, int row) {
-        if (row == pos.length) {
-            List<String> list = new ArrayList();
-            for(int i = 0; i < pos.length; i++) {
+    private void helper(int[] nums, int index, List<List<String>> res) {
+        if (index == nums.length) {
+            List<String> list = new ArrayList<String>();
+            for(int i = 0; i < nums.length; i++) {
                 StringBuilder sb = new StringBuilder();
-                for(int j = 0; j < pos[i]; j++) {
-                    sb.append('.');
-                }
-                sb.append('Q');
-                for(int j = pos[i] + 1; j < pos.length; j++) {
-                    sb.append('.');
+                for(int j = 0; j < nums.length; j++) {
+                    if (j == nums[i]) {
+                        sb.append('Q');
+                    }
+                    else {
+                        sb.append('.');
+                    }
                 }
                 list.add(sb.toString());
             }
             res.add(list);
+            return;
         }
-        else {
-            for(int i = 0; i < pos.length; i++) {
-                pos[row] = i;
-                if (isValid(pos, row)) {
-                    helper(res, pos, row + 1);
-                }
+        
+        for(int i = 0; i < nums.length; i++) {
+            if(isValid(nums, index, i)) {
+                nums[index] = i;
+                helper(nums, index + 1, res);
             }
         }
     }
     
-    private boolean isValid(int[] pos, int row) {
-        for(int i = 0; i < row; i++) {
-            if (pos[i] == pos[row] || Math.abs(pos[i] - pos[row]) == Math.abs(i - row)) {
+    private boolean isValid(int[] nums, int index, int val) {
+        for(int i = 0; i < index; i++) {
+            if (val == nums[i] || Math.abs(val - nums[i]) == index - i) {
                 return false;
             }
         }
