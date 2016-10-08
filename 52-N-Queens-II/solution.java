@@ -19,7 +19,7 @@ public class Solution {
         for(int i = 0; i < nums.length; i++) {
             if (isValid(nums, index, i)) {
                 nums[index] = i;
-                helper(nums, index, i);
+                helper(nums, index, res);
             }
         }
     }
