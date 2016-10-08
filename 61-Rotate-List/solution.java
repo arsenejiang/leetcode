@@ -8,36 +8,37 @@
  */
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || k == 0) {
+        if (head == null || head.next == null || k <= 0) {
             return head;
         }
         
-        ListNode p = head;
-        int size = 1;
-        while(p.next != null) {
-            size++;
-            p = p.next;
+        ListNode cur = head;
+        int count = 0;
+        while(cur != null) {
+            count++;
+            cur = cur.next;
         }
         
-        k = k % size;
+        k = k % count;
         if (k == 0) {
             return head;
         }
         
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        
-        ListNode tail = head, prev = head;
-        while(k-->0) {
-            tail = tail.next;
+        cur = head;
+        ListNode prev = dummy;
+        k = k - 1;
+        while(k-- > 0) {
+            cur = cur.next;
         }
         
-        while(tail.next != null) {
+        while(cur.next != null) {
+            cur = cur.next;
             prev = prev.next;
-            tail = tail.next;
         }
         
-        tail.next = dummy.next;
+        cur.next = dummy.next;
         dummy.next = prev.next;
         prev.next = null;
         
