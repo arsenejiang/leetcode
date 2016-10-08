@@ -1,18 +1,26 @@
 public class Solution {
     public int[] plusOne(int[] digits) {
-        int size = digits.length;
-        for(int i = size - 1; i >= 0; i--) {
-            if(digits[i] < 9) {
-                digits[i]++;
-                return digits;
-            }
-            else {
-                digits[i] = 0;
+        if (digits == null || digits.length == 0) {
+            return new int[]{1};
+        }
+        
+        int[] res = new int[digits.length];
+        for(int i = 0; i < digits.length; i++) {
+            res[i] = digits[i];
+        }
+        
+        int carry = 1;
+        for(int i = digits.length - 1; i >= 0; i--) {
+            int val = res[i] + carry;
+            res[i] = val % 10;
+            carry = val / 10;
+            if (carry == 0) {
+                return res;
             }
         }
         
-        int[] res = new int[size + 1];
-        res[0] = 1;
-        return res;
+        int[] result = new int[digits.length + 1];
+        result[0] = 1;
+        return result;
     }
 }
