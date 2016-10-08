@@ -22,6 +22,13 @@ public class Solution {
             total *= i;
         }
         
+        if (k == total) {
+            for(int i = nums.size() - 1; i >= 0; i--) {
+                cur.append(nums.get(i));
+            }
+            return;
+        }
+        
         int bucketSize = total / nums.size();
         int index = k / bucketSize;
         cur.append(nums.get(index));
