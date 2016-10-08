@@ -19,13 +19,13 @@ public class Solution {
         for(int i = 0; i < nums.length; i++) {
             if (isValid(nums, index, i)) {
                 nums[index] = i;
-                helper(nums, index, res);
+                helper(nums, index + 1, res);
             }
         }
     }
     
     private boolean isValid(int[] nums, int index, int val) {
-        for(int i = 0; i < index; i++) {
+        for (int i = 0; i < index; i++) {
             if (nums[i] == val || Math.abs(val - nums[i]) == index - i) {
                 return false;
             }
