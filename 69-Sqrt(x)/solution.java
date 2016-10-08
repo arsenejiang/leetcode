@@ -1,16 +1,18 @@
 public class Solution {
     public int mySqrt(int x) {
-        if (x <= 1) {
-            return x;
+        if (x <= 0) {
+            return 0;
         }
         
-        int left = 1, right = x / 2;
+        long left = 1;
+        long right = x;
         while(left <= right) {
-            int mid = left + (right - left) / 2;
-            if (mid == x / mid) {
-                return mid;
+            long mid = left + (right - left) / 2;
+            long val = mid * mid;
+            if (val == x) {
+                return (int)mid;
             }
-            else if (mid < x / mid) {
+            else if (val < x) {
                 left = mid + 1;
             }
             else {
@@ -18,6 +20,6 @@ public class Solution {
             }
         }
         
-        return right;
+        return (int)right;
     }
 }
