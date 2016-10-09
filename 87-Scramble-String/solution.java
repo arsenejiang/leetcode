@@ -41,7 +41,7 @@ public class Solution {
             }
         }
         
-        for(int i = 1; i <= len; i++) {
+        for(int i = 1; i < len; i++) {
             if ((isScramble(s1.substring(0, i), s2.substring(0, i)) && isScramble(s1.substring(i), s2.substring(i))) ||
             isScramble(s1.substring(0, i), s2.substring(len - i)) && isScramble(s1.substring(i), s2.substring(0, len - i))) {
                 return true;
