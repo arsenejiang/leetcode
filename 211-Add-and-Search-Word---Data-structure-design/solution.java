@@ -17,26 +17,18 @@ public class WordDictionary {
     // Returns if the word is in the data structure. A word could
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
-        return helper(word, 0, root);
+        return helper(word.toCharArray(), 0, root);
     }
     
-    private boolean helper(String word, int start, TrieNode root) {
-        if (start == word.length()) {
-            if (root != null && root.isWord) {
-                return true;
-            }
-            else {
-                return false;
-            }
+    private boolean helper(char[] word, int start, TrieNode root) {
+        if (start == word.length) {
+            return root.isWord;
         }
         
-        char c = word.charAt(start);
-        if (c == '.') {
-            boolean result = false;
+        if (word[start] == '.') {
             for(int i = 0; i < 26; i++) {
                 if (root.children[i] != null) {
-                    result = result || helper(word, start + 1, root.children[i]);
-                    if (result) {
+                    if (helper(word, start + 1, root.children[i])) {
                         return result;
                     }
                 }
