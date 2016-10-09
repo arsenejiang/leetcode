@@ -22,8 +22,8 @@ public class Solution {
             height++;
         }
         
-        if (left == null) {
-            return (1 << height)  - 1;
+        if (left == null && right == null) {
+            return (1 << height) - 1;
         }
         
         return 1 + countNodes(root.left) + countNodes(root.right);
