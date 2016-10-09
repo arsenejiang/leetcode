@@ -15,12 +15,6 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Airbnb](/company/airbnb/) [Palantir](/company/palantir/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Hash Table](/tag/hash-table/) [Bit Manipulation](/tag/bit-manipulation/)</span></div>
@@ -29,4 +23,4 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 
 <div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton">[(M) Single Number II](/problems/single-number-ii/) [(M) Single Number III](/problems/single-number-iii/) [(M) Missing Number](/problems/missing-number/) [(H) Find the Duplicate Number](/problems/find-the-duplicate-number/)</span></div>
+<span class="hidebutton">[(M) Single Number II](/problems/single-number-ii/) [(M) Single Number III](/problems/single-number-iii/) [(M) Missing Number](/problems/missing-number/) [(H) Find the Duplicate Number](/problems/find-the-duplicate-number/) [(E) Find the Difference](/problems/find-the-difference/)</span></div>
