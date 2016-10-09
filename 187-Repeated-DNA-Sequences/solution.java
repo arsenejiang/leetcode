@@ -1,45 +1,37 @@
 public class Solution {
     public List<String> findRepeatedDnaSequences(String s) {
-        /*
         List<String> res = new ArrayList<String>();
         if (s == null || s.length() <= 9) {
             return res;
         }
         
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int i = 0; i <= s.length() - 10; i++) {
-            int val = strToInt(s.substring(i, i + 10));
-            if (map.containsKey(val)) {
-                map.put(val, map.get(val) + 1);
-                if (map.get(val) == 2) {
-                    res.add(s.substring(i, i + 10));
-                }
-            }
-            else {
-                map.put(val, 1);
-            }
-        }
-        
-        return res;
-        */
-        List<String> res = new ArrayList();
-        if (s == null || s.length() < 10) {
-            return res;
-        }
-        
         int len = s.length();
-        Map<String, Integer> map = new HashMap();
-        for(int i = 0; i <= len - 10; i++) {
-            String sub = s.substring(i, i + 10);
-            if (map.containsKey(sub)) {
-                int count = map.get(sub) + 1;
-                map.put(sub, count);
-                if (count == 2) {
-                    res.add(sub);
-                }
+        HashMap<Character, Integer> cmap = new HashMap<Character, Integer>();
+        cmap.put('A', 0);
+        cmap.put('C', 1);
+        cmap.put('G', 2);
+        cmap.put('T', 3);
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        
+        int hash = 0;
+        int max = 0xFFFFF;
+        for(int i = 0; i < len; i++) {
+            if (i < 9) {
+                hash = (hash << 2) + cmap.get(s.charAt(i));
             }
             else {
-                map.put(sub, 1);
+                hash = (hash << 2) + cmap.get(s.charAt(i));
+                hash = hash & max;
+                
+                if (map.containsKey(hash)) {
+                    map.put(hash, map.get(hash) + 1);
+                    if (map.get(hash) == 2) {
+                        res.add(s.substring(i - 9, i + 1));
+                    }
+                }
+                else {
+                    map.put(hash, 1);
+                }
             }
         }
         
@@ -69,6 +61,4 @@ public class Solution {
         
         return res;
     }
-    
-    
 }
