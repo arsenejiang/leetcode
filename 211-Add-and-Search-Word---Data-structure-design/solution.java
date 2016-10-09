@@ -2,56 +2,65 @@ public class WordDictionary {
     private TrieNode root = new TrieNode();
     // Adds a word into the data structure.
     public void addWord(String word) {
-        TrieNode r = root;
-        for(int i = 0; i < word.length(); i++) {
+        TrieNode cur = root;
+        for(int i = 0; i < word.length; i++) {
             char c = word.charAt(i);
-            if (r.children[c - 'a'] == null) {
-                r.children[c - 'a'] = new TrieNode();
+            if (cur.children[c - 'a'] == null) {
+                cur.children[c - 'a'] = new TrieNode();
             }
-            r = r.children[c - 'a'];
+            cur = cur.children[c - 'a'];
         }
         
-        r.isWord = true;
+        cur.isWord = true;
     }
 
     // Returns if the word is in the data structure. A word could
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
-        return search(word.toCharArray(), 0, root);
+        return search(word, 0, root);
     }
     
-    private boolean search(char[] str, int index, TrieNode parent) {
-        if (index == str.length) {
-            return parent.isWord;
+    private boolean search(String word, int start, TrieNode root) {
+        if (start == word.length()) {
+            if (root != null && root.isWord) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         
-        if (str[index] == '.') {
+        char c = word.charAt(start);
+        if (c == '.') {
+            boolean result = false;
             for(int i = 0; i < 26; i++) {
-                if (parent.children[i] != null) {
-                    if (search(str, index + 1, parent.children[i])) {
-                        return true;
+                if (root.children[i] != null) {
+                    result = result || helper(word, start + 1, root.children[i]);
+                    if (result) {
+                        return result;
                     }
                 }
             }
+            
             return false;
         }
         else {
-            if (parent.children[str[index] - 'a'] != null) {
-                return search(str, index + 1, parent.children[str[index] - 'a']);
+            if (root.children[c - 'a'] != null) {
+                return helper(word, start + 1, root.children[c - 'a']);
             }
             else {
                 return false;
             }
         }
     }
-}
-
-class TrieNode {
-    boolean isWord;
-    TrieNode[] children = new TrieNode[26];
+    
+    class TrieNode {
+        TrieNode[] children = new TrieNode[26];
+        boolean isWord = false;
+    }
 }
 
 // Your WordDictionary object will be instantiated and called as such:
 // WordDictionary wordDictionary = new WordDictionary();
 // wordDictionary.addWord("word");
-// wordDictionary.search("pattern");
+// wordDictionary.search("pattern"); 
