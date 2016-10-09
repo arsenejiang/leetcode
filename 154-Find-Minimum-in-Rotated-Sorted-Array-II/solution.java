@@ -16,7 +16,10 @@ public class Solution {
         int right = len - 1;
         while(left <= right) {
             int mid = left + (right - left) / 2;
-            int midLeft = (mid - 1) % len;
+            int midLeft = mid - 1;
+            if (midLeft < 0) {
+                midLeft = len - 1;
+            }
             int midRight = (mid + 1) % len;
             if (nums[mid] < nums[midLeft] && nums[mid] < nums[midRight]) {
                 return nums[mid];
@@ -37,6 +40,6 @@ public class Solution {
             }
         }
         
-        return 0;
+        return nums[left];
     }
 }
