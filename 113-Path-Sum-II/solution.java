@@ -26,9 +26,10 @@ public class Solution {
         
         if (root.left == null && root.right == null) {
             if (sum == root.val) {
-                List<Integer> list = new ArrayList<Integer>(cur);
-                list.add(root.val);
-                res.add(list);
+                // List<Integer> list = new ArrayList<Integer>(cur);
+                cur.add(root.val);
+                res.add(new ArrayList<Integer>(cur));
+                cur.remove(cur.size() - 1);
                 return;
             }
             else {
