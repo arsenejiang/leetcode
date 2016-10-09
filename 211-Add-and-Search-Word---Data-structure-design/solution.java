@@ -37,8 +37,8 @@ public class WordDictionary {
             return false;
         }
         else {
-            if (root.children[c - 'a'] != null) {
-                return helper(word, start + 1, root.children[c - 'a']);
+            if (root.children[word[start] - 'a'] != null) {
+                return helper(word, start + 1, root.children[word[start] - 'a']);
             }
             else {
                 return false;
