@@ -1,10 +1,10 @@
 class MyStack {
-    Queue<Integer> q = new LinkedList();
+    Queue<Integer> q = new LinkedList<Integer>();
     
     // Push element x onto stack.
     public void push(int x) {
         q.offer(x);
-        for(int i = 1; i < q.size(); i++) {
+        for(int i = 0; i < q.size() - 1; i++) {
             q.offer(q.poll());
         }
     }
