@@ -17,10 +17,10 @@ public class WordDictionary {
     // Returns if the word is in the data structure. A word could
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
-        return search(word, 0, root);
+        return helper(word, 0, root);
     }
     
-    private boolean search(String word, int start, TrieNode root) {
+    private boolean helper(String word, int start, TrieNode root) {
         if (start == word.length()) {
             if (root != null && root.isWord) {
                 return true;
