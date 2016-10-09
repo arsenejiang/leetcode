@@ -37,28 +37,4 @@ public class Solution {
         
         return res;
     }
-    
-    private int strToInt(String s) {
-        int res = 0;
-        for(int i = 0; i < 10; i++) {
-            char c = s.charAt(i);
-            res = res << 2;
-            switch (c) {
-                case 'A':
-                    res = res;
-                    break;
-                case 'C':
-                    res = res + 1;
-                    break;
-                case 'G':
-                    res = res + 2;
-                    break;
-                case 'T':
-                    res = res + 3;
-                    break;
-            }
-        }
-        
-        return res;
-    }
 }
