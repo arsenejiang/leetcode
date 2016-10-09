@@ -5,29 +5,16 @@ public class Solution {
         }
         
         int len = gas.length;
-        List<Integer> candidates = new ArrayList<Integer>();
         for(int i = 0; i < len; i++) {
-            if (gas[i] >= cost[i]) {
-                candidates.add(i);
-            }
-        }
-        
-        if (candidates.size() == 0) {
-            return -1;
-        }
-        
-        for(int candidate : candidates) {
-            int sum = 0;
-            for(int i = 0; i < len; i++) {
-                int index = (i + candidate) % len;
-                sum += gas[index] - cost[index]; 
-                if (sum < 0) {
-                    break;
+            int curGas = gas[i] - cost[i];
+            int j = (i + 1) % len;
+            while(curGas >= 0) {
+                curGas += gas[j] - cost[j];
+                j = (j + 1) % len;
+                
+                if (j == i && curGas >= 0) {
+                    return i;
                 }
-            }
-            
-            if (sum >= 0) {
-                return candidate;
             }
         }
         
