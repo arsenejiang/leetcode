@@ -1,27 +1,35 @@
 public class Solution {
     public List<String> wordBreak(String s, Set<String> wordDict) {
-        List<String> res = new ArrayList();
-        Map<String, List<String>> map = new HashMap();
+        List<String> res = new ArrayList<String>();
+        if (s == null || s.length() == 0 || wordDict.size() == 0) {
+            return res;
+        }
+        HashMap<String, List<String>> map = new HashMap<String, List<String>>();
         return helper(s, wordDict, map);
     }
     
-    private List<String> helper(String s, Set<String> wordDict, Map<String, List<String>> map) {
+    private List<String> helper(String s, Set<String> wordDict, HashMap<String, List<String>> map) {
+        List<String> res = new ArrayList<String>();
+        if (s.length() == 0) {
+            res.add("");
+            return res;
+        }
+        
         if (map.containsKey(s)) {
             return map.get(s);
         }
         
-        List<String> res = new ArrayList();
-        if (wordDict.contains(s)) {
-            res.add(s);
-        }
-        
-        int len = s.length();
-        for(int i = 1; i < len; i++) {
-            String sub = s.substring(i);
-            if (wordDict.contains(sub)) {
-                List<String> list = helper(s.substring(0, i), wordDict, map);
-                for(String str : list) {
-                    res.add(str + " " + sub);
+        for(int i = 1; i <= s.length(); i++) {
+            String temp = s.substring(0, i);
+            if (wordDict.contains(temp)) {
+                List<String> rest = helper(s.substring(i), wordDict, map);
+                for(String str : rest) {
+                    if (str.length() == 0) {
+                        res.add(temp);
+                    }
+                    else {
+                        res.add(temp + " " + str);
+                    }
                 }
             }
         }
