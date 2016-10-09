@@ -1,26 +1,33 @@
 public class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
         if (gas == null || cost == null || gas.length == 0 || cost.length == 0) {
-            return - 1;
-        } 
+            return -1;
+        }
         
         int len = gas.length;
+        List<Integer> candidates = new ArrayList<Integer>();
         for(int i = 0; i < len; i++) {
-            int curGas = 0;
-            int j = 0;
-            for(j = 0; j < len; j++) {
-                int index = (i + j) % len;
-                curGas += gas[index] - cost[index];
-                if (curGas < 0) {
-                    if ( i < index) {
-                        i = index;
-                    }
+            if (gas[i] >= cost[i]) {
+                candidates.add(i);
+            }
+        }
+        
+        if (candidates.size() == 0) {
+            return -1;
+        }
+        
+        for(int candidate : candidates) {
+            int sum = 0;
+            for(int i = 0; i < len; i++) {
+                int index = (i + candidate) % len;
+                sum += gas[index] - cost[index]; 
+                if (sum < 0) {
                     break;
                 }
             }
             
-            if (j == len) {
-                return i;
+            if (sum >= 0) {
+                return candidate;
             }
         }
         
