@@ -16,6 +16,11 @@ public class Solution {
                     return i;
                 }
             }
+            
+            if (i < j) {
+                i = j;
+                i--;
+            }
         }
         
         return -1;
