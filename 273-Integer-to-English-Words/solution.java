@@ -1,7 +1,7 @@
 public class Solution {
-    private final String[] LESS_THAN_20 = new String[]{"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    private final String[] TENS = new String[]{"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-    private final String[] THOUSANDS = new String[]{"", "Thousand", "Million", "Billion"};
+    private final String[] LESS_THAN_20 = new String[] {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private final String[] TENS = new String[] {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    private final String[] THOUSANDS = new String[] {"", "Thousand", "Million", "Billion"};
     
     public String numberToWords(int num) {
         if (num == 0) {
@@ -9,16 +9,16 @@ public class Solution {
         }
         
         int i = 0;
-        StringBuilder sb = new StringBuilder();
+        StringBuilder res = new StringBuilder();
         while(num > 0) {
-            if (num % 1000 != 0) {
-                sb.insert(0, helper(num % 1000) + THOUSANDS[i] + " ");
+            if (num % 1000 > 0) {
+                res.insert(0, helper(num % 1000) + THOUSANDS[i] + " ");
             }
             num = num / 1000;
             i++;
         }
         
-        return sb.toString().trim();
+        return res.toString().trim();
     }
     
     private String helper(int num) {
@@ -29,7 +29,7 @@ public class Solution {
             return LESS_THAN_20[num] + " ";
         }
         else if (num < 100) {
-            return TENS[num/10] + " " + helper(num % 10);
+            return TENS[num / 10] + " " + helper(num % 10);
         }
         else {
             return LESS_THAN_20[num / 100] + " Hundred " + helper(num % 100);
