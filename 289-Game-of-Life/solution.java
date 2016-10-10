@@ -15,29 +15,32 @@ public class Solution {
         
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
-                int count = liveCount(original, m, n, i, j);
-                if (count == 3 || (count == 4 && original[i][j] == 1)) {
+                int count = getLiveCounts(original, m, n, i, j);
+                if (count <= 2 || count > 4) {
+                    board[i][j] = 0;
+                }
+                else if (count == 3) {
                     board[i][j] = 1;
                 }
-                else {
-                    board[i][j] = 0;
+                else if (count == 4) {
+                    board[i][j] = original[i][j];
                 }
             }
         }
     }
     
-    private int liveCount(int[][] board, int m, int n, int x, int y) {
-        int liveCount = 0;
-        int up = x >= 1 ? x - 1 : 0;
-        int down = x <= m - 2 ? x + 1 : m - 1;
-        int left = y >= 1 ? y - 1 : 0;
-        int right = y <= n - 2 ? y + 1 : n - 1;
+    private int getLiveCounts(int[][] board, int m, int n, int x, int y) {
+        int up = Math.max(x - 1, 0);
+        int down = Math.min(x + 1, m - 1);
+        int left = Math.max(y - 1, 0);
+        int right = Math.min(y + 1, n - 1);
+        int count = 0;
         for(int i = up; i <= down; i++) {
             for(int j = left; j <= right; j++) {
-                liveCount += board[i][j];
+                count += board[i][j];
             }
         }
         
-        return liveCount;
+        return count;
     }
 }
