@@ -3,8 +3,8 @@ public class Solution {
         int[] counts = new int[10];
         int A = 0, B = 0;
         for(int i = 0; i < secret.length(); i++) {
-            char g = guess.charAt(i);
             char s = secret.charAt(i);
+            char g = guess.charAt(i);
             if (s == g) {
                 A++;
             }
