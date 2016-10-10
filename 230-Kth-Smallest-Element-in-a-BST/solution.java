@@ -9,23 +9,22 @@
  */
 public class Solution {
     public int kthSmallest(TreeNode root, int k) {
-        int leftCount = count(root.left);
-        if (leftCount == k - 1) {
-            return root.val;
-        }
-        else if (leftCount < k - 1) {
-            return kthSmallest(root.right, k - leftCount - 1);
-        }
-        else {
+        int leftCount = countNodes(root.left);
+        if (k <= leftCount) {
             return kthSmallest(root.left, k);
         }
+        else if (k > leftCount + 1) {
+            return kthSmallest(root.right, k - 1 - leftCount);
+        }
+        
+        return root.val;
     }
     
-    private int count(TreeNode root) {
+    private int countNodes(TreeNode root) {
         if (root == null) {
             return 0;
         }
         
-        return 1 + count(root.left) + count(root.right);
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
 }
