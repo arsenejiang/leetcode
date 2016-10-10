@@ -6,10 +6,6 @@ public class Solution {
             return false;
         }
         
-        if (s.equals(t)) {
-            return true;
-        }
-        
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         for(char c : s.toCharArray()) {
             if (map.containsKey(c)) {
@@ -23,8 +19,8 @@ public class Solution {
         for(char c : t.toCharArray()) {
             if (map.containsKey(c)) {
                 map.put(c, map.get(c) - 1);
-                if (map.get(c) == 0) {
-                    map.remove(c);
+                if (map.get(c) < 0) {
+                    return false;
                 }
             }
             else {
@@ -32,6 +28,6 @@ public class Solution {
             }
         }
         
-        return map.size() == 0;
+        return true;
     }
 }
