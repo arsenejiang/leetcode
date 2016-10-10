@@ -41,12 +41,6 @@ Could you solve it in linear time?
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
-
-<span class="hidebutton">[Amazon](/company/amazon/) [Google](/company/google/) [Zenefits](/company/zenefits/)</span></div>
-
-<div>
-
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
 <span class="hidebutton">[Heap](/tag/heap/)</span></div>
