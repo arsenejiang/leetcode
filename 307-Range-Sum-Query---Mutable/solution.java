@@ -14,7 +14,7 @@ public class NumArray {
 
     void update(int i, int val) {
         int diff = val - nums[i];
-        num[i] = val;
+        nums[i] = val;
         init(i, diff);
     }
 
