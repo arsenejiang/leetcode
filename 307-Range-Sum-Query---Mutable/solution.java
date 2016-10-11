@@ -26,7 +26,7 @@ public class NumArray {
         i++;
         while(i <= n) {
             BIT[i] += val;
-            i = (i & - i) << 1;
+            i += (i & - i);
         }
     }
     
@@ -35,7 +35,7 @@ public class NumArray {
         i++;
         while(i > 0) {
             sum += BIT[i];
-            i = i <<< 1;
+            i -= (i & -i);
         }
         return sum;
     }
