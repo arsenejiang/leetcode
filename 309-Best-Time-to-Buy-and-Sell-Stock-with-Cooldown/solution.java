@@ -1,36 +1,22 @@
 public class Solution {
-    // best solution
-    /*
     public int maxProfit(int[] prices) {
-        int sell = 0, prev_sell = 0, buy = Integer.MIN_VALUE, prev_buy;
-        for(int price : prices) {
-            prev_buy = buy;
-            buy = Math.max(prev_sell - price, prev_buy);
-            prev_sell = sell;
-            sell = Math.max(prev_buy + price, prev_sell);
-        }
-        
-        return sell;
-    }
-    */
-    
-    public int maxProfit(int[] prices) {
-        if (prices == null || prices.length < 2) {
+        if (prices == null || prices.length <= 1) {
             return 0;
         }
         
-        int len = prices.length;
-        int[] buy = new int[len];
-        int[] sell = new int[len];
+        int n = prices.length;
+        int[] sell = new int[n];
+        int[] buy = new int[n];
+        int[] hold = new int[n];
         buy[0] = -prices[0];
         sell[0] = 0;
-        buy[1] = Math.max(buy[0], -prices[1]);
-        sell[1] = Math.max(0, buy[0] + prices[1]);
-        for(int i = 2; i < len; i++) {
-            buy[i] = Math.max(buy[i-1], sell[i-2] - prices[i]);
-            sell[i] = Math.max(sell[i-1], buy[i-1] + prices[i]);
+        hold[0] = 0;
+        for(int i = 1; i < n; i++) {
+            buy[i] = Math.max(buy[i-1], hold[i-1] - prices[i]);
+            hold[i] = Math.max(sell[i-1], hold[i-1]);
+            sell[i] = Math.max(hold[i-1], buy[i-1] + prices[i]);
         }
         
-        return sell[len - 1];
+        return Math.max(hold[n-1], sell[n-1]);
     }
 }
