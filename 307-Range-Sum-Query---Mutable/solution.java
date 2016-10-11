@@ -35,7 +35,7 @@ public class NumArray {
         i++;
         while(i > 0) {
             sum += BIT[i];
-            i = i << 1;
+            i = i <<< 1;
         }
         return sum;
     }
