@@ -22,7 +22,7 @@ public class NumArray {
         return getSum(j + 1) - getSum(i);
     }
     
-    private int init(int index, int val) {
+    private void init(int index, int val) {
         index++;
         for(int i = index; i < n; i += (i & -i)) {
             BIT[i] += val;
