@@ -1,6 +1,7 @@
 public class NumArray {
     int[] nums;
     int[] BIT;
+    int n;
     
     public NumArray(int[] nums) {
         this.nums = nums;
