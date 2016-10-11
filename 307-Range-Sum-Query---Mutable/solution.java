@@ -4,40 +4,35 @@ public class NumArray {
     int n;
     
     public NumArray(int[] nums) {
-        this.nums = nums;
-        n = nums.length;
-        this.BIT = new int[n + 1];
-        for(int i = 0; i < n; i++) {
-            init(i, nums[i]);
+        this.nums = new int[nums.length + 1];
+        this.BIT = new int[nums.length + 1];
+        for(int i = 1; i <= nums.length; i++) {
+            update(i, nums[i-1]);
         }
     }
 
-    void update(int i, int val) {
-        int diff = val - nums[i];
-        nums[i] = val;
-        init(i, diff);
+    void update(int index, int val) {
+        int diff = val - nums[index ];
+        for(int i = index; i < nums.length; i += (i & -i)) {
+            BIT[i] += diff;
+        }
+        nums[index] = val;
     }
 
     public int sumRange(int i, int j) {
-        return getSum(j) - getSum(i - 1);
+        return getSum(j + 1) - getSum(i);
     }
     
-    private void init(int i, int val) {
-        i++;
-        while(i <= n) {
-            BIT[i] += val;
-            i += (i & - i);
-        }
-    }
-    
-    private int getSum(int i) {
+    private int getSum(int index) {
         int sum = 0;
-        i++;
-        while(i > 0) {
+        for(int i = index; i > 0; i -= lowbit(i)) {
             sum += BIT[i];
-            i -= (i & -i);
         }
         return sum;
+    }
+    
+    private int lowbit(int i) {
+        return (i & -i);
     }
 }
 
