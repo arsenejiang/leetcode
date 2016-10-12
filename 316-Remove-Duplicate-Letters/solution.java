@@ -11,7 +11,7 @@ public class Solution {
         
         int pos = 0;
         for(int i = 0; i < s.length(); i++) {
-            if (--counts[s.charAt(i) - 'a'] == 0) {
+            if (--count[s.charAt(i) - 'a'] == 0) {
                 break;
             }
             
