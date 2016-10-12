@@ -20,6 +20,6 @@ public class Solution {
             }
         }
         
-        return s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replace(s.charAt(pos), ""));
+        return s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replaceAll(s.charAt(pos), ""));
     }
 }
