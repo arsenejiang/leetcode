@@ -1,63 +1,21 @@
 public class Solution {
-    // (50ms) maintain a sorted list, and find pos on the sorted index, pos is the res
-    /*
     public List<Integer> countSmaller(int[] nums) {
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<Integer>();
         if (nums == null || nums.length == 0) {
             return res;
         }
         
-        int len = nums.length;
-        List<Integer> sorted = new ArrayList();
-        sorted.add(nums[len - 1]);
+        TreeNode root = new TreeNode(nums[nums.length - 1]);
         res.add(0);
-        for(int i = len - 2; i >= 0; i--) {
-            int index = findIndex(sorted, nums[i]);
-            sorted.add(index, nums[i]);
-            res.add(index);
-        }
-        
-        Collections.reverse(res); //add then reverse is faster than add to first.
-        return res;
-    }
-    
-    private int findIndex(List<Integer> sorted, int target) {
-        int left = 0;
-        int right = sorted.size() - 1;
-        while(left <= right) {
-            int mid = (right - left)/2 + left;
-            if (sorted.get(mid) >= target) {
-                right = mid - 1;
-            }
-            else {
-                left = mid + 1;
-            }
-        }
-        
-        return left;
-    }
-    */
-    
-    // Build BST (10ms)
-    public List<Integer> countSmaller(int[] nums) {
-        List<Integer> res = new ArrayList();
-        if (nums == null || nums.length == 0) {
-            return res;
-        }
-        
-        int len = nums.length;
-        TreeNode root = new TreeNode(nums[len - 1]);
-        res.add(0);
-        for(int i = len - 2; i >= 0; i--) {
-            int count = addNode(root, nums[i]);
-            res.add(count);
+        for(int i = nums.length - 2; i >= 0; i--) {
+            res.add(addNumber(root, nums[i]));
         }
         
         Collections.reverse(res);
         return res;
     }
     
-    private int addNode(TreeNode root, int val) {
+    private int addNumber(TreeNode root, int val) {
         int curCount = 0;
         while(true) {
             if (val <= root.val) {
@@ -85,10 +43,11 @@ public class Solution {
         return curCount;
     }
     
-    private class TreeNode{
-        private int val;
-        private int count; // number of nodes <= cur val.
-        private TreeNode left, right;
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        int count;
         TreeNode(int val) {
             this.val = val;
             this.count = 1;
