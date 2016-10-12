@@ -1,10 +1,7 @@
 public class Solution {
-    // use list and set to save current result
-    // if there are more available, remove larger character from current result
-    /*
     public String removeDuplicateLetters(String s) {
-        if (s == null || s.length() <= 1) {
-            return s;
+        if (s == null || s.length() == 0) {
+            return "";
         }
         
         int[] count = new int[26];
@@ -12,77 +9,17 @@ public class Solution {
             count[s.charAt(i) - 'a']++;
         }
         
-        Set<Character> set = new HashSet();
-        List<Character> list = new ArrayList();
-        set.add(s.charAt(0));
-        list.add(s.charAt(0));
-        count[s.charAt(0) - 'a']--;
-        for(int i = 1; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (set.contains(c)) {
-                count[c - 'a']--;
-                continue;
-            }
-            
-            char last = list.get(list.size() - 1);
-            while(last > c && count[last - 'a'] > 0)
-            {
-                list.remove(list.size() - 1);
-                set.remove(last);
-                if (list.isEmpty()) {
-                    break;
-                }
-                else {
-                    last = list.get(list.size() - 1);
-                }
-            }
-            
-            list.add(c);
-            set.add(c);
-            count[c - 'a']--;
-        }
-        
-        StringBuilder sb = new StringBuilder();
-        for(Character c : list) {
-            sb.append(c);
-        }
-        
-        return sb.toString();
-    }
-    */
-    
-    // use stack
-    public String removeDuplicateLetters(String s) {
-        if (s == null || s.length() <= 1) {
-            return s;
-        }
-        
-        int[] count = new int[26];
+        int pos = 0;
         for(int i = 0; i < s.length(); i++) {
-            count[s.charAt(i) - 'a']++;
-        }
-        
-        Stack<Character> stack = new Stack();
-        for(int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            count[c - 'a']--;
-            if (stack.search(c) >= 1) {
-                continue;
+            if (--counts[s.charAt(i) - 'a'] == 0) {
+                break;
             }
             
-            while(!stack.isEmpty() && stack.peek() > c && count[stack.peek() - 'a'] > 0) {
-                stack.pop();
+            if (s.charAt(i) < s.charAt(pos)) {
+                pos = i;
             }
-            
-            stack.push(c);
         }
         
-        
-        StringBuilder sb = new StringBuilder();
-        for(Character c : stack) {
-            sb.append(c);
-        }
-        
-        return sb.toString();
+        return s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replace(s.charAt(pos), ""));
     }
 }
