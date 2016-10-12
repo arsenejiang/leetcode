@@ -11,15 +11,14 @@ public class Solution {
         
         int pos = 0;
         for(int i = 0; i < s.length(); i++) {
-            if (--count[s.charAt(i) - 'a'] == 0) {
-                break;
-            }
-            
             if (s.charAt(i) < s.charAt(pos)) {
                 pos = i;
             }
+            if (--count[s.charAt(i) - 'a'] == 0) {
+                break;
+            }
         }
         
-        return s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replaceAll(s.charAt(pos), ""));
+        return s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replaceAll("" + s.charAt(pos), ""));
     }
 }
